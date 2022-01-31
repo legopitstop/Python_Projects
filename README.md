@@ -4,4 +4,10 @@ This repo contains the source code for some of my python projects. You can downl
 # Projects
 ## Score to bossbar
 - [source](./score_to_bossbar/README.md)
-- [download](https://legopitstop.weebly.com/tools.html)
+- [download](https://legopitstop.weebly.com/score_to_bossbar.html)
+## Time Creator
+- [source](./time_creator/README.md)
+- [download](https://legopitstop.weebly.com/time_creator.html)
+## Minecraft Extracter
+- [source](./minecraft_extracter/README.md)
+- [download](https://legopitstop.weebly.com/minecraft_extracter.html)
