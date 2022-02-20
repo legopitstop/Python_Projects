@@ -9,6 +9,7 @@ This program will extract your selected Minecraft jar version and/or compile all
 - Choose to extract the assets or data folders from the jar
 - Compile the objects to get access to all sounds, langs, and other hidden assets that aren't in the jar.
 - Choose which version to extract using a simple dropdown menu. (may experience some issues if your mc is located in diff folder)
+- Optional log output.
 
 ## Planned Features
 - Add minimize or maximize JSON's.
