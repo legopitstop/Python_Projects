@@ -151,7 +151,7 @@ class App():
         Label(JE,text='The version to extract:').grid(row=1,column=0,sticky=W)
         src = OptionMenu(JE,self.SRC,*get_versions())
         src.grid(row=2,column=0,sticky=W)
-        JE.grid(row=1,column=0,pady=5,padx=5)
+        JE.grid(row=1,column=0,pady=5,padx=5,sticky='nesw')
 
         OE = LabelFrame(WRAPPER,text='Object Extractor',pady=5,padx=5)
         Checkbutton(OE,text='Enable',variable=self.ENABLEOE,command=update).grid(row=0,column=0,sticky=W)
@@ -163,7 +163,7 @@ class App():
         Label(OE,text='The index version:').grid(row=3,column=0,sticky=W)
         index = OptionMenu(OE,self.INDEX,*get_indexes())
         index.grid(row=4,column=0,sticky=W)
-        OE.grid(row=1,column=1,pady=5,padx=5)
+        OE.grid(row=1,column=1,pady=5,padx=5,sticky='nesw')
         WRAPPER.grid(row=0,column=0)
 
 
