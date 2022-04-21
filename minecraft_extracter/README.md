@@ -13,3 +13,5 @@ This program will extract your selected Minecraft jar version and/or compile all
 
 ## Planned Features
 - Add minimize or maximize JSON's.
+- Data Generator
+- Map Objects: Copy file to new loc instead of moving it, then renaming it. This should fix the duplicate hash files.
