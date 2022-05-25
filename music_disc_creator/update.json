@@ -1,0 +1,8 @@
+{
+    "homepage": "https://www.curseforge.com/minecraft/customization/record-api-datapack/files",
+    "1.0.0": "Initial release.",
+    "1.1.0": "Test changelog for the update",
+    "promos": {
+        "recommended": "1.1.0"
+    }
+}
