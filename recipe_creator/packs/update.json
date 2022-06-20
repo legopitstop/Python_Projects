@@ -1,0 +1,13 @@
+{
+    "homepage": "https://example.com",
+    "1.0.0": {
+        "1.0.0": "Inital release"
+    },
+    "1.1.0": {
+        "1.5.0": "# CHANGELOG v1.0.0\nUpdates and stuff"
+    },
+    "promos": {
+        "1.0.0-recomended": "1.0.0",
+        "1.1.0-recomended": "1.5.0"
+    }
+}
