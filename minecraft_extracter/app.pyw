@@ -1,14 +1,18 @@
-import subprocess
-from time import sleep
-import time
-from tkinter import DISABLED, E, EW, LEFT,NORMAL, W, BooleanVar, StringVar, filedialog,messagebox,IntVar,Checkbutton
-from tkinter.ttk import Progressbar
-import uuid
+from tkinter import DISABLED, E, EW, LEFT, NORMAL, W, BooleanVar, StringVar, filedialog, messagebox, IntVar
 from UserFolder import User
-from customtkinter import CTk, CTkFrame, CTkLabel, CTkButton, CTkCheckBox,CTkProgressBar,CTkOptionMenu,CTkEntry
-import os,zipfile,threading,shutil,json,re,winsound,logging,customtkinter,sys
-
+from customtkinter import CTk, CTkFrame, CTkLabel, CTkButton, CTkCheckBox, CTkProgressBar, CTkOptionMenu, CTkEntry
+import os
+import zipfile
+import threading
+import shutil
+import json
+import re
+import logging
+import customtkinter
+import sys
 import requests
+import uuid
+import time
 
 __version__ = '1.1.0'
 
