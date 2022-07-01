@@ -1,0 +1,10 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/packs/assets/update.json",
+    "homepage": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/packs/assets/assets.zip",
+    "1.0.0": {
+        "1.0.0": "Inital release"
+    },
+    "promos": {
+        "1.0.0-recomended": "1.0.0"
+    }
+}
