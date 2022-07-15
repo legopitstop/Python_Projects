@@ -100,16 +100,16 @@
             "default": {},
             "properties": {
                 "discord:on_error": {
-                    "description": "Triggers when the command fails to run",
-                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.py#/definitions/EventTrigger"
+                    "description": "Triggers when the command fails to run.",
+                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/EventTrigger"
                 },
                 "discord:on_success": {
                     "description": "Triggers when the command can be successfully ran",
-                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.py#/definitions/EventTrigger"
+                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/EventTrigger"
                 },
                 "discord:on_permisson_error": {
                     "description": "Triggers when the executer does not have valid permissions to run the command.",
-                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.py#/definitions/EventTrigger"
+                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/EventTrigger"
                 }
             }
         },

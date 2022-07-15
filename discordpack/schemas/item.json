@@ -64,11 +64,11 @@
                 },
                 "discord:on_obtain": {
                     "description": " The event to run when a user obtains this item",
-                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.py#/definitions/EventTrigger"
+                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/EventTrigger"
                 },
                 "discord:on_use": {
                     "description": "The event to run when a user uses this item",
-                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.py#/definitions/EventTrigger"
+                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/EventTrigger"
                 },
                 "discord:max_obtain": {
                     "description": "Limit the number of items a member can have.",

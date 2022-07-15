@@ -9,13 +9,28 @@
             "description": "Must meet all conditions to run",
             "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
         },
+        "sequence": {
+            "description": "An array of events to run",
+            "type": "array",
+            "default": [],
+            "items": {
+                "$ref": "#"
+            }
+        },
+        "randomize": {
+            "description": "An array of events to choose from. Will choose one random event",
+            "type": "array",
+            "default": [],
+            "items": {
+                "$ref": "#"
+            }
+        },
         "run_command": {
             "description": "Run a discord.json command. It must be a command built with discord.json. otherwise it will throw an error.",
             "type": "object",
             "default": {},
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "commands": {
@@ -52,12 +67,11 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "channel_id": {
-                    "description": "The channel to send",
-                    "type": "string"
+                    "description": "The channel to send the message to",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Channel"
                 },
                 "message": {
                     "description": "The message id to send",
@@ -74,15 +88,14 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
-                "channel_id": {
-                    "description": "The channel to send",
-                    "type": "string"
+                "message_id": {
+                    "description": "The message id to edit",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Message"
                 },
                 "message": {
-                    "description": "The message id to send",
+                    "description": "The new message",
                     "type": "string"
                 }
             }
@@ -96,12 +109,11 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "message_id": {
                     "description": "The message id to delete",
-                    "type": "integer"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Message"
                 }
             }
         },
@@ -130,29 +142,12 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "event": {
                     "description": "The event to run",
                     "type": "string"
                 }
-            }
-        },
-        "sequence": {
-            "description": "An array of events to run",
-            "type": "array",
-            "default": [],
-            "items": {
-                "$ref": "#/properties"
-            }
-        },
-        "randomize": {
-            "description": "An array of events to choose from. Will choose one random event",
-            "type": "array",
-            "default": [],
-            "items": {
-                "$ref": "#/properties"
             }
         },
         "set_bank_balance": {
@@ -164,7 +159,6 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "target": {
@@ -183,7 +177,6 @@
             "default": {},
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "target": {
@@ -202,7 +195,6 @@
             "default": {},
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "target": {
@@ -221,7 +213,6 @@
             "default": {},
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "target": {
@@ -247,7 +238,6 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "level": {
@@ -275,16 +265,15 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "message_id": {
                     "description": "The id of the message to add the reaction to",
-                    "type": "string"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Message"
                 },
                 "emoji": {
                     "description": "The emoji to add",
-                    "type": "string"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Emoji"
                 }
             }
         },
@@ -297,16 +286,15 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "message_id": {
                     "description": "The id of the message to remove the reaction from",
-                    "type": "string"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Message"
                 },
                 "emoji": {
                     "description": "The emoji to add",
-                    "type": "string"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Emoji"
                 }
             }
         },
@@ -319,7 +307,6 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "target": {
@@ -341,7 +328,6 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "target": {
@@ -363,8 +349,11 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "guild_id": {
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Guild"
+                    
                 },
                 "name": {
                     "description": "The name of the channel",
@@ -381,12 +370,11 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "channel_id": {
                     "description": "The id of the channel",
-                    "type": "string"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Channel"
                 }
             }
         },
@@ -400,7 +388,6 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "target": {
@@ -442,7 +429,6 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "item": {
@@ -471,7 +457,6 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "target": {
@@ -493,7 +478,6 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "target": {
@@ -515,7 +499,6 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "item": {
@@ -533,7 +516,6 @@
             ],
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "item": {
@@ -548,7 +530,6 @@
             "default": {},
             "properties": {
                 "conditions": {
-                    "description": "Must meet all conditions to run",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
                 "name": {
@@ -591,5 +572,6 @@
                 }
             }
         }
-    }
+    },
+    "additionalProperties": false
 }

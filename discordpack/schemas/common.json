@@ -3,7 +3,7 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
         "Color": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.py#/definitions/Color",
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Color",
             "type": "string",
             "examples": [
                 "snow",
@@ -488,7 +488,7 @@
             ]
         },
         "EventTrigger": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.py#/definitions/EventTrigger",
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/EventTrigger",
             "type": "object",
             "default": {},
             "properties": {
@@ -501,6 +501,73 @@
                 }
             },
             "additionalProperties": false
+        },
+        "Channel": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Channel",
+            "description": "The channel id",
+            "anyOf": [
+                {
+                    "enum": [
+                        "this",
+                        "member",
+                        "system"
+                    ]
+                },
+                {
+                    "type": "integer"
+                }
+            ],
+            "default": "this"
+        },
+        "Message": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Channel",
+            "description": "The message id",
+            "anyOf": [
+                {
+                    "enum": [
+                        "this"
+                    ]
+                },
+                {
+                    "type": "integer"
+                }
+            ],
+            "default": "this"
+        },
+        "Emoji": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Emoji",
+            "description": "Can be any of; custom emoji name, custom emoji id, pasted emoji (i.e. '☻')",
+            "type": [
+                "string",
+                "integer",
+                "object"
+            ],
+            "required": ["name"],
+            "properties":{
+                "name": {
+                    "description": "The name of the emoji. :smile:",
+                    "type":"string",
+                    "examples": [
+                        ":smile:"
+                    ]
+                }
+            },
+            "additionalProperties": false
+        },
+        "Guild": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Guild",
+            "description": "The guild id",
+            "anyOf": [
+                {
+                    "enum": [
+                        "this"
+                    ]
+                },
+                {
+                    "type": "integer"
+                }
+            ],
+            "default": "this"
         }
     }
 }
