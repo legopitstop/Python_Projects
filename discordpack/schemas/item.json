@@ -1,5 +1,5 @@
 {
-    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/items.json",
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/item.json",
     "$schema": "http://json-schema.org/draft-07/schema",
     "title": "item",
     "description": "Add an item",
@@ -114,7 +114,7 @@
             "type": "object",
             "default": {},
             "additionalProperties": {
-                "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/events.json"
+                "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/event.json"
             }
         }
     },

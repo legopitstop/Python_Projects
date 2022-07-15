@@ -1,5 +1,5 @@
 {
-    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/advancements.json",
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/advancement.json",
     "$schema": "http://json-schema.org/draft-07/schema",
     "title": "advancements",
     "description": "Create advancements for your members to obtain.",
@@ -89,7 +89,7 @@
         },
         "rewards": {
             "description": "The events to run when this advacement is granted.",
-            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/events.json"
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/event.json"
         }
     },
     "patternProperties": {

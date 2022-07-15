@@ -1,5 +1,5 @@
 {
-    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/loot_tables.json",
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/loot_table.json",
     "$schema": "http://json-schema.org/draft-07/schema",
     "description": "JSON schmea for loot table",
     "type": "object",
