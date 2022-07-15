@@ -170,7 +170,7 @@
                                     },
                                     "value": {
                                         "description": "The value to match",
-                                        "$ref": "#/definitions/ValueProvider"
+                                        "$ref": "#/definitions/Provider"
                                     }
                                 }
                             }
