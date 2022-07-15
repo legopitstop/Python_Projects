@@ -1,0 +1,37 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/manifest.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "manifest",
+    "type": "object",
+    "default": {},
+    "required": [
+        "format_version",
+        "version",
+        "description"
+    ],
+    "properties": {
+        "format_version": {
+            "description": "The packs format version. Determins if this pack will work for the current version of discord.json",
+            "type": "integer",
+            "default": 1
+        },
+        "version": {
+            "description": "The packs current version. Used for updating cache and for checking for updates when updateJSON is defined.",
+            "type": "string"
+        },
+        "description": {
+            "description": "The packs description.",
+            "type": "string"
+        },
+        "command_prefix": {
+            "description": "The command prefix, Must be defined to validate commands",
+            "type": "string",
+            "pattern": "(.){1}",
+            "default": "/"
+        }
+    },
+    "patternProperties": {
+        "^\\$": true
+    },
+    "additionalProperties": false
+}

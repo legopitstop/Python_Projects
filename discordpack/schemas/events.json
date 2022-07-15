@@ -1,0 +1,596 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/events.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "events",
+    "description": "Events to run",
+    "type": "object",
+    "default": {},
+    "properties": {
+        "conditions": {
+            "description": "Must meet all conditions to run",
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+        },
+        "run_command": {
+            "description": "Run a discord.json command. It must be a command built with discord.json. otherwise it will throw an error.",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "commands": {
+                    "description": "A list of command to run",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "string",
+                        "examples": [
+                            "/giphy",
+                            "/tenor",
+                            "/shrug",
+                            "/tableflip",
+                            "/unflip",
+                            "/tts",
+                            "/me",
+                            "/spoiler",
+                            "/nick",
+                            "/thread",
+                            "/ban",
+                            "/timeout",
+                            "/msg"
+                        ]
+                    }
+                }
+            }
+        },
+        "send_message": {
+            "description": "Send a message",
+            "type": "object",
+            "default": {},
+            "required": [
+                "message"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "channel_id": {
+                    "description": "The channel to send",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "The message id to send",
+                    "type": "string"
+                }
+            }
+        },
+        "edit_message": {
+            "description": "Edit a message",
+            "type": "object",
+            "default": {},
+            "required": [
+                "message"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "channel_id": {
+                    "description": "The channel to send",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "The message id to send",
+                    "type": "string"
+                }
+            }
+        },
+        "delete_message": {
+            "description": "Delete a message",
+            "type": "object",
+            "default": {},
+            "required": [
+                "message_id"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "message_id": {
+                    "description": "The message id to delete",
+                    "type": "integer"
+                }
+            }
+        },
+        "set_member_property": {
+            "description": "A mapping of key-value pairs for member properties. the key being the id of the property and the value being [MoLang](./molang.md) that matches the type defined in cog description.",
+            "type": "object",
+            "default": {},
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "set_guild_property": {
+            "description": "A mapping of key-value pairs for guild properties. the key being the id of the property and the value being [MoLang](./molang.md) that matches the type defined in cog description.",
+            "type": "object",
+            "default": {},
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "trigger": {
+            "description": "Run a diffrent event",
+            "type": "object",
+            "default": {},
+            "required": [
+                "event"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "event": {
+                    "description": "The event to run",
+                    "type": "string"
+                }
+            }
+        },
+        "sequence": {
+            "description": "An array of events to run",
+            "type": "array",
+            "default": [],
+            "items": {
+                "$ref": "#/properties"
+            }
+        },
+        "randomize": {
+            "description": "An array of events to choose from. Will choose one random event",
+            "type": "array",
+            "default": [],
+            "items": {
+                "$ref": "#/properties"
+            }
+        },
+        "set_bank_balance": {
+            "description": "Modify the members bank balance",
+            "type": "object",
+            "default": {},
+            "required": [
+                "amount"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "target": {
+                    "description": "The target to use",
+                    "type": "string"
+                },
+                "amount": {
+                    "description": "The amount of money to set",
+                    "type": "integer"
+                }
+            }
+        },
+        "ban": {
+            "description": "Ban a member from the guild",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "target": {
+                    "description": "The target to ban",
+                    "type": "string"
+                },
+                "reason": {
+                    "description": "The reason to ban the member",
+                    "type": "string"
+                }
+            }
+        },
+        "kick": {
+            "description": "Kick a member from the guild",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "target": {
+                    "description": "The target to kick",
+                    "type": "string"
+                },
+                "reason": {
+                    "description": "The reason to kick the member",
+                    "type": "string"
+                }
+            }
+        },
+        "timeout": {
+            "description": "Timeout a member from the guild",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "target": {
+                    "description": "The target to timeout",
+                    "type": "string"
+                },
+                "time": {
+                    "description": "Number of mins to timeout",
+                    "type": "integer"
+                },
+                "reason": {
+                    "description": "The reason to timeout the member",
+                    "type": "string"
+                }
+            }
+        },
+        "logger": {
+            "description": "Send a message to the console",
+            "type": "object",
+            "default": {},
+            "required": [
+                "message"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "level": {
+                    "description": "The level of the message",
+                    "enum": [
+                        "info",
+                        "warning",
+                        "error",
+                        "debug"
+                    ],
+                    "default": "info"
+                },
+                "message": {
+                    "description": "The message to print to console",
+                    "type": "string"
+                }
+            }
+        },
+        "add_reaction": {
+            "description": "Add a reacton to a message",
+            "type": "object",
+            "default": {},
+            "required": [
+                "emoji"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "message_id": {
+                    "description": "The id of the message to add the reaction to",
+                    "type": "string"
+                },
+                "emoji": {
+                    "description": "The emoji to add",
+                    "type": "string"
+                }
+            }
+        },
+        "remove_reaction": {
+            "description": "Remove a reacton from a message",
+            "type": "object",
+            "default": {},
+            "required": [
+                "emoji"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "message_id": {
+                    "description": "The id of the message to remove the reaction from",
+                    "type": "string"
+                },
+                "emoji": {
+                    "description": "The emoji to add",
+                    "type": "string"
+                }
+            }
+        },
+        "add_role": {
+            "description": "Give a member a role",
+            "type": "object",
+            "default": {},
+            "required": [
+                "role"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "target": {
+                    "description": "The target to apply the role to",
+                    "type": "string"
+                },
+                "role": {
+                    "description": "The role to give the target",
+                    "type": "string"
+                }
+            }
+        },
+        "remove_role": {
+            "description": "Remove a members role",
+            "type": "object",
+            "default": {},
+            "required": [
+                "role"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "target": {
+                    "description": "The target to remove the role from",
+                    "type": "string"
+                },
+                "role": {
+                    "description": "The role to remove from the target",
+                    "type": "string"
+                }
+            }
+        },
+        "create_text_channel": {
+            "description": "Create a text channel",
+            "type": "object",
+            "default": {},
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "name": {
+                    "description": "The name of the channel",
+                    "type": "string"
+                }
+            }
+        },
+        "delete_text_channel": {
+            "description": "Delete the text channel",
+            "type": "object",
+            "default": {},
+            "required": [
+                "channel_id"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "channel_id": {
+                    "description": "The id of the channel",
+                    "type": "string"
+                }
+            }
+        },
+        "give_item": {
+            "description": "Adds the item to the members inventory",
+            "type": "object",
+            "default": {},
+            "required": [
+                "item",
+                "container"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "target": {
+                    "description": "Who to give the item to",
+                    "type": "string"
+                },
+                "item": {
+                    "description": "The id of the item to give",
+                    "type": "string"
+                },
+                "container": {
+                    "description": "The container id to add this item to",
+                    "type": "string"
+                },
+                "count": {
+                    "description": "The number of items to give",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "The data to set on the item",
+                    "type": "object",
+                    "default": {},
+                    "additionalProperties": {
+                        "type": [
+                            "string",
+                            "number",
+                            "boolean"
+                        ]
+                    }
+                }
+            }
+        },
+        "take_item": {
+            "description": "Removes the item from the members inventory",
+            "type": "object",
+            "default": {},
+            "required": [
+                "container"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "item": {
+                    "description": "The id of the item to remove",
+                    "type": "string"
+                },
+                "container": {
+                    "description": "The container id to remove this tiem from",
+                    "type": "string"
+                },
+                "count": {
+                    "description": "The number of items to remove",
+                    "type": [
+                        "integer",
+                        "string"
+                    ]
+                }
+            }
+        },
+        "give_advancement": {
+            "description": "Gives the member the advancement",
+            "type": "object",
+            "default": {},
+            "required": [
+                "advancement"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "target": {
+                    "description": "Who to give the item to",
+                    "type": "string"
+                },
+                "advancement": {
+                    "description": "id of the advancement to grant",
+                    "type": "string"
+                }
+            }
+        },
+        "take_advancement": {
+            "description": "Takes the advancement from the member",
+            "type": "object",
+            "default": {},
+            "required": [
+                "advancement"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "target": {
+                    "description": "Who to take the advancemnt from",
+                    "type": "string"
+                },
+                "advancement": {
+                    "description": "id of the advancement to rake",
+                    "type": "string"
+                }
+            }
+        },
+        "unlock_item": {
+            "description": "Unlocks the item, The member can now obtain this item.",
+            "type": "object",
+            "default": {},
+            "required": [
+                "item"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "item": {
+                    "description": "id of the item to unlock",
+                    "type": "string"
+                }
+            }
+        },
+        "lock_item": {
+            "description": "Locks the item so you can no longer obtain this item.",
+            "type": "object",
+            "default": {},
+            "required": [
+                "item"
+            ],
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "item": {
+                    "description": "id of the item to lock",
+                    "type": "string"
+                }
+            }
+        },
+        "change_presence": {
+            "description": "Change the bots presence",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "conditions": {
+                    "description": "Must meet all conditions to run",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "name": {
+                    "description": "The name of the presence",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of presence",
+                    "enum": [
+                        "game",
+                        "watching"
+                    ]
+                }
+            }
+        },
+        "reload_packs": {
+            "description": "Reloads all packs.",
+            "type": "object",
+            "default": {}
+        },
+        "enable_pack": {
+            "description": "Enable the pack",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "pack": {
+                    "description": "The resrouce path to the pack",
+                    "type": "string"
+                }
+            }
+        },
+        "disable_pack": {
+            "description": "Disable the pack",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "pack": {
+                    "description": "The resrouce path to the pack",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

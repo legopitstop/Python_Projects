@@ -1,0 +1,405 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/messages.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "message",
+    "description": "Create a message component",
+    "type": "object",
+    "default": {},
+    "definitions": {
+        "color": {
+            "type": "string",
+            "examples": [
+                "red"
+            ]
+        },
+        "emoji": {
+            "type": "string",
+            "examples": [
+                "☺",
+                "☻"
+            ]
+        }
+    },
+    "anyOf": [
+        {
+            "required": [
+                "content"
+            ]
+        },
+        {
+            "required": [
+                "embed"
+            ]
+        },
+        {
+            "required": [
+                "files"
+            ]
+        }
+    ],
+    "properties": {
+        "content": {
+            "description": "The main text of the message",
+            "type": "string"
+        },
+        "tts": {
+            "description": "text-to-speach. Any member that has this channel open will hear the message read outloud.",
+            "type": "boolean",
+            "default": false
+        },
+        "embed": {
+            "description": "A list of embeds.",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object",
+                "default": {},
+                "properties": {
+                    "title": {
+                        "description": "The title of the embed.",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "The descirption of the embed.",
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "The url to use on the title.",
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "The color of the embed",
+                        "$ref": "#/definitions/color"
+                    },
+                    "fields": {
+                        "description": "A list of values to display.",
+                        "type": "array",
+                        "default": [],
+                        "items": {
+                            "type": "object",
+                            "default": {},
+                            "required": [
+                                "name",
+                                "value"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "description": "The name.",
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "description": "The value.",
+                                    "type": "string"
+                                },
+                                "inline": {
+                                    "description": "Whether or not to display the field inline or not.",
+                                    "type": "boolean",
+                                    "default": true
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "author": {
+                        "description": "The author of the embed.",
+                        "type": "object",
+                        "default": {},
+                        "properties": {
+                            "name": {
+                                "description": "The name of the author.",
+                                "type": "string"
+                            },
+                            "url": {
+                                "description": "The url for the author",
+                                "type": "string"
+                            },
+                            "icon_url": {
+                                "description": "The icon for the author.",
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "footer": {
+                        "description": "The footer content",
+                        "type": "object",
+                        "default": {},
+                        "properties": {
+                            "text": {
+                                "description": "THe text for the footer.",
+                                "type": "string"
+                            },
+                            "icon_url": {
+                                "description": "The icon for the footer.",
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "image": {
+                        "description": "The image to display",
+                        "type": "object",
+                        "default": {},
+                        "required": [
+                            "url"
+                        ],
+                        "properties": {
+                            "url": {
+                                "description": "The url for the image",
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "thumbnail": {
+                        "description": "The small image inside the embed",
+                        "type": "object",
+                        "default": {},
+                        "required": [
+                            "url"
+                        ],
+                        "properties": {
+                            "url": {
+                                "description": "The image for the thumbnail.",
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "files": {
+            "description": "A list of files to attach.",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object",
+                "default": {},
+                "required": [
+                    "file"
+                ],
+                "properties": {
+                    "file": {
+                        "description": "The file to attach."
+                    },
+                    "name": {
+                        "description": "The name of the file",
+                        "type": "string"
+                    },
+                    "spoiler": {
+                        "description": "Whether or not to make this a spoiler.",
+                        "type": "boolean",
+                        "default": true
+                    },
+                    "width": {
+                        "description": "The with of the image.",
+                        "type": "integer"
+                    },
+                    "height": {
+                        "description": "The height of the image.",
+                        "type": "integer"
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "components": {
+            "description": "A list of components to add to this message.",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object",
+                "default": {},
+                "required": [
+                    "type"
+                ],
+                "allOf": [
+                    {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "const": "row"
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": [
+                                "components"
+                            ]
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "const": "button"
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": [
+                                "label"
+                            ],
+                            "anyOf": [
+                                {
+                                    "required": [
+                                        "id"
+                                    ]
+                                },
+                                {
+                                    "required": [
+                                        "custom_id"
+                                    ]
+                                },
+                                {
+                                    "required": [
+                                        "url"
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "const": "select"
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": [
+                                "components"
+                            ],
+                            "anyOf": [
+                                {
+                                    "required": [
+                                        "id"
+                                    ]
+                                },
+                                {
+                                    "required": [
+                                        "custom_id"
+                                    ]
+                                },
+                                {
+                                    "required": [
+                                        "url"
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "const": "select_option"
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": [
+                                "label"
+                            ]
+                        }
+                    }
+                ],
+                "properties": {
+                    "type": {
+                        "description": "The type of component.",
+                        "enum": [
+                            "row",
+                            "select",
+                            "select_option",
+                            "button"
+                        ]
+                    },
+                    "style": {
+                        "title": "BUTTON",
+                        "description": "The style of the button",
+                        "enum": [
+                            "blue",
+                            "gray",
+                            "grey",
+                            "green",
+                            "URL"
+                        ]
+                    },
+                    "label": {
+                        "title": "BUTTON, SELECT_OPTION",
+                        "description": "The label for the component",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "BUTTON, SELECT",
+                        "description": "The id of the component",
+                        "type": "string"
+                    },
+                    "url": {
+                        "title": "BUTTON, SELECT",
+                        "description": "The url for the component",
+                        "type": "string"
+                    },
+                    "custom_id": {
+                        "title": "BUTTON, SELECT",
+                        "description": "The custom id for the component",
+                        "type": "string"
+                    },
+                    "disabled": {
+                        "title": "BUTTON, SELECT",
+                        "description": "Whether or not this component should be disabled or not",
+                        "type": "boolean",
+                        "default": true
+                    },
+                    "emoji": {
+                        "title": "BUTTON, SELECT_OPTION",
+                        "description": "The emoji to display",
+                        "$ref": "#/definitions/emoji"
+                    },
+                    "description": {
+                        "title": "SELECT_OPTION",
+                        "description": "The description of the component",
+                        "type": "string"
+                    },
+                    "default": {
+                        "title": "SELECT",
+                        "description": "The default value",
+                        "type": [
+                            "string",
+                            "boolean",
+                            "null",
+                            "number"
+                        ]
+                    },
+                    "value": {
+                        "title": "SELECT_OPTION",
+                        "description": "The value",
+                        "type": [
+                            "string",
+                            "boolean",
+                            "null",
+                            "number"
+                        ]
+                    },
+                    "components": {
+                        "title": "ROW, SELECT",
+                        "description": "A list of sub components.",
+                        "$ref": "#/properties/components"
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "delete_after": {
+            "description": "Number of seconds before this message gets deleted.",
+            "type": "integer"
+        }
+    },
+    "patternProperties": {
+        "^\\$": true
+    },
+    "additionalProperties": false
+}

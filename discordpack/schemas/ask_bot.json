@@ -1,0 +1,69 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/ask_bot.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "ask_bot",
+    "type": "object",
+    "default": {},
+    "properties": {
+        "database": {
+            "description": "A list of keywords and replies. The \"brains\" of the bot.",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object",
+                "default": {},
+                "required": [
+                    "keywords",
+                    "reply"
+                ],
+                "properties": {
+                    "keywords": {
+                        "anyOf": [
+                            {
+                                "description": "Words seperated by commas to match",
+                                "type": "string"
+                            },
+                            {
+                                "description": "Can match any of these keywords",
+                                "type": "array",
+                                "items": {
+                                    "description": "Words seperated by commas to match",
+                                    "type": "string"
+                                }
+                            }
+                        ]
+                    },
+                    "reply": {
+                        "anyOf": [
+                            {
+                                "description": "The text or `#message` to respond with.",
+                                "type": "string"
+                            },
+                            {
+                                "description": "Will choose one random value",
+                                "type": "array",
+                                "items": {
+                                    "description": "The text or `#message` to respond with.",
+                                    "type": "string"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "replies": {
+            "description": "List of random replies when `database` fails",
+            "type": "array",
+            "default": [],
+            "items": {
+                "description": "The text or `#message` to respond with.",
+                "type": "string"
+            }
+        }
+    },
+    "patternProperties": {
+        "^\\$": true
+    },
+    "additionalProperties": false
+}

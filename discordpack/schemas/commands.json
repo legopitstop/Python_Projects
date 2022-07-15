@@ -1,0 +1,148 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/commands.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "commands",
+    "description": "Create a custom command",
+    "type": "object",
+    "default": {},
+    "properties": {
+        "description": {
+            "type": "object",
+            "default": {},
+            "properties": {
+                "description": {
+                    "description": "The commands description",
+                    "type": "string"
+                },
+                "atlas": {
+                    "description": "A list of other names for the command.",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "variables": {
+                    "description": "A mapping of variables for the command",
+                    "type": "object",
+                    "default": {},
+                    "additionalProperties": {
+                        "type": "object",
+                        "default": {},
+                        "anyOf": [
+                            {
+                                "required": [
+                                    "type"
+                                ]
+                            },
+                            {
+                                "required": [
+                                    "enum"
+                                ]
+                            }
+                        ],
+                        "properties": {
+                            "type": {
+                                "description": "The type of variable",
+                                "enum": [
+                                    "string",
+                                    "integer",
+                                    "number",
+                                    "boolean",
+                                    "member",
+                                    "role",
+                                    "emoji"
+                                ]
+                            },
+                            "required": {
+                                "description": "When true this variable is required to run the command. Will run OnErrorComponent if missing.",
+                                "type": "boolean",
+                                "default": false
+                            },
+                            "enum": {
+                                "description": "A list of valid items",
+                                "type": "array",
+                                "default": [],
+                                "items": {
+                                    "type": [
+                                        "string",
+                                        "number",
+                                        "boolean"
+                                    ]
+                                }
+                            },
+                            "default": {
+                                "description": "The default value",
+                                "type": [
+                                    "string",
+                                    "number",
+                                    "boolean",
+                                    "null"
+                                ]
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "permission_level": {
+                    "description": "The level of permissions needed to run this command.\nlevel 0 Any Member (default)\nlevel 1 Server Management\nlevel 2 Server Owner\n",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 4,
+                    "default": 0
+                }
+            },
+            "additionalProperties": false
+        },
+        "components": {
+            "description": "Components for the command.",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "discord:on_error": {
+                    "description": "Triggers when the command fails to run",
+                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.py#/definitions/EventTrigger"
+                },
+                "discord:on_success": {
+                    "description": "Triggers when the command can be successfully ran",
+                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.py#/definitions/EventTrigger"
+                },
+                "discord:on_permisson_error": {
+                    "description": "Triggers when the executer does not have valid permissions to run the command.",
+                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.py#/definitions/EventTrigger"
+                }
+            }
+        },
+        "permutations": {
+            "description": "A list of components with conditions",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object",
+                "default": {},
+                "properties": {
+                    "conditions": {
+                        "description": "The condition must be true to apply the components.",
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    },
+                    "components": {
+                        "$ref": "#/properties/components"
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "events": {
+            "description": "A mapping of each event.",
+            "type": "object",
+            "default": {},
+            "additionalProperties": {
+                "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/events.json"
+            }
+        }
+    },
+    "patternProperties": {
+        "^\\$": true
+    },
+    "additionalProperties": false
+}

@@ -1,0 +1,99 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/advancements.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "advancements",
+    "description": "Create advancements for your members to obtain.",
+    "type": "object",
+    "default": {},
+    "properties": {
+        "parent": {
+            "description": "member must have this advancement in order to get this one.",
+            "type": "string"
+        },
+        "display": {
+            "description": "The display data",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "icon": {
+                    "description": "The image icon to use",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "The title of the advancement",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "The description of the advancement",
+                    "type": "string"
+                },
+                "announce_to_chat": {
+                    "description": "Will send a message to chat, set to false if you want this advancement to be hidden.",
+                    "type": "boolean",
+                    "default": true
+                }
+            },
+            "additionalProperties": false
+        },
+        "criteria": {
+            "description": "criteria",
+            "type": "object",
+            "default": {},
+            "additionalProperties": {
+                "type": "object",
+                "default": {},
+                "properties": {
+                    "trigger": {
+                        "description": "The type of trigger that this criteria is.",
+                        "type": "string",
+                        "examples": [
+                            "discord:on_ready",
+                            "discord:on_reaction_add",
+                            "discord:on_reaction_remove",
+                            "discord:on_message_delete",
+                            "discord:on_message_edit",
+                            "discord:on_member_join",
+                            "discord:on_member_leave",
+                            "discord:on_message",
+                            "discord:on_button_click",
+                            "discord:on_select_option",
+                            "discord:on_command_error",
+                            "discord:loop",
+                            "discord:used_item",
+                            "discord:inventory_changed",
+                            "discord:item_unlocked"
+                        ]
+                    },
+                    "conditions": {
+                        "description": "The condition that must match to trigger",
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "requirements": {
+            "description": "requirements",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": [
+                    "array",
+                    "string"
+                ],
+                "default": [],
+                "items": {
+                    "type": "string"
+                }
+            }
+        },
+        "rewards": {
+            "description": "The events to run when this advacement is granted.",
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/events.json"
+        }
+    },
+    "patternProperties": {
+        "^\\$": true
+    },
+    "additionalProperties": false
+}

@@ -1,0 +1,197 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "The condition that must pass to run.",
+    "type": [
+        "array",
+        "object"
+    ],
+    "default": [],
+    "items": {
+        "$ref": "#"
+    },
+    "required": [
+        "condition"
+    ],
+    "definitions": {
+        "Provider": {
+            "type": [
+                "object",
+                "string",
+                "number",
+                "boolean"
+            ],
+            "default": {},
+            "properties": {
+                "min": {
+                    "description": "The smallest number",
+                    "type": [
+                        "string",
+                        "number",
+                        "boolean"
+                    ]
+                },
+                "max": {
+                    "description": "The largest number",
+                    "type": [
+                        "string",
+                        "number",
+                        "boolean"
+                    ]
+                }
+            }
+        }
+    },
+    "properties": {
+        "condition": {
+            "description": "The resource location of the condition type to check.",
+            "type": "string",
+            "examples": [
+                "discord:alternative",
+                "discord:inverted",
+                "discord:member",
+                "discord:guild",
+                "discord:message",
+                "discord:random_chance",
+                "discord:reference",
+                "discord:time_check",
+                "discord:bot",
+                "discord:variable"
+            ]
+        },
+        "target": {
+            "title": "member",
+            "description": "The entity to check. Set to this to use the entity that invoked this condition.",
+            "enum": [
+                "this"
+            ]
+        },
+        "value": {
+            "title": "time_check",
+            "description": "Compares the current game time (the age of the world in game ticks) against given values. Invokable from any context.",
+            "$ref": "#/definitions/Provider"
+        },
+        "name": {
+            "title": "refrance",
+            "description": "The resource location of the predicate to invoke. A cyclic reference causes a parsing failure.",
+            "type": "string"
+        },
+        "chance": {
+            "title": "random_chance",
+            "description": "Generates a random number between 0.0 and 1.0, and checks if it is less than a specified value. Invokable from any context.",
+            "type": "number",
+            "minium": 0.0,
+            "maxium": 1.0,
+            "default": 0.0
+        },
+        "terms": {
+            "title": "alternative",
+            "description": "The list of conditions to evaluate. Conditinons within this array must be  objects, they cannot themselves be arrays.",
+            "$ref": "#"
+        },
+        "term": {
+            "title": "inverted",
+            "description": "Inverts another loot table condition. Invokable from any context.",
+            "$ref": "#"
+        },
+        "member": {
+            "title": "member",
+            "type": "string"
+        },
+        "predicate": {
+            "title": "member, bot, guild_properties",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "flags": {
+                    "title": "member,bot",
+                    "type": "object",
+                    "default": {},
+                    "properties": {
+                        "is_owner": {
+                            "title": "member",
+                            "description": "When true this member is the owner of the guild.",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_op": {
+                            "title": "member",
+                            "description": "When true this member is an operator.",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_running": {
+                            "title": "bot",
+                            "description": "When true the bot is currently running.",
+                            "type": "boolean",
+                            "default": true
+                        }
+                    }
+                },
+                "member": {
+                    "title": "member",
+                    "type": "object",
+                    "default": {},
+                    "properties": {
+                        "roles": {
+                            "description": "To test the member's roles.",
+                            "type": "object",
+                            "default": {},
+                            "additionalProperties": {
+                                "description": "Test whether a role is granted or not granted. Key is a role ID, value is true or false to test for granted/not granted respectively.",
+                                "type": "boolean",
+                                "default": true
+                            }
+                        },
+                        "advancements": {
+                            "description": "To test the member's advancements.",
+                            "type": "object",
+                            "default": {},
+                            "additionalProperties": {
+                                "description": "Test whether an advancement is granted or not granted. Key is an advancement ID, value is true or false to test for granted/not granted respectively.",
+                                "type": "boolean",
+                                "default": true
+                            }
+                        },
+                        "permission_level": {
+                            "description": "To test the member's permission level.",
+                            "$ref": "#/definitions/Provider"
+                        },
+                        "stats": {
+                            "type": "array",
+                            "default": [],
+                            "items": {
+                                "type": "object",
+                                "default": {},
+                                "properties": {
+                                    "stat": {
+                                        "description": "The stat to test.",
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "description": "The value to match",
+                                        "$ref": "#/definitions/ValueProvider"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "variable": {
+                    "description": "The variable to check the value.",
+                    "type": "object",
+                    "default": {},
+                    "additionalProperties": {
+                        "description": "The id/value of the variable.",
+                        "$ref": "#/definitions/Provider"
+                    }
+                },
+                "custom_id": {
+                    "title": "message",
+                    "description": "The id to match.",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

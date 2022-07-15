@@ -1,0 +1,125 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/items.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "item",
+    "description": "Add an item",
+    "type": "object",
+    "default": {},
+    "properties": {
+        "components": {
+            "description": "The behavior of the item.",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "discord:shop": {
+                    "description": "Obtain this item from a shop.",
+                    "type": "object",
+                    "default": {},
+                    "required": [
+                        "id",
+                        "price"
+                    ],
+                    "properties": {
+                        "id": {
+                            "description": "Id of the shop to obtain this item from.",
+                            "type": "string"
+                        },
+                        "price": {
+                            "description": "The cost of the item",
+                            "type": "integer"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "discord:display_name": {
+                    "description": "The display name of the item.",
+                    "type": "string"
+                },
+                "discord:icon": {
+                    "description": "The texture to use for the item.",
+                    "type": "string"
+                },
+                "discord:description": {
+                    "description": "The description of the item.",
+                    "type": "string"
+                },
+                "discord:use_on_obtain": {
+                    "description": "Whether the item should be used once bought",
+                    "type": "boolean",
+                    "default": true
+                },
+                "discord:destory_on_use": {
+                    "description": "Whether the itme should be removed from the player's inventory once used.",
+                    "type": "boolean",
+                    "default": true
+                },
+                "discord:max_stack_size": {
+                    "description": "The number of items the member have have at once.",
+                    "type": "integer"
+                },
+                "discord:locked": {
+                    "description": "When true the member cannot obtain this item until it is unlocked.",
+                    "type": "boolean",
+                    "default": true
+                },
+                "discord:on_obtain": {
+                    "description": " The event to run when a user obtains this item",
+                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.py#/definitions/EventTrigger"
+                },
+                "discord:on_use": {
+                    "description": "The event to run when a user uses this item",
+                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.py#/definitions/EventTrigger"
+                },
+                "discord:max_obtain": {
+                    "description": "Limit the number of items a member can have.",
+                    "type": "object",
+                    "default": {},
+                    "anyOf": [
+                        {
+                            "required": [
+                                "guild"
+                            ]
+                        },
+                        {
+                            "required": [
+                                "member"
+                            ]
+                        }
+                    ],
+                    "properties": {
+                        "guild": {
+                            "description": "Total per guild",
+                            "type": "integer"
+                        },
+                        "member": {
+                            "description": "Total per member",
+                            "type": "integer"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "discord:cooldown": {
+                    "description": "How long until the member can obtain this item again. In seconds",
+                    "type": "integer"
+                },
+                "discord:queue": {
+                    "description": "This will add this item to the queue when a member purchases it. This is useful for items that need to be manually rewarded.",
+                    "type": "boolean",
+                    "default": true
+                }
+            }
+        },
+        "events": {
+            "description": "A mapping of each event.",
+            "type": "object",
+            "default": {},
+            "additionalProperties": {
+                "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/events.json"
+            }
+        }
+    },
+    "patternProperties": {
+        "^\\$": true
+    },
+    "additionalProperties": false
+}

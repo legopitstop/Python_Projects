@@ -1,0 +1,147 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/loot_tables.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "JSON schmea for loot table",
+    "type": "object",
+    "default": {},
+    "definitions": {
+        "Functions": {
+            "type": "array",
+            "default": [],
+            "items": {
+                "$ref": "#/definitions/Functions/properties"
+            },
+            "required": [
+                "functions"
+            ],
+            "properties": {
+                "function": {
+                    "title": "GENERAL",
+                    "description": "The functions to use.",
+                    "examples": [
+                        "discord:set_count",
+                        "discord:set_properties"
+                    ]
+                },
+                "conditions": {
+                    "title": "GENERAL",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                },
+                "count": {
+                    "title": "set_count",
+                    "description": "Sets the stack size.",
+                    "type": [
+                        "integer",
+                        "object"
+                    ],
+                    "properties": {
+                        "min": {
+                            "type": "integer"
+                        },
+                        "max": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "properties": {
+                    "title": "set_properties",
+                    "description": "Set the properties of the item.",
+                    "additionalProperties": {
+                        "type": [
+                            "string",
+                            "number",
+                            "boolean"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "properties": {
+        "pools": {
+            "description": "A list of all pools for this loot table. Each pool used generates items from its list of items based on the number of rolls. Pools are applied in order.",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object",
+                "default": {},
+                "properties": {
+                    "conditions": {
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    },
+                    "functions": {
+                        "$ref": "#/definitions/Functions"
+                    },
+                    "rolls": {
+                        "description": "Number of times to roll this pool",
+                        "type": [
+                            "number",
+                            "object"
+                        ],
+                        "minium": 0.0,
+                        "default": 0.0,
+                        "properties": {
+                            "min": {
+                                "type": "number",
+                                "minium": 0.0,
+                                "default": 0.0
+                            },
+                            "max": {
+                                "type": "number",
+                                "minium": 0.0,
+                                "default": 0.0
+                            }
+                        }
+                    },
+                    "entries": {
+                        "type": "array",
+                        "default": [],
+                        "items": {
+                            "type": "object",
+                            "default": {},
+                            "required": [
+                                "type"
+                            ],
+                            "properties": {
+                                "type": {
+                                    "title": "GENERAL",
+                                    "examples": [
+                                        "discord:item",
+                                        "discord:tag",
+                                        "discord:message",
+                                        "discord:loot_table",
+                                        "discord:group",
+                                        "discord:alternatives",
+                                        "discord:sequence"
+                                    ]
+                                },
+                                "name": {
+                                    "title": "item, tag, loot_table, message",
+                                    "description": "The resource location of the item/tag/loot table or message refrance to be produced.",
+                                    "type": "string"
+                                },
+                                "conditions": {
+                                    "title": "GENERAL",
+                                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                                },
+                                "functions": {
+                                    "title": "GENERAL",
+                                    "$ref": "#/definitions/Functions"
+                                },
+                                "children": {
+                                    "title": "group, alternatives, sequence",
+                                    "description": "The list of child entry producers.",
+                                    "type": "array",
+                                    "default": [],
+                                    "items": {
+                                        "$ref": "#/properties/pools/items/properties/entries"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
