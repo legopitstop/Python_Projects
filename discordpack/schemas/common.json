@@ -507,13 +507,16 @@
             "description": "The channel id",
             "anyOf": [
                 {
-                    "enum": [
+                    "description": "The command variable to use get the channel id from",
+                    "type":"string",
+                    "examples": [
                         "this",
-                        "member",
-                        "system"
+                        "system",
+                        "member"
                     ]
                 },
                 {
+                    "description": "The channel id",
                     "type": "integer"
                 }
             ],
@@ -521,14 +524,16 @@
         },
         "Message": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Channel",
-            "description": "The message id",
             "anyOf": [
                 {
-                    "enum": [
+                    "description": "The command variable to use get the message id from",
+                    "type":"string",
+                    "examples": [
                         "this"
                     ]
                 },
                 {
+                    "description": "The message id",
                     "type": "integer"
                 }
             ],
@@ -536,17 +541,19 @@
         },
         "Emoji": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Emoji",
-            "description": "Can be any of; custom emoji name, custom emoji id, pasted emoji (i.e. '☻')",
+            "description": "Can be any of; custom emoji name, custom emoji id, command variable, pasted emoji (i.e. '☻')",
             "type": [
                 "string",
                 "integer",
                 "object"
             ],
-            "required": ["name"],
-            "properties":{
+            "required": [
+                "name"
+            ],
+            "properties": {
                 "name": {
                     "description": "The name of the emoji. :smile:",
-                    "type":"string",
+                    "type": "string",
                     "examples": [
                         ":smile:"
                     ]
@@ -556,14 +563,33 @@
         },
         "Guild": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Guild",
-            "description": "The guild id",
             "anyOf": [
                 {
-                    "enum": [
+                    "description": "The command variable to use get the guild id from",
+                    "type":"string",
+                    "examples": [
                         "this"
                     ]
                 },
                 {
+                    "description": "The guild id",
+                    "type": "integer"
+                }
+            ],
+            "default": "this"
+        },
+        "Member": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member",
+            "anyOf": [
+                {
+                    "description": "The command variable to use get the member from",
+                    "type":"string",
+                    "examples": [
+                        "this"
+                    ]
+                },
+                {
+                    "description": "The member id",
                     "type": "integer"
                 }
             ],

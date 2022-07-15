@@ -4,6 +4,31 @@
     "description": "Events to run",
     "type": "object",
     "default": {},
+    "definitions": {
+        "ValueModifier": {
+            "description": "Modify the value.",
+            "type": [
+                "number",
+                "string",
+                "object"
+            ],
+            "default": {},
+            "properties": {
+                "value": {
+                    "description": "The exact value to use.",
+                    "type":["string", "number"]
+                },
+                "op": {
+                    "description": "Set to replace to replace any existing contents of the target NBT path, append to append to a list or array, or merge to merge into a compound tag.",
+                    "enum": [
+                        "replace",
+                        "append",
+                        "merge"
+                    ]
+                }
+            }
+        }
+    },
     "properties": {
         "conditions": {
             "description": "Must meet all conditions to run",
@@ -56,7 +81,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "send_message": {
             "description": "Send a message",
@@ -77,7 +103,8 @@
                     "description": "The message id to send",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "edit_message": {
             "description": "Edit a message",
@@ -98,7 +125,8 @@
                     "description": "The new message",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "delete_message": {
             "description": "Delete a message",
@@ -115,23 +143,8 @@
                     "description": "The message id to delete",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Message"
                 }
-            }
-        },
-        "set_member_property": {
-            "description": "A mapping of key-value pairs for member properties. the key being the id of the property and the value being [MoLang](./molang.md) that matches the type defined in cog description.",
-            "type": "object",
-            "default": {},
-            "additionalProperties": {
-                "type": "string"
-            }
-        },
-        "set_guild_property": {
-            "description": "A mapping of key-value pairs for guild properties. the key being the id of the property and the value being [MoLang](./molang.md) that matches the type defined in cog description.",
-            "type": "object",
-            "default": {},
-            "additionalProperties": {
-                "type": "string"
-            }
+            },
+            "additionalProperties": false
         },
         "trigger": {
             "description": "Run a diffrent event",
@@ -148,6 +161,23 @@
                     "description": "The event to run",
                     "type": "string"
                 }
+            },
+            "additionalProperties": false
+        },
+        "set_member_property": {
+            "description": "A mapping of key-value pairs for member properties. the key being the id of the property and the value being [MoLang](./molang.md) that matches the type defined in cog description.",
+            "type": "object",
+            "default": {},
+            "additionalProperties": {
+                "$ref": "#/definitions/ValueModifier"
+            }
+        },
+        "set_guild_property": {
+            "description": "A mapping of key-value pairs for guild properties. the key being the id of the property and the value being [MoLang](./molang.md) that matches the type defined in cog description.",
+            "type": "object",
+            "default": {},
+            "additionalProperties": {
+                "$ref": "#/definitions/ValueModifier"
             }
         },
         "set_bank_balance": {
@@ -161,15 +191,16 @@
                 "conditions": {
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
-                "target": {
-                    "description": "The target to use",
-                    "type": "string"
+                "member": {
+                    "description": "The member to use",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member"
                 },
-                "amount": {
+                "value": {
                     "description": "The amount of money to set",
-                    "type": "integer"
+                    "$ref": "#/definitions/ValueModifier"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "ban": {
             "description": "Ban a member from the guild",
@@ -179,15 +210,16 @@
                 "conditions": {
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
-                "target": {
-                    "description": "The target to ban",
-                    "type": "string"
+                "member": {
+                    "description": "The member to ban",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member"
                 },
                 "reason": {
                     "description": "The reason to ban the member",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "kick": {
             "description": "Kick a member from the guild",
@@ -197,15 +229,16 @@
                 "conditions": {
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
-                "target": {
-                    "description": "The target to kick",
-                    "type": "string"
+                "member": {
+                    "description": "The member to kick",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member"
                 },
                 "reason": {
                     "description": "The reason to kick the member",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "timeout": {
             "description": "Timeout a member from the guild",
@@ -215,9 +248,9 @@
                 "conditions": {
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
-                "target": {
-                    "description": "The target to timeout",
-                    "type": "string"
+                "member": {
+                    "description": "The member to timeout",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member"
                 },
                 "time": {
                     "description": "Number of mins to timeout",
@@ -227,7 +260,8 @@
                     "description": "The reason to timeout the member",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "logger": {
             "description": "Send a message to the console",
@@ -254,7 +288,8 @@
                     "description": "The message to print to console",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "add_reaction": {
             "description": "Add a reacton to a message",
@@ -275,7 +310,8 @@
                     "description": "The emoji to add",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Emoji"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "remove_reaction": {
             "description": "Remove a reacton from a message",
@@ -296,7 +332,8 @@
                     "description": "The emoji to add",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Emoji"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "add_role": {
             "description": "Give a member a role",
@@ -309,15 +346,16 @@
                 "conditions": {
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
-                "target": {
-                    "description": "The target to apply the role to",
-                    "type": "string"
+                "member": {
+                    "description": "The member to apply the role to",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member"
                 },
                 "role": {
-                    "description": "The role to give the target",
+                    "description": "The role to give the member",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "remove_role": {
             "description": "Remove a members role",
@@ -330,15 +368,16 @@
                 "conditions": {
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
-                "target": {
-                    "description": "The target to remove the role from",
-                    "type": "string"
+                "member": {
+                    "description": "The member to remove the role from",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member"
                 },
                 "role": {
-                    "description": "The role to remove from the target",
+                    "description": "The role to remove from the member",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "create_text_channel": {
             "description": "Create a text channel",
@@ -353,13 +392,13 @@
                 },
                 "guild_id": {
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Guild"
-                    
                 },
                 "name": {
                     "description": "The name of the channel",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "delete_text_channel": {
             "description": "Delete the text channel",
@@ -376,7 +415,8 @@
                     "description": "The id of the channel",
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Channel"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "give_item": {
             "description": "Adds the item to the members inventory",
@@ -390,9 +430,9 @@
                 "conditions": {
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
-                "target": {
+                "member": {
                     "description": "Who to give the item to",
-                    "type": "string"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member"
                 },
                 "item": {
                     "description": "The id of the item to give",
@@ -418,7 +458,8 @@
                         ]
                     }
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "take_item": {
             "description": "Removes the item from the members inventory",
@@ -436,7 +477,7 @@
                     "type": "string"
                 },
                 "container": {
-                    "description": "The container id to remove this tiem from",
+                    "description": "The container id to remove this item from",
                     "type": "string"
                 },
                 "count": {
@@ -446,7 +487,8 @@
                         "string"
                     ]
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "give_advancement": {
             "description": "Gives the member the advancement",
@@ -459,15 +501,16 @@
                 "conditions": {
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
-                "target": {
+                "member": {
                     "description": "Who to give the item to",
-                    "type": "string"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member"
                 },
                 "advancement": {
                     "description": "id of the advancement to grant",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "take_advancement": {
             "description": "Takes the advancement from the member",
@@ -480,15 +523,16 @@
                 "conditions": {
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
                 },
-                "target": {
+                "member": {
                     "description": "Who to take the advancemnt from",
-                    "type": "string"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member"
                 },
                 "advancement": {
                     "description": "id of the advancement to rake",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "unlock_item": {
             "description": "Unlocks the item, The member can now obtain this item.",
@@ -505,7 +549,8 @@
                     "description": "id of the item to unlock",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "lock_item": {
             "description": "Locks the item so you can no longer obtain this item.",
@@ -522,7 +567,8 @@
                     "description": "id of the item to lock",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "change_presence": {
             "description": "Change the bots presence",
@@ -543,12 +589,14 @@
                         "watching"
                     ]
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "reload_packs": {
             "description": "Reloads all packs.",
             "type": "object",
-            "default": {}
+            "default": {},
+            "additionalProperties": false
         },
         "enable_pack": {
             "description": "Enable the pack",
@@ -559,7 +607,8 @@
                     "description": "The resrouce path to the pack",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "disable_pack": {
             "description": "Disable the pack",
@@ -570,7 +619,8 @@
                     "description": "The resrouce path to the pack",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         }
     },
     "additionalProperties": false
