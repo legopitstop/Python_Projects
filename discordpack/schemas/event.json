@@ -13,17 +13,21 @@
                 "object"
             ],
             "default": {},
+            "required": [
+                "op"
+            ],
             "properties": {
                 "value": {
                     "description": "The exact value to use.",
                     "type":["string", "number"]
                 },
                 "op": {
-                    "description": "Set to replace to replace any existing contents of the target NBT path, append to append to a list or array, or merge to merge into a compound tag.",
+                    "description": "Set to replace to replace any existing contents of the target NBT path, append to append to a list or array, or merge to merge into a compound tag.\n`remove` :number: subtract this amount. :array: delete this index value in array. \n`replace` set this value.\n`append` :array: :array: Add this value to the bottom of the list. :number: add this value",
                     "enum": [
+                        "add",
+                        "remove",
                         "replace",
-                        "append",
-                        "merge"
+                        "append"
                     ]
                 }
             }
@@ -164,7 +168,7 @@
             },
             "additionalProperties": false
         },
-        "set_member_property": {
+        "modify_member_property": {
             "description": "A mapping of key-value pairs for member properties. the key being the id of the property and the value being [MoLang](./molang.md) that matches the type defined in cog description.",
             "type": "object",
             "default": {},
@@ -172,7 +176,7 @@
                 "$ref": "#/definitions/ValueModifier"
             }
         },
-        "set_guild_property": {
+        "modify_guild_property": {
             "description": "A mapping of key-value pairs for guild properties. the key being the id of the property and the value being [MoLang](./molang.md) that matches the type defined in cog description.",
             "type": "object",
             "default": {},
@@ -180,12 +184,12 @@
                 "$ref": "#/definitions/ValueModifier"
             }
         },
-        "set_bank_balance": {
+        "modify_bank_balance": {
             "description": "Modify the members bank balance",
             "type": "object",
             "default": {},
             "required": [
-                "amount"
+                "value"
             ],
             "properties": {
                 "conditions": {

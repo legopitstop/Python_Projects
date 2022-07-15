@@ -22,6 +22,28 @@
                         "type": "string"
                     }
                 },
+                "required": {
+                    "description": "A list of required variables.",
+                    "type":"array",
+                    "default":[],
+                    "items":{
+                        "type":["string", "object"],
+                        "additionalProperties": {
+                            "description": "The variable to compare to.",
+                            "type":"object",
+                            "default": {},
+                            "properties":{
+                                "const": {
+                                    "description": "This variables value must match this.",
+                                    "type":"string"
+                                },
+                                "required": {
+                                    "$ref": "#/properties/description/properties/required"
+                                }
+                            }
+                        }
+                    }
+                },
                 "variables": {
                     "description": "A mapping of variables for the command",
                     "type": "object",
