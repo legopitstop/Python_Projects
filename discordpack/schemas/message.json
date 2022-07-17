@@ -375,7 +375,7 @@
                     "emoji": {
                         "title": "BUTTON, SELECT_OPTION",
                         "description": "The emoji to display",
-                        "$ref": "https://raw.githubusertext.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Emoji"
+                        "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Emoji"
                     },
                     "description": {
                         "title": "SELECT_OPTION",

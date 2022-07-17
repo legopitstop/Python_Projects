@@ -4,6 +4,7 @@
     "definitions": {
         "Value": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Value",
+            "default": "",
             "anyOf": [
                 {
                     "type": [
@@ -557,6 +558,7 @@
         "Emoji": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Emoji",
             "description": "Can be any of; custom emoji name, custom emoji id, command variable, pasted emoji (i.e. '☻')",
+            "default": "",
             "type": [
                 "string",
                 "integer",
@@ -597,46 +599,9 @@
             "description": "Get a value from a property",
             "type": "object",
             "default": {},
-            "anyOf": [
-                {
-                    "if": {
-                        "properties": {
-                            "type": {
-                                "anyOf": [
-                                    {
-                                        "const": "discord:member"
-                                    },
-                                    {
-                                        "const": "discord:bank_balance"
-                                    }
-                                ]
-                            }
-                        }
-                    },
-                    "then": {
-                        "properties": {
-                            "id": {
-                                "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member"
-                            }
-                        }
-                    }
-                },
-                {
-                    "if": {
-                        "properties": {
-                            "type": {
-                                "const": "discord:guild"
-                            }
-                        }
-                    },
-                    "then": {
-                        "properties": {
-                            "id": {
-                                "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Guild"
-                            }
-                        }
-                    }
-                }
+            "required": [
+                "id",
+                "type"
             ],
             "properties": {
                 "type": {
@@ -647,10 +612,17 @@
                         "discord:bank_balance"
                     ]
                 },
-                "id": {},
-                "property": {
-                    "description": "The name of the property",
+                "id": {
                     "type": "string"
+                },
+                "interprit": {
+                    "description": "How to interpit the value.",
+                    "enum": [
+                        "member",
+                        "channel",
+                        "money",
+                        "emoji"
+                    ]
                 }
             }
         },
