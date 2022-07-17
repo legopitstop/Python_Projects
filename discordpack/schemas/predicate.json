@@ -228,16 +228,12 @@
                     "description": "Test the items custom_id",
                     "type": "string"
                 },
+                "custom_id": {
+                    "description": "Test the custom id",
+                    "type": "string"
+                },
                 "text": {
                     "description": "Test the exact contents of the message",
-                    "type": "string"
-                },
-                "startswith": {
-                    "description": "Test if the contents of the message starts with the value.",
-                    "type": "string"
-                },
-                "endswith": {
-                    "description": "Test if the contents of the message ends with the value.",
                     "type": "string"
                 },
                 "author": {
@@ -246,6 +242,70 @@
                     "default": [],
                     "items": {
                         "type": "string"
+                    }
+                },
+                "filter": {
+                    "description": "Test the contents of the message using a filter.",
+                    "type": [
+                        "object",
+                        "array"
+                    ],
+                    "default": {},
+                    "required": [
+                        "type"
+                    ],
+                    "properties": {
+                        "type": {
+                            "description": "The built-in filter to use.",
+                            "enum": [
+                                "discord:profanity",
+                                "discord:regex"
+                            ]
+                        },
+                        "match": {
+                            "title": "REGEX",
+                            "description": "The regex to match",
+                            "type": "string"
+                        },
+                        "words": {
+                            "title": "PROFANITY",
+                            "description": "Create your own list of bad words to the filter.",
+                            "type": [
+                                "array",
+                                "string"
+                            ],
+                            "default": [],
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "add": {
+                            "title": "PROFANITY",
+                            "description": "Add a bad word to the filter",
+                            "type": [
+                                "array",
+                                "string"
+                            ],
+                            "default": [],
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "remove": {
+                            "title": "PROFANITY",
+                            "description": "Remove a bad word from the filter",
+                            "type": [
+                                "array",
+                                "string"
+                            ],
+                            "default": [],
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "items": {
+                        "$ref": "#/definitions/MessagePredicate/properties/filter"
                     }
                 }
             }
@@ -463,10 +523,70 @@
                 ]
             }
         },
-        {"if": {"properties": {"condition": {"const": "discord:member"}}},"then": {"properties": {"predicate": {"$ref":"#/definitions/MemberPredicate"}}}},
-        {"if": {"properties": {"condition": {"const": "discord:item"}}},"then": {"properties": {"predicate": {"$ref":"#/definitions/ItemPredicate"}}}},
-        {"if": {"properties": {"condition": {"const": "discord:guild"}}},"then": {"properties": {"predicate": {"$ref":"#/definitions/GuildPredicate"}}}},
-        {"if": {"properties": {"condition": {"const": "discord:message"}}},"then": {"properties": {"predicate": {"$ref":"#/definitions/MessagePredicate"}}}}
+        {
+            "if": {
+                "properties": {
+                    "condition": {
+                        "const": "discord:member"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "predicate": {
+                        "$ref": "#/definitions/MemberPredicate"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "condition": {
+                        "const": "discord:item"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "predicate": {
+                        "$ref": "#/definitions/ItemPredicate"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "condition": {
+                        "const": "discord:guild"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "predicate": {
+                        "$ref": "#/definitions/GuildPredicate"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "condition": {
+                        "const": "discord:message"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "predicate": {
+                        "$ref": "#/definitions/MessagePredicate"
+                    }
+                }
+            }
+        }
     ],
     "properties": {
         "condition": {
@@ -541,9 +661,9 @@
         "predicate": {
             "title": "MEMBER",
             "description": "Predicate applied to the condition type.",
-            "type":"object",
+            "type": "object",
             "default": {},
-            "properties":{}
+            "properties": {}
         }
     }
 }
