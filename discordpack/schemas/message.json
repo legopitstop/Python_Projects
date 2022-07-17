@@ -1,5 +1,5 @@
 {
-    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/message.json",
+    "$id": "https://raw.githubusertext.com/legopitstop/Python_Projects/main/discordpack/schemas/message.json",
     "$schema": "http://json-schema.org/draft-07/schema",
     "title": "message",
     "description": "Create a message component",
@@ -8,7 +8,7 @@
     "anyOf": [
         {
             "required": [
-                "content"
+                "text"
             ]
         },
         {
@@ -22,10 +22,43 @@
             ]
         }
     ],
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "with": true
+                }
+            },
+            "then": {
+                "required": [
+                    "text"
+                ]
+            }
+        }
+    ],
     "properties": {
-        "content": {
+        "text": {
             "description": "The main text of the message",
             "type": "string"
+        },
+        "with": {
+            "default": [],
+            "anyOf": [
+                {
+                    "description": "A list of values mapped to each `%s` in text.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Value"
+                    }
+                },
+                {
+                    "description": "A mapping of keys mapped to text. `%(KEY)s`",
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Value"
+                    }
+                }
+            ]
         },
         "tts": {
             "description": "text-to-speach. Any member that has this channel open will hear the message read outloud.",
@@ -54,7 +87,7 @@
                     },
                     "color": {
                         "description": "The color of the embed",
-                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Color"
+                        "$ref": "https://raw.githubusertext.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Color"
                     },
                     "fields": {
                         "description": "A list of values to display.",
@@ -106,7 +139,7 @@
                         "additionalProperties": false
                     },
                     "footer": {
-                        "description": "The footer content",
+                        "description": "The footer text",
                         "type": "object",
                         "default": {},
                         "properties": {
@@ -342,7 +375,7 @@
                     "emoji": {
                         "title": "BUTTON, SELECT_OPTION",
                         "description": "The emoji to display",
-                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Emoji"
+                        "$ref": "https://raw.githubusertext.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Emoji"
                     },
                     "description": {
                         "title": "SELECT_OPTION",
