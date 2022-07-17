@@ -24,18 +24,21 @@
                 },
                 "required": {
                     "description": "required variables to run the command. Will run discord:on_error if missing.",
-                    "type":"array",
-                    "default":[],
-                    "items":{
-                        "type":["string", "object"],
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
                         "additionalProperties": {
                             "description": "The variable to compare to.",
-                            "type":"object",
+                            "type": "object",
                             "default": {},
-                            "properties":{
+                            "properties": {
                                 "const": {
                                     "description": "This variables value must match this.",
-                                    "type":"string"
+                                    "type": "string"
                                 },
                                 "required": {
                                     "$ref": "#/properties/description/properties/required"
@@ -102,11 +105,7 @@
                     }
                 },
                 "permission_level": {
-                    "description": "The level of permissions needed to run this command.\nlevel 0 Any Member (default)\nlevel 1 Server Management\nlevel 2 Server Owner\n",
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 4,
-                    "default": 0
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/PermissionLevel"
                 }
             },
             "additionalProperties": false

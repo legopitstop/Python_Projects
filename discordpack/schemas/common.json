@@ -2,6 +2,14 @@
     "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json",
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
+        "PermissionLevel": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/PermissionLevel",
+            "description": "The level of permission.\nlevel 0 Any Member (default)\nlevel 1 Server Management\nlevel 2 Server Owner\nlevel 3 Console Only",
+            "type":"integer",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 3
+        },
         "Value": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Value",
             "default": "",
