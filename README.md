@@ -4,7 +4,7 @@ This repo contains the source code for some of my python projects. You can downl
 
 ## Useful Links
 
-- [Documentation](./docs/README)
+- [Documentation](https://legopitstop.github.io/Python_Projects/)
 
 ## Projects
 
