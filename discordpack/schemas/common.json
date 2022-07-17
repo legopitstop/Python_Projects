@@ -508,7 +508,7 @@
             "anyOf": [
                 {
                     "description": "The command variable to use get the channel id from",
-                    "type":"string",
+                    "type": "string",
                     "examples": [
                         "this",
                         "system",
@@ -527,7 +527,7 @@
             "anyOf": [
                 {
                     "description": "The command variable to use get the message id from",
-                    "type":"string",
+                    "type": "string",
                     "examples": [
                         "this"
                     ]
@@ -566,7 +566,7 @@
             "anyOf": [
                 {
                     "description": "The command variable to use get the guild id from",
-                    "type":"string",
+                    "type": "string",
                     "examples": [
                         "this"
                     ]
@@ -583,7 +583,7 @@
             "anyOf": [
                 {
                     "description": "The command variable to use get the member from",
-                    "type":"string",
+                    "type": "string",
                     "examples": [
                         "this"
                     ]
@@ -594,6 +594,22 @@
                 }
             ],
             "default": "this"
+        },
+        "Conditions": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions",
+            "anyOf": [
+                {
+                    "description": "resrouce location to a predicate",
+                    "type": "string"
+                },
+                {
+                    "type": [
+                        "object",
+                        "array"
+                    ],
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                }
+            ]
         }
     }
 }

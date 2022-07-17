@@ -42,6 +42,10 @@
             }
         }
     },
+    "allOf": [
+        {"if": {"properties": {"condition": {"const": "discord:profanity"}}},"then": {"required": ["value"]}},
+        {"if": {"properties": {"condition": {"const": "discord:time_check"}}},"then": {"required": ["value"]}}
+    ],
     "properties": {
         "condition": {
             "description": "The resource location of the condition type to check.",
@@ -56,7 +60,8 @@
                 "discord:reference",
                 "discord:time_check",
                 "discord:bot",
-                "discord:variable"
+                "discord:variable",
+                "discord:profanity"
             ]
         },
         "target": {
@@ -67,7 +72,7 @@
             ]
         },
         "value": {
-            "title": "time_check",
+            "title": "time_check, profanity",
             "description": "Compares the current game time (the age of the world in game ticks) against given values. Invokable from any context.",
             "$ref": "#/definitions/Provider"
         },

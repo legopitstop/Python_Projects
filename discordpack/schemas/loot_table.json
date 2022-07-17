@@ -25,7 +25,7 @@
                 },
                 "conditions": {
                     "title": "GENERAL",
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "count": {
                     "title": "set_count",
@@ -67,7 +67,7 @@
                 "default": {},
                 "properties": {
                     "conditions": {
-                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                     },
                     "functions": {
                         "$ref": "#/definitions/Functions"
@@ -122,7 +122,7 @@
                                 },
                                 "conditions": {
                                     "title": "GENERAL",
-                                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                                 },
                                 "functions": {
                                     "title": "GENERAL",

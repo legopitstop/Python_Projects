@@ -39,7 +39,7 @@
     "properties": {
         "conditions": {
             "description": "Must meet all conditions to run",
-            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
         },
         "sequence": {
             "description": "An array of events to run",
@@ -63,7 +63,7 @@
             "default": {},
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "commands": {
                     "description": "A list of command to run",
@@ -93,6 +93,7 @@
         },
         "send_message": {
             "description": "Send a message",
+            "default": {},
             "anyOf": [
                 {
                     "description": "The text to send.",
@@ -106,7 +107,7 @@
                     ],
                     "properties": {
                         "conditions": {
-                            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                         },
                         "channel_id": {
                             "description": "The channel to send the message to",
@@ -134,7 +135,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "message_id": {
                     "description": "The message id to edit",
@@ -156,7 +157,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "message_id": {
                     "description": "The message id to delete",
@@ -174,7 +175,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "event": {
                     "description": "The event to run",
@@ -208,7 +209,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "member": {
                     "description": "The member to use",
@@ -227,7 +228,7 @@
             "default": {},
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "member": {
                     "description": "The member to ban",
@@ -246,7 +247,7 @@
             "default": {},
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "member": {
                     "description": "The member to kick",
@@ -265,7 +266,7 @@
             "default": {},
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "member": {
                     "description": "The member to timeout",
@@ -291,7 +292,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "level": {
                     "description": "The level of the message",
@@ -319,7 +320,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "message_id": {
                     "description": "The id of the message to add the reaction to",
@@ -341,7 +342,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "message_id": {
                     "description": "The id of the message to remove the reaction from",
@@ -363,7 +364,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "member": {
                     "description": "The member to apply the role to",
@@ -385,7 +386,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "member": {
                     "description": "The member to remove the role from",
@@ -407,7 +408,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "guild_id": {
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Guild"
@@ -428,7 +429,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "channel_id": {
                     "description": "The id of the channel",
@@ -447,7 +448,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "member": {
                     "description": "Who to give the item to",
@@ -489,7 +490,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "item": {
                     "description": "The id of the item to remove",
@@ -518,7 +519,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "member": {
                     "description": "Who to give the item to",
@@ -540,7 +541,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "member": {
                     "description": "Who to take the advancemnt from",
@@ -562,7 +563,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "item": {
                     "description": "id of the item to unlock",
@@ -580,7 +581,7 @@
             ],
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "item": {
                     "description": "id of the item to lock",
@@ -595,7 +596,7 @@
             "default": {},
             "properties": {
                 "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                 },
                 "name": {
                     "description": "The name of the presence",

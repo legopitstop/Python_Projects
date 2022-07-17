@@ -140,7 +140,7 @@
                 "properties": {
                     "conditions": {
                         "description": "The condition must be true to apply the components.",
-                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
                     },
                     "components": {
                         "$ref": "#/properties/components"
