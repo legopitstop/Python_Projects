@@ -109,27 +109,6 @@
                     "required": [
                         "message"
                     ],
-                    "allOf": [
-                        {
-                            "if": {
-                                "properties": {
-                                    "channel_id": {
-                                        "const": "member"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "required": [
-                                    "member_id"
-                                ],
-                                "properties": {
-                                    "member_id": {
-                                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member"
-                                    }
-                                }
-                            }
-                        }
-                    ],
                     "properties": {
                         "conditions": {
                             "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
@@ -138,7 +117,6 @@
                             "description": "The channel to send the message to",
                             "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Channel"
                         },
-                        "member_id": {},
                         "message": {
                             "description": "The message id to send",
                             "type": "string"
