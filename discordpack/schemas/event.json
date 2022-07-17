@@ -19,7 +19,10 @@
             "properties": {
                 "value": {
                     "description": "The exact value to use.",
-                    "type":["string", "number"]
+                    "type": [
+                        "string",
+                        "number"
+                    ]
                 },
                 "op": {
                     "description": "Set to replace to replace any existing contents of the target NBT path, append to append to a list or array, or merge to merge into a compound tag.\n`remove` :number: subtract this amount. :array: delete this index value in array. \n`replace` set this value.\n`append` :array: :array: Add this value to the bottom of the list. :number: add this value",
@@ -90,25 +93,37 @@
         },
         "send_message": {
             "description": "Send a message",
-            "type": "object",
-            "default": {},
-            "required": [
-                "message"
-            ],
-            "properties": {
-                "conditions": {
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
-                },
-                "channel_id": {
-                    "description": "The channel to send the message to",
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Channel"
-                },
-                "message": {
-                    "description": "The message id to send",
+            "anyOf": [
+                {
+                    "description": "The text to send.",
                     "type": "string"
+                },
+                {
+                    "type": "object",
+                    "default": {},
+                    "required": [
+                        "message"
+                    ],
+                    "properties": {
+                        "conditions": {
+                            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/predicate.json"
+                        },
+                        "channel_id": {
+                            "description": "The channel to send the message to",
+                            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Channel"
+                        },
+                        "message": {
+                            "description": "The message id to send",
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
                 }
-            },
-            "additionalProperties": false
+            ],
+            "type": [
+                "object",
+                "string"
+            ]
         },
         "edit_message": {
             "description": "Edit a message",
@@ -601,6 +616,16 @@
             "type": "object",
             "default": {},
             "additionalProperties": false
+        },
+        "stop_bot": {
+            "description": "Stops the discord bot.",
+            "type": "object",
+            "default": {}
+        },
+        "restart_bot": {
+            "description": "Restarts the discord bot.",
+            "type": "object",
+            "default": {}
         },
         "enable_pack": {
             "description": "Enable the pack",
