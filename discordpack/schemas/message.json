@@ -1,5 +1,5 @@
 {
-    "$id": "https://raw.githubusertext.com/legopitstop/Python_Projects/main/discordpack/schemas/message.json",
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/message.json",
     "$schema": "http://json-schema.org/draft-07/schema",
     "title": "message",
     "description": "Create a message component",
@@ -87,7 +87,7 @@
                     },
                     "color": {
                         "description": "The color of the embed",
-                        "$ref": "https://raw.githubusertext.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Color"
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Color"
                     },
                     "fields": {
                         "description": "A list of values to display.",
