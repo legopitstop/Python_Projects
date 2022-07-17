@@ -46,7 +46,7 @@
                     "trigger": {
                         "description": "The type of trigger that this criteria is.",
                         "type": "string",
-                        "examples": [
+                        "enum": [
                             "discord:on_ready",
                             "discord:on_reaction_add",
                             "discord:on_reaction_remove",

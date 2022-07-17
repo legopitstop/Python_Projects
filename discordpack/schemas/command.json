@@ -23,7 +23,7 @@
                     }
                 },
                 "required": {
-                    "description": "A list of required variables.",
+                    "description": "required variables to run the command. Will run discord:on_error if missing.",
                     "type":"array",
                     "default":[],
                     "items":{
@@ -75,11 +75,6 @@
                                     "role",
                                     "emoji"
                                 ]
-                            },
-                            "required": {
-                                "description": "When true this variable is required to run the command. Will run OnErrorComponent if missing.",
-                                "type": "boolean",
-                                "default": false
                             },
                             "enum": {
                                 "description": "A list of valid items",

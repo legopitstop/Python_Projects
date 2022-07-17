@@ -11,8 +11,9 @@
     ],
     "properties": {
         "format_version": {
-            "description": "The packs format version. Determins if this pack will work for the current version of discord.json",
+            "description": "The format version of the pack. Determins if this pack works for this version of discordpack. Any new version that changes packs will increase this value.",
             "type": "integer",
+            "minimum": 1,
             "default": 1
         },
         "version": {

@@ -46,7 +46,7 @@
         "condition": {
             "description": "The resource location of the condition type to check.",
             "type": "string",
-            "examples": [
+            "enum": [
                 "discord:alternative",
                 "discord:inverted",
                 "discord:member",
