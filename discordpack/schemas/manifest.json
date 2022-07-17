@@ -29,6 +29,31 @@
             "type": "string",
             "pattern": "(.){1}",
             "default": "/"
+        },
+        "language": {
+            "description": "A list of language definitions",
+            "type":"object",
+            "default": {},
+            "additionalProperties":{
+                "description": "language code.",
+                "type":"object",
+                "default": {},
+                "required": [
+                    "name", "region", "biodirectional"
+                ],
+                "properties":{
+                    "name": {
+                        "type":"string"
+                    },
+                    "region": {
+                        "type":"string"
+                    },
+                    "biodirectional": {
+                        "type":"boolean",
+                        "default": false
+                    }
+                }
+            }
         }
     },
     "patternProperties": {
