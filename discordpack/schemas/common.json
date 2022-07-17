@@ -501,7 +501,8 @@
                 "grey97",
                 "grey98",
                 "grey99"
-            ]
+            ],
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Property"
         },
         "EventTrigger": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/EventTrigger",
@@ -534,12 +535,15 @@
                 {
                     "description": "The channel id",
                     "type": "integer"
+                },
+                {
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Property"
                 }
             ],
             "default": "this"
         },
         "Message": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Channel",
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Message",
             "anyOf": [
                 {
                     "description": "The command variable to use get the message id from",
@@ -551,6 +555,9 @@
                 {
                     "description": "The message id",
                     "type": "integer"
+                },
+                {
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Property"
                 }
             ],
             "default": "this"
@@ -576,6 +583,7 @@
                     ]
                 }
             },
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Property",
             "additionalProperties": false
         },
         "Guild": {
@@ -591,40 +599,12 @@
                 {
                     "description": "The guild id",
                     "type": "integer"
+                },
+                {
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Property"
                 }
             ],
             "default": "this"
-        },
-        "Property": {
-            "description": "Get a value from a property",
-            "type": "object",
-            "default": {},
-            "required": [
-                "id",
-                "type"
-            ],
-            "properties": {
-                "type": {
-                    "description": "The type of property",
-                    "enum": [
-                        "discord:member",
-                        "discord:guild",
-                        "discord:bank_balance"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                },
-                "interprit": {
-                    "description": "How to interpit the value.",
-                    "enum": [
-                        "member",
-                        "channel",
-                        "money",
-                        "emoji"
-                    ]
-                }
-            }
         },
         "Member": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member",
@@ -642,9 +622,45 @@
                 },
                 {
                     "$ref": "#/definitions/Property"
+                },
+                {
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Property"
                 }
             ],
             "default": "this"
+        },
+        "Property": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Property",
+            "description": "Get a value from a property",
+            "type": "object",
+            "default": {},
+            "required": [
+                "id",
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "description": "The type of property",
+                    "enum": [
+                        "discord:member",
+                        "discord:guild",
+                        "discord:bank_balance"
+                    ]
+                },
+                "id": {
+                    "description": "The key in member, and guild or the member to get the balance from.",
+                    "type": "string"
+                },
+                "interprit": {
+                    "description": "How to interpit the value.",
+                    "enum": [
+                        "member",
+                        "channel",
+                        "money",
+                        "emoji"
+                    ]
+                }
+            }
         },
         "Conditions": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions",

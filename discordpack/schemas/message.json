@@ -414,7 +414,17 @@
         "delete_after": {
             "description": "Number of seconds before this message gets deleted.",
             "type": "integer"
-        }
+        },
+        "add_reactions": {
+            "description": "Add a role to the message.",
+            "type": "array",
+            "default": [],
+            "items": {
+                "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Emoji"
+            },
+            "uniqueItems": true
+        },
+        "additionalProperties": false
     },
     "patternProperties": {
         "^\\$": true
