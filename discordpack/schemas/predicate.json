@@ -10,9 +10,6 @@
     "items": {
         "$ref": "#"
     },
-    "required": [
-        "condition"
-    ],
     "definitions": {
         "Provider": {
             "type": [
@@ -40,49 +37,473 @@
                     ]
                 }
             }
+        },
+        "MemberPredicate": {
+            "description": "Tags common to all members",
+            "properties": {
+                "flags": {
+                    "title": "MEMBER",
+                    "description": "Flags for the member.",
+                    "type": "object",
+                    "default": {},
+                    "properties": {
+                        "is_owner": {
+                            "description": "When true this member is the owner of the guild.",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_op": {
+                            "description": "When true this member is a guild operator.",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_bot": {
+                            "description": "When true the member is a bot",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_system": {
+                            "description": "When true the member is an Official Discord System user. (part of the urgen message system)",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_staff": {
+                            "description": "When true the member is a Discord employee.",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_partner": {
+                            "description": "When true the member is a Partnered Server Owner",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_hypesquad": {
+                            "description": "When true the member is part of the Hypesqad event.",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_bug_hunter": {
+                            "description": "When true the member is a Bug hunter",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_house_bravery": {
+                            "description": "When true the member is a HypeSquad Bravery Member.",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_brilliance": {
+                            "description": "When true the member is a HypeSquad Brilliance Member.",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_balance": {
+                            "description": "When true the member is a HypeSquad Balance Member.",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_nitro": {
+                            "description": "When true the member has Nitro.",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_verified_bot": {
+                            "description": "When true the member is a Verified Bot.",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_verified_dev": {
+                            "description": "When true the member is a Verified Discord Developer",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_certified_mod": {
+                            "description": "When true the member is a Certified Moderator",
+                            "type": "boolean",
+                            "default": true
+                        }
+                    }
+                },
+                "roles": {
+                    "description": "To test the member's roles.",
+                    "type": "object",
+                    "default": {},
+                    "additionalProperties": {
+                        "description": "Test whether a role is granted or not granted. Key is a role ID, value is true or false to test for granted/not granted respectively.",
+                        "type": "boolean",
+                        "default": true
+                    }
+                },
+                "advancements": {
+                    "description": "To test the member's advancements.",
+                    "type": "object",
+                    "default": {},
+                    "additionalProperties": {
+                        "description": "Test whether an advancement is granted or not granted. Key is an advancement ID, value is true or false to test for granted/not granted respectively.",
+                        "type": "boolean",
+                        "default": true
+                    }
+                },
+                "permission_level": {
+                    "description": "To test the member's permission level.",
+                    "$ref": "#/definitions/Provider"
+                },
+                "stats": {
+                    "description": "To test the member's stats.",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "object",
+                        "default": {},
+                        "properties": {
+                            "stat": {
+                                "description": "The stat to test.",
+                                "type": "string"
+                            },
+                            "value": {
+                                "description": "The value to match",
+                                "$ref": "#/definitions/Provider"
+                            }
+                        }
+                    }
+                },
+                "username": {
+                    "description": "The members username",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "The members id",
+                    "type": "integer"
+                },
+                "location": {
+                    "$ref": "#/definitions/LocationPredicate"
+                },
+                "locale": {
+                    "description": "Test the member's chosen language option.",
+                    "type": "string"
+                },
+                "accent_color": {
+                    "description": "Test the member's banner color as an integer",
+                    "type": "integer"
+                },
+                "email": {
+                    "description": "Test the member's email.",
+                    "type": "string"
+                },
+                "nitro_type": {
+                    "description": "Test the type of Nitro subscription that this member has.",
+                    "enum": [
+                        false,
+                        "nitro_classic",
+                        "nitro"
+                    ]
+                }
+            }
+        },
+        "ItemPredicate": {
+            "description": "Tags common to all items",
+            "properties": {
+                "count": {
+                    "description": "Test the number of items in this item stack. Use an integer to test for a single value. Use an object with min and max keys to test for a range of values (inclusive).",
+                    "$ref": "#/definitions/Provider"
+                },
+                "items": {
+                    "description": "Test the type of item in the item stack. Excepts a list of item ids. Passes if the item's ID matches any of the listed values.",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "tag": {
+                    "description": "Test if the item ID of this item is listed within a pack item tag. Accepts the resrouce location of a valid item tag.",
+                    "type": "string"
+                }
+            }
+        },
+        "MessagePredicate": {
+            "description": "Tags common to all messages",
+            "properties": {
+                "id": {
+                    "description": "Test the items custom_id",
+                    "type": "string"
+                },
+                "text": {
+                    "description": "Test the exact contents of the message",
+                    "type": "string"
+                },
+                "startswith": {
+                    "description": "Test if the contents of the message starts with the value.",
+                    "type": "string"
+                },
+                "endswith": {
+                    "description": "Test if the contents of the message ends with the value.",
+                    "type": "string"
+                },
+                "author": {
+                    "description": "Test the author for the message. Accepts a list of member IDs. Passes if the member's ID matches any of the listed values.",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "GuildPredicate": {
+            "description": "Tags common to all guilds",
+            "properties": {
+                "flags": {
+                    "description": "Flags for the guild",
+                    "type": "object",
+                    "default": {},
+                    "properties": {
+                        "is_feaure": {
+                            "description": "",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_widget_enabled": {
+                            "description": "",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "has_welcome_screen": {
+                            "description": "",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "has_animated_banner": {
+                            "description": "guild has access to set an animated guild banner image",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "has_animated_icon": {
+                            "description": "guild has access to set an animated guild icon",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "has_auto_moderation": {
+                            "description": "guild has set up auto moderation rules",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "has_banner": {
+                            "description": "guild has access to set a guild banner image",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_commerce": {
+                            "description": "guild has access to use commerce features (i.e. create store channels)",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_community": {
+                            "description": "guild can enable welcome screen, Membership Screening, stage channels and discovery, and receives community updates",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_discoverable": {
+                            "description": "guild is able to be discovered in the directory",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_featureable": {
+                            "description": "guild is able to be featured in the directory",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "has_invite_splash": {
+                            "description": "guild has access to set an invite splash background",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "has_membership_screening": {
+                            "description": "guild has enabled Membership Screening",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_monitized": {
+                            "description": "guild has enabled monetization",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "has_more_stickers": {
+                            "description": "guild has increased custom sticker slots",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "has_news": {
+                            "description": "guild has access to create news channels",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_partnered": {
+                            "description": "guild is partnered",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "can_preview": {
+                            "description": "guild can be previewed before joining via Membership Screening or the directory"
+                        },
+                        "has_private_threads": {
+                            "description": "guild has access to create private threads",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "has_role_icons": {
+                            "description": "guild is able to set role icons",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "has_ticket_events": {
+                            "description": "guild has enabled ticketed events",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "has_vanity": {
+                            "description": "guild has access to set a vanity URL",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "has_vip_regions": {
+                            "description": "guild has access to set 384kbps bitrate in voice (previously VIP voice servers)",
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "is_verified": {
+                            "description": "guild is verified",
+                            "type": "boolean",
+                            "default": true
+                        }
+                    }
+                },
+                "id": {
+                    "description": "Test the id of the guild",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Test the name of the guild",
+                    "type": "integer"
+                },
+                "description": {
+                    "description": "Test the descriptiuon of the guild",
+                    "type": "string"
+                },
+                "text": {
+                    "description": "Test the exact name of the message",
+                    "type": "string"
+                },
+                "startswith": {
+                    "description": "Test if the contents of the name starts with the value.",
+                    "type": "string"
+                },
+                "endswith": {
+                    "description": "Test if the contents of the name ends with the value.",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Test the owner of the guild. Accepts a list of member IDs. Passes if the member's ID matches any of the listed values.",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "afk_channel": {},
+                "widget_channel": {},
+                "system_channel": {},
+                "rules_channel": {},
+                "public_updates_channel": {}
+            }
+        },
+        "LocationPredicate": {
+            "description": "Test properties of this location",
+            "properties": {
+                "guild": {
+                    "description": "The guild the member is currently in.",
+                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Guild"
+                },
+                "channel": {
+                    "description": "The channel the member is currently in.",
+                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Channel"
+                }
+            }
         }
     },
+    "required": [
+        "condition"
+    ],
     "allOf": [
-        {"if": {"properties": {"condition": {"const": "discord:profanity"}}},"then": {"required": ["value"]}},
-        {"if": {"properties": {"condition": {"const": "discord:time_check"}}},"then": {"required": ["value"]}}
+        {
+            "if": {
+                "properties": {
+                    "condition": {
+                        "const": "discord:profanity"
+                    }
+                }
+            },
+            "then": {
+                "required": [
+                    "value"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "condition": {
+                        "const": "discord:time_check"
+                    }
+                }
+            },
+            "then": {
+                "required": [
+                    "value"
+                ]
+            }
+        },
+        {"if": {"properties": {"condition": {"const": "discord:member"}}},"then": {"properties": {"predicate": {"$ref":"#/definitions/MemberPredicate"}}}},
+        {"if": {"properties": {"condition": {"const": "discord:item"}}},"then": {"properties": {"predicate": {"$ref":"#/definitions/ItemPredicate"}}}},
+        {"if": {"properties": {"condition": {"const": "discord:guild"}}},"then": {"properties": {"predicate": {"$ref":"#/definitions/GuildPredicate"}}}},
+        {"if": {"properties": {"condition": {"const": "discord:message"}}},"then": {"properties": {"predicate": {"$ref":"#/definitions/MessagePredicate"}}}}
     ],
     "properties": {
         "condition": {
-            "description": "The resource location of the condition type to check.",
+            "description": "The resource location of the condition type to check.\nalternative - Evaluates a list of predicates and passes if any one of them passes.\ninverted - Inverts another loot table condition. Invokable from any context.\nmember - Checks properties of a user. Invokable from any context.\nguild - Checks properties of a server. Invokable from any context.\nmessage - Checks properties of a message. Invokable from any context.\nrandom_chance - Generates a random number between 0.0 and 1.0, and checks if it is less than a specified value. Invokable from any context.\nrefrance - Invokes a predicate file and returns its result. Invokable from any context.\ntime_check - Compares the current time against given values. Invokable from any context.\nvariable - Compares the variable against another value. Invokable from commands, and fails when invoked from anything else.",
             "type": "string",
             "enum": [
                 "discord:alternative",
                 "discord:inverted",
                 "discord:member",
+                "discord:item",
                 "discord:guild",
                 "discord:message",
                 "discord:random_chance",
                 "discord:reference",
                 "discord:time_check",
-                "discord:bot",
-                "discord:variable",
-                "discord:profanity"
+                "discord:variable"
             ]
         },
         "target": {
-            "title": "member",
-            "description": "The entity to check. Set to this to use the entity that invoked this condition.",
+            "title": "MEMBER",
+            "description": "The member to check. Set to this to use the member that invoked this condition.",
             "enum": [
                 "this"
             ]
         },
         "value": {
-            "title": "time_check, profanity",
-            "description": "Compares the current game time (the age of the world in game ticks) against given values. Invokable from any context.",
+            "title": "TIME_CHECK, MESSAGE, PROFANITY",
+            "description": "TIME_CHECK - Compares the current game time (the age of the world in game ticks) against given values.\nMESSAGE - The messages text from the component.\nPROFANITY - The text to parse for profanity.",
             "$ref": "#/definitions/Provider"
         },
         "name": {
-            "title": "refrance",
+            "title": "REFRANCE",
             "description": "The resource location of the predicate to invoke. A cyclic reference causes a parsing failure.",
             "type": "string"
         },
         "chance": {
-            "title": "random_chance",
+            "title": "RANDOM_CHANCE",
             "description": "Generates a random number between 0.0 and 1.0, and checks if it is less than a specified value. Invokable from any context.",
             "type": "number",
             "minium": 0.0,
@@ -90,113 +511,39 @@
             "default": 0.0
         },
         "terms": {
-            "title": "alternative",
+            "title": "ALTERNATIVE",
             "description": "The list of conditions to evaluate. Conditinons within this array must be  objects, they cannot themselves be arrays.",
             "$ref": "#"
         },
         "term": {
-            "title": "inverted",
+            "title": "INVERTED",
             "description": "Inverts another loot table condition. Invokable from any context.",
             "$ref": "#"
         },
         "member": {
-            "title": "member",
+            "title": "MEMBER",
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member"
+        },
+        "custom_id": {
+            "title": "MESSAGE",
+            "description": "The custom_id of the message to match",
             "type": "string"
         },
-        "predicate": {
-            "title": "member, bot, guild_properties",
+        "variable": {
+            "description": "To test the commands variable.",
             "type": "object",
             "default": {},
-            "properties": {
-                "flags": {
-                    "title": "member,bot",
-                    "type": "object",
-                    "default": {},
-                    "properties": {
-                        "is_owner": {
-                            "title": "member",
-                            "description": "When true this member is the owner of the guild.",
-                            "type": "boolean",
-                            "default": true
-                        },
-                        "is_op": {
-                            "title": "member",
-                            "description": "When true this member is an operator.",
-                            "type": "boolean",
-                            "default": true
-                        },
-                        "is_running": {
-                            "title": "bot",
-                            "description": "When true the bot is currently running.",
-                            "type": "boolean",
-                            "default": true
-                        }
-                    }
-                },
-                "member": {
-                    "title": "member",
-                    "type": "object",
-                    "default": {},
-                    "properties": {
-                        "roles": {
-                            "description": "To test the member's roles.",
-                            "type": "object",
-                            "default": {},
-                            "additionalProperties": {
-                                "description": "Test whether a role is granted or not granted. Key is a role ID, value is true or false to test for granted/not granted respectively.",
-                                "type": "boolean",
-                                "default": true
-                            }
-                        },
-                        "advancements": {
-                            "description": "To test the member's advancements.",
-                            "type": "object",
-                            "default": {},
-                            "additionalProperties": {
-                                "description": "Test whether an advancement is granted or not granted. Key is an advancement ID, value is true or false to test for granted/not granted respectively.",
-                                "type": "boolean",
-                                "default": true
-                            }
-                        },
-                        "permission_level": {
-                            "description": "To test the member's permission level.",
-                            "$ref": "#/definitions/Provider"
-                        },
-                        "stats": {
-                            "type": "array",
-                            "default": [],
-                            "items": {
-                                "type": "object",
-                                "default": {},
-                                "properties": {
-                                    "stat": {
-                                        "description": "The stat to test.",
-                                        "type": "string"
-                                    },
-                                    "value": {
-                                        "description": "The value to match",
-                                        "$ref": "#/definitions/Provider"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "variable": {
-                    "description": "The variable to check the value.",
-                    "type": "object",
-                    "default": {},
-                    "additionalProperties": {
-                        "description": "The id/value of the variable.",
-                        "$ref": "#/definitions/Provider"
-                    }
-                },
-                "custom_id": {
-                    "title": "message",
-                    "description": "The id to match.",
-                    "type": "string"
-                }
+            "additionalProperties": {
+                "description": "The id/value of the variable.",
+                "$ref": "#/definitions/Provider"
             }
+        },
+        "predicate": {
+            "title": "MEMBER",
+            "description": "Predicate applied to the condition type.",
+            "type":"object",
+            "default": {},
+            "properties":{}
         }
     }
 }
