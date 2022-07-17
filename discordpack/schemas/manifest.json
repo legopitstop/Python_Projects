@@ -32,24 +32,29 @@
         },
         "language": {
             "description": "A list of language definitions",
-            "type":"object",
+            "type": "object",
             "default": {},
-            "additionalProperties":{
+            "additionalProperties": {
                 "description": "language code.",
-                "type":"object",
+                "type": "object",
                 "default": {},
                 "required": [
-                    "name", "region", "biodirectional"
+                    "name",
+                    "region",
+                    "bidirectional"
                 ],
-                "properties":{
+                "properties": {
                     "name": {
-                        "type":"string"
+                        "description": "The name of the language",
+                        "type": "string"
                     },
                     "region": {
-                        "type":"string"
+                        "description": "The region of the language",
+                        "type": "string"
                     },
-                    "biodirectional": {
-                        "type":"boolean",
+                    "bidirectional": {
+                        "description": "Can this language be read from right-left or only left-right.",
+                        "type": "boolean",
                         "default": false
                     }
                 }
