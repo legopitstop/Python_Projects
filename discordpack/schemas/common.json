@@ -2,6 +2,21 @@
     "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json",
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
+        "Value": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Value",
+            "anyOf": [
+                {
+                    "type": [
+                        "string",
+                        "boolean",
+                        "number"
+                    ]
+                },
+                {
+                    "$ref": "#/definitions/Property"
+                }
+            ]
+        },
         "Color": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Color",
             "type": "string",
@@ -578,6 +593,67 @@
             ],
             "default": "this"
         },
+        "Property": {
+            "description": "Get a value from a property",
+            "type": "object",
+            "default": {},
+            "anyOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "anyOf": [
+                                    {
+                                        "const": "discord:member"
+                                    },
+                                    {
+                                        "const": "discord:bank_balance"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "id": {
+                                "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member"
+                            }
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "discord:guild"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "id": {
+                                "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Guild"
+                            }
+                        }
+                    }
+                }
+            ],
+            "properties": {
+                "type": {
+                    "description": "The type of property",
+                    "enum": [
+                        "discord:member",
+                        "discord:guild",
+                        "discord:bank_balance"
+                    ]
+                },
+                "id": {},
+                "property": {
+                    "description": "The name of the property",
+                    "type": "string"
+                }
+            }
+        },
         "Member": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member",
             "anyOf": [
@@ -591,13 +667,22 @@
                 {
                     "description": "The member id",
                     "type": "integer"
+                },
+                {
+                    "$ref": "#/definitions/Property"
                 }
             ],
             "default": "this"
         },
         "Conditions": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions",
+            "default": {},
             "anyOf": [
+                {
+                    "description": "Constant",
+                    "type": "boolean",
+                    "default": true
+                },
                 {
                     "description": "resrouce location to a predicate",
                     "type": "string"
