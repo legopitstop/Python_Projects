@@ -4,7 +4,7 @@
     "description": "Create a message component",
     "type": "object",
     "default": {},
-    "oneOf": [
+    "anyOf": [
         {
             "required": [
                 "text"
@@ -19,20 +19,6 @@
             "required": [
                 "files"
             ]
-        }
-    ],
-    "allOf": [
-        {
-            "if": {
-                "properties": {
-                    "with": true
-                }
-            },
-            "then": {
-                "required": [
-                    "text"
-                ]
-            }
         }
     ],
     "properties": {
