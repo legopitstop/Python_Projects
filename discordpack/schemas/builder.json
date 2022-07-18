@@ -1,0 +1,334 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/builder.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "Draw an image.",
+    "type": "object",
+    "default": {},
+    "properties": {
+        "image": {
+            "description": "The resource location to the iamge to edit.",
+            "type": "string"
+        },
+        "discord:store": {
+            "description": "This will create and store the image in cache once called. It will not recreate the image until the bot has been restarted. Not recomended if the image has dynamic elements.",
+            "type": "object",
+            "default": {},
+            "additionalProperties": false
+        },
+        "discord:draw": {
+            "description": "Draw an image using",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "image": {
+                    "description": "Resrouce location to the image to start from. If not defined it will create one.",
+                    "type": "string"
+                },
+                "mode": {
+                    "description": "The image mode",
+                    "enum": [
+                        "RGBA",
+                        "RGB"
+                    ]
+                },
+                "fill": {
+                    "description": "The background color",
+                    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Color"
+                },
+                "width": {
+                    "description": "The width of the image",
+                    "type": "integer"
+                },
+                "height": {
+                    "description": "The height of the image",
+                    "type": "integer"
+                },
+                "strokes": {
+                    "description": "Each stroke to draw on the image.",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "object",
+                        "default": {},
+                        "required": [
+                            "type"
+                        ],
+                        "properties": {
+                            "type": {
+                                "description": "The type of stroke to use.",
+                                "enum": [
+                                    "rectangle",
+                                    "text",
+                                    "point",
+                                    "line",
+                                    "polygon"
+                                ]
+                            },
+                            "from": {
+                                "title": "RECTANGLE, LINE",
+                                "description": "The beginning location on the image",
+                                "type": [
+                                    "array",
+                                    "integer"
+                                ],
+                                "default": [],
+                                "maxItems": 2,
+                                "minItems": 2,
+                                "items": {
+                                    "type": "integer"
+                                }
+                            },
+                            "to": {
+                                "title": "RECTANGLE, LINE",
+                                "description": "The ending location on the image",
+                                "type": [
+                                    "array",
+                                    "integer"
+                                ],
+                                "default": [],
+                                "maxItems": 2,
+                                "minItems": 2,
+                                "items": {
+                                    "type": "integer"
+                                }
+                            },
+                            "fill": {
+                                "title": "RECTANGLE, POINT, LINE, POLYGON",
+                                "description": "The fill color",
+                                "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Color"
+                            },
+                            "radius": {
+                                "title": "RECTANGLE",
+                                "description": "The radius of the stroke",
+                                "type": "integer"
+                            },
+                            "offset": {
+                                "title": "TEXT, POINT",
+                                "description": "The offset of the stroke.",
+                                "type": [
+                                    "array",
+                                    "integer"
+                                ],
+                                "default": [],
+                                "maxItems": 2,
+                                "minItems": 2,
+                                "items": {
+                                    "type": "integer"
+                                }
+                            },
+                            "text": {
+                                "title": "TEXT",
+                                "description": "The text to display",
+                                "type": "string"
+                            },
+                            "points": {
+                                "title": "POLYGON",
+                                "description": "A list of points",
+                                "type": "array",
+                                "default": [],
+                                "items": {
+                                    "type": [
+                                        "array",
+                                        "integer"
+                                    ],
+                                    "default": [],
+                                    "minItems": 2,
+                                    "maxItems": 2,
+                                    "items": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "discord:paste": {
+            "description": "Paste an image onto the current image.",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "image": {
+                    "description": "The image to paste",
+                    "type": "string"
+                },
+                "offsetX": {
+                    "type": "integer"
+                },
+                "offsetY": {
+                    "type": "integer"
+                },
+                "sizeX": {
+                    "type": "integer"
+                },
+                "sizeY": {
+                    "type": "integer"
+                }
+            }
+        },
+        "discord:card": {
+            "title": "REQUIRES `Mee6`",
+            "description": "A card similar to Mee6 !rank",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "background": {
+                    "description": "The background color",
+                    "type": "string"
+                },
+                "color": {
+                    "description": "The color",
+                    "type": "string"
+                },
+                "primary": {
+                    "description": "The primary color",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "The image icon to use",
+                    "type": "string"
+                },
+                "rank": {
+                    "description": "The rank property",
+                    "type": "string"
+                },
+                "level": {
+                    "description": "The level property",
+                    "type": "string"
+                },
+                "xp": {
+                    "description": "The xp property",
+                    "type": "string"
+                }
+            }
+        },
+        "discord:gui": {
+            "title": "REQUIRES `minecraft`",
+            "description": "Create a ui that looks similar to something that would be in Minecraft.",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "width": {
+                    "description": "The with of the GUI",
+                    "type": "integer"
+                },
+                "height": {
+                    "description": "The height of the GUI",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "The title of the GUI",
+                    "type": "string"
+                }
+            }
+        },
+        "discord:container": {
+            "title": "REQUIRES `minecraft`",
+            "description": "Create a container with N amount of slots.",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "title": {
+                    "description": "The title of the container",
+                    "type": "string"
+                },
+                "slots": {
+                    "description": "The number of slots for this container",
+                    "type": "integer"
+                }
+            },
+            "additionalProperties": false
+        },
+        "discord:hud": {
+            "title": "REQUIRES `minecraft`",
+            "description": "Create a HUD",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "bars": {
+                    "description": "asd",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "object",
+                        "default": {},
+                        "properties": {
+                            "id": {
+                                "description": "The key to store the value",
+                                "type": "string"
+                            },
+                            "full": {
+                                "description": "The full icon to use",
+                                "type": "string"
+                            },
+                            "half": {
+                                "description": "The half item to use",
+                                "type": "string"
+                            },
+                            "empty": {
+                                "description": "The empty icon to use.",
+                                "type": "string"
+                            },
+                            "max": {
+                                "description": "The max value for the hud",
+                                "type": "integer"
+                            },
+                            "offset": {
+                                "description": "The offset of the hud",
+                                "type": [
+                                    "array",
+                                    "integer"
+                                ],
+                                "default": [],
+                                "maxItems": 2,
+                                "minItems": 2,
+                                "items": {
+                                    "type": "integer"
+                                }
+                            },
+                            "default": {
+                                "description": "The default value",
+                                "type": "integer"
+                            },
+                            "hide_min": {
+                                "description": "Hide the hud if value is less that this",
+                                "type": "integer"
+                            },
+                            "hide_max": {
+                                "description": "Hide the hud if value is more than this",
+                                "type": "integer"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "discord:hotbar": {
+            "title": "REQUIRES `minecraft`",
+            "description": "Create a hotbar to select, or use items",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "container": {
+                    "description": "The inventory for the hotbar slots",
+                    "type": "string"
+                },
+                "slots": {
+                    "description": "The max slot to display slots 0-8 will be displaied",
+                    "type": "integer"
+                },
+                "show_amount": {
+                    "description": "Show the number of items",
+                    "type": "boolean",
+                    "default": true
+                }
+            },
+            "additionalProperties": false
+        }
+    }
+}
