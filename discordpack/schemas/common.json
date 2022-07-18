@@ -28,7 +28,7 @@
         },
         "Color": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Color",
-            "type": "string",
+            "type": ["string", "array"],
             "examples": [
                 "snow",
                 "ghost white",
@@ -510,6 +510,12 @@
                 "grey98",
                 "grey99"
             ],
+            "items": {
+                "description": "R,G,B,A",
+                "type":"integer"
+            },
+            "minItems": 3,
+            "maxItems": 4,
             "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Property"
         },
         "EventTrigger": {
