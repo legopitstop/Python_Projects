@@ -84,7 +84,7 @@
                         "properties": {
                             "type": {
                                 "description": "The type of variable",
-                                "$ref":"#/definitions/ValueType"
+                                "$ref":"#/definitions/ValueTypes"
                             },
                             "enum": {
                                 "description": "A list of valid items",
