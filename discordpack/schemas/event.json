@@ -447,8 +447,7 @@
             "type": "object",
             "default": {},
             "required": [
-                "item",
-                "container"
+                "item"
             ],
             "properties": {
                 "conditions": {
@@ -464,11 +463,20 @@
                 },
                 "container": {
                     "description": "The container id to add this item to",
-                    "type": "string"
+                    "type": "string",
+                    "default": "discord:inventory"
                 },
                 "count": {
                     "description": "The number of items to give",
-                    "type": "integer"
+                    "anyOf": [
+                        {
+                            "description": "The variable to obtain the value",
+                            "type": "string"
+                        },
+                        {
+                            "type":"integer"
+                        }
+                    ]
                 },
                 "data": {
                     "description": "The data to set on the item",
@@ -489,9 +497,6 @@
             "description": "Removes the item from the members inventory",
             "type": "object",
             "default": {},
-            "required": [
-                "container"
-            ],
             "properties": {
                 "conditions": {
                     "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
@@ -502,7 +507,8 @@
                 },
                 "container": {
                     "description": "The container id to remove this item from",
-                    "type": "string"
+                    "type": "string",
+                    "default": "discord:inventory"
                 },
                 "count": {
                     "description": "The number of items to remove",

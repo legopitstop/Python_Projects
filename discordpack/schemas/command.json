@@ -5,6 +5,21 @@
     "description": "Create a custom command",
     "type": "object",
     "default": {},
+    "definitions": {
+        "ValueTypes": {
+            "enum": [
+                "string",
+                "integer",
+                "number",
+                "boolean",
+                "member",
+                "role",
+                "emoji",
+                "advancement",
+                "item"
+            ]
+        }
+    },
     "properties": {
         "description": {
             "type": "object",
@@ -69,15 +84,7 @@
                         "properties": {
                             "type": {
                                 "description": "The type of variable",
-                                "enum": [
-                                    "string",
-                                    "integer",
-                                    "number",
-                                    "boolean",
-                                    "member",
-                                    "role",
-                                    "emoji"
-                                ]
+                                "$ref":"#/definitions/ValueType"
                             },
                             "enum": {
                                 "description": "A list of valid items",

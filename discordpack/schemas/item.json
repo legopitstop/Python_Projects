@@ -31,10 +31,6 @@
                     },
                     "additionalProperties": false
                 },
-                "discord:display_name": {
-                    "description": "The display name of the item.",
-                    "type": "string"
-                },
                 "discord:icon": {
                     "description": "The texture to use for the item.",
                     "type": "string"
