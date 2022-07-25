@@ -1,0 +1,45 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/container.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "JSON schema for container.",
+    "type": "object",
+    "default": {},
+    "required": [
+        "type",
+        "slots"
+    ],
+    "properties": {
+        "type": {
+            "description": "The type of container",
+            "enum": [
+                "guild",
+                "member"
+            ]
+        },
+        "slots": {
+            "description": "The total number of slots in this container.",
+            "type": "integer",
+            "minimum": 1
+        },
+        "color": {
+            "description": "The color of the container",
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Color"
+        },
+        "allowed_items": {
+            "description": "A list of allowed items.",
+            "items": {
+                "type": "string"
+            }
+        },
+        "disallowed_items": {
+            "description": "A list of items that are not allowed.",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "patternProperties": {
+        "^\\$": true
+    },
+    "additionalProperties": false
+}

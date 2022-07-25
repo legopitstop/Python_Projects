@@ -31,6 +31,10 @@
                     "description": "Will send a message to chat, set to false if you want this advancement to be hidden.",
                     "type": "boolean",
                     "default": true
+                },
+                "color": {
+                    "description": "The color of the message.",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Color"
                 }
             },
             "additionalProperties": false

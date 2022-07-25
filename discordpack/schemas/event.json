@@ -188,6 +188,31 @@
             },
             "additionalProperties": false
         },
+        "modify_experience": {
+            "description": "Modify the players experience.",
+            "type": "object",
+            "default": {},
+            "required": ["value"],
+            "properties": {
+                "conditions": {
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Conditions"
+                },
+                "member": {
+                    "description": "The member to use",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/common.json#/definitions/Member"
+                },
+                "mode": {
+                    "description": "The mode to set the value.",
+                    "enum": [
+                        "levels",
+                        "points"
+                    ]
+                },
+                "value": {
+                    "$ref": "#/definitions/ValueModifier"
+                }
+            }
+        },
         "modify_member_property": {
             "description": "A mapping of key-value pairs for member properties. the key being the id of the property and the value being [MoLang](./molang.md) that matches the type defined in cog description.",
             "type": "object",
@@ -474,7 +499,7 @@
                             "type": "string"
                         },
                         {
-                            "type":"integer"
+                            "type": "integer"
                         }
                     ]
                 },

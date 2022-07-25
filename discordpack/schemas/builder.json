@@ -170,7 +170,6 @@
             }
         },
         "discord:card": {
-            "title": "REQUIRES `Mee6`",
             "description": "A card similar to Mee6 !rank",
             "type": "object",
             "default": {},
@@ -206,7 +205,6 @@
             }
         },
         "discord:gui": {
-            "title": "REQUIRES `minecraft`",
             "description": "Create a ui that looks similar to something that would be in Minecraft.",
             "type": "object",
             "default": {},
@@ -226,7 +224,6 @@
             }
         },
         "discord:container": {
-            "title": "REQUIRES `minecraft`",
             "description": "Create a container with N amount of slots.",
             "type": "object",
             "default": {},
@@ -243,7 +240,6 @@
             "additionalProperties": false
         },
         "discord:hud": {
-            "title": "REQUIRES `minecraft`",
             "description": "Create a HUD",
             "type": "object",
             "default": {},
@@ -309,7 +305,6 @@
             "additionalProperties": false
         },
         "discord:hotbar": {
-            "title": "REQUIRES `minecraft`",
             "description": "Create a hotbar to select, or use items",
             "type": "object",
             "default": {},

@@ -1,0 +1,29 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/tag.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "JSON schmea for tags",
+    "type": "object",
+    "default": {},
+    "required": [
+        "values"
+    ],
+    "properties": {
+        "replace": {
+            "description": "When true it will replace all tags. If false (default) it will merge all values.",
+            "type":"boolean",
+            "default": true
+        },
+        "values": {
+            "description": "A list of values",
+            "type":"array",
+            "default":[],
+            "items":{
+                "type":"string"
+            }
+        }
+    },
+    "patternProperties": {
+        "^\\$": true
+    },
+    "additionalProperties": false
+}
