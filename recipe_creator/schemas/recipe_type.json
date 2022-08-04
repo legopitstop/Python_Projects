@@ -1,0 +1,267 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/recipe_type.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "recipe_type",
+    "description": "JSON Schema for Recipe Creator recipe types",
+    "type": "object",
+    "default": {},
+    "required": [
+        "screen"
+    ],
+    "properties": {
+        "display": {
+            "description": "The menu",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "display_name": {
+                    "description": "The text to display in the menu.",
+                    "type": "string"
+                },
+                "texture": {
+                    "description": "The texture to display next to the label. Recomended size 24x24",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^\\$": true
+            },
+            "additionalProperties": false
+        },
+        "controls": {
+            "type": "object",
+            "default": {},
+            "properties": {
+                "index_map": {
+                    "description": "Use the arrow keys to switch tabs. Maps each index value to a spot on the grid. Use a negative index to only go to that index (Will not interpit that spot when the user is in that slot. See furnace in vanilla pack). See vanilla pack for examples",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "description": "Each row of slot indexes.",
+                        "type": "array",
+                        "default": [],
+                        "items": {
+                            "description": "The index value for this area.",
+                            "type": [
+                                "integer",
+                                "null"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "screen": {
+            "description": "The screen to use for the recipe.",
+            "type": "string"
+        },
+        "configure": {
+            "description": "Configure all slots for this recipe type.",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "state": {
+                    "description": "The state of the slot",
+                    "enum": [
+                        "normal",
+                        "disabled"
+                    ],
+                    "default": "normal"
+                },
+                "required": {
+                    "description": "If this slot is empty the expoter button will be disabled.",
+                    "type": "boolean",
+                    "default": false
+                },
+                "item": {
+                    "description": "The default item to place.",
+                    "type": [
+                        "string",
+                        "object"
+                    ],
+                    "required": [
+                        "item"
+                    ],
+                    "properties": {
+                        "item": {
+                            "description": "The id of the item",
+                            "type": "string"
+                        },
+                        "count": {
+                            "description": "The number of items in this slot",
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 64
+                        },
+                        "nbt": {
+                            "description": "The nbt data for the item if supported",
+                            "type": "string"
+                        },
+                        "data": {
+                            "description": "The data for the item if supported. for Bedrock Edition",
+                            "type": "integer"
+                        }
+                    }
+                },
+                "placeholder": {
+                    "description": "The placeholder item texture when empty",
+                    "type": "string"
+                },
+                "allowed_items": {
+                    "description": "A list of items that are allowed in this slot",
+                    "type": [
+                        "array",
+                        "string"
+                    ],
+                    "default": [],
+                    "items": {
+                        "$ref": "https://legopitstop.github.io/JSON-Schemas/minecraft/java/item.json"
+                    },
+                    "uniqueItems": true,
+                    "$ref": "https://legopitstop.github.io/JSON-Schemas/minecraft/java/item.json"
+                },
+                "disallowed_items": {
+                    "description": "A list of items that are not allowed in this slot.",
+                    "type": [
+                        "array",
+                        "string"
+                    ],
+                    "default": [],
+                    "items": {
+                        "$ref": "https://legopitstop.github.io/JSON-Schemas/minecraft/java/item.json"
+                    },
+                    "uniqueItems": true,
+                    "$ref": "https://legopitstop.github.io/JSON-Schemas/minecraft/java/item.json"
+                },
+                "has_quantity": {
+                    "description": "When true you can set the number of items that are in this slot.",
+                    "type": "boolean",
+                    "default": false
+                },
+                "has_nbt": {
+                    "description": "When true you can set custom nbt for the item.",
+                    "type": "boolean",
+                    "default": false
+                },
+                "has_data": {
+                    "description": "When true you can set data value of the item for Bedrock Edition.",
+                    "type": "boolean",
+                    "default": false
+                },
+                "options": {
+                    "$ref": "#/properties/options"
+                }
+            }
+        },
+        "builder": {
+            "description": "A resrouce location to a builder tags. or the resrouce location to the builder itself.",
+            "type":"string"
+        },
+        "options": {
+            "description": "Custom options used for the recipe builder",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object",
+                "default": {},
+                "anyOf": [
+                    {
+                        "required": [
+                            "type"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "enum"
+                        ]
+                    }
+                ],
+                "required": [
+                    "id"
+                ],
+                "properties": {
+                    "type": {
+                        "description": "The type of value for this option.",
+                        "enum": [
+                            "boolean",
+                            "integer",
+                            "string",
+                            "float",
+                            "range",
+                            "item"
+                        ]
+                    },
+                    "enum": {
+                        "description": "The set of literal values that are valid.",
+                        "type": "array",
+                        "default": [],
+                        "items": {
+                            "type": [
+                                "string",
+                                "boolean",
+                                "number"
+                            ]
+                        }
+                    },
+                    "id": {
+                        "description": "The id of this option",
+                        "type": "string"
+                    },
+                    "display_name": {
+                        "description": "The user friendly name.",
+                        "type": "string"
+                    },
+                    "required": {
+                        "description": "If true this option is required to make the recipe.",
+                        "type": "boolean",
+                        "default": true
+                    },
+                    "default": {
+                        "description": "The recipe value.",
+                        "type": [
+                            "string",
+                            "number",
+                            "boolean"
+                        ],
+                        "default": ""
+                    }
+                },
+                "patternProperties": {
+                    "^\\$": true
+                },
+                "additionalProperties": false
+            }
+        },
+        "slots": {
+            "description": "A mapping of each slots properties.",
+            "type": [
+                "object",
+                "boolean"
+            ],
+            "default": {},
+            "additionalProperties": {
+                "description": "The slot id that contains all its properties",
+                "type": "object",
+                "default": {},
+                "allOf": [
+                    {
+                        "$ref": "#/properties/configure"
+                    },
+                    {
+                        "properties": {
+                            "index": {
+                                "description": "The index value. When the user presses `tab` it will start at index=0 and increase everytime the user presses tab. It will then reset when it reaches the last index.",
+                                "type": "integer",
+                                "minimum": 0
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "patternProperties": {
+        "^\\$": true
+    },
+    "additionalProperties": false
+}

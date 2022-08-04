@@ -1,0 +1,71 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/item_textures.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "item_textures",
+    "description": "JSON Schema for Recipe Creator item textures",
+    "type": "object",
+    "default": {},
+    "properties": {
+        "texture_data": {
+            "description": "A map of each texture",
+            "type": "object",
+            "default": {},
+            "additionalProperties": {
+                "description": "The name of the texture.",
+                "type": "object",
+                "default": {},
+                "properties": {
+                    "textures": {
+                        "description": "The resource location to the texture or each layer to apply to the texture.",
+                        "type": [
+                            "object",
+                            "string"
+                        ],
+                        "default": {},
+                        "required": [
+                            "layer0"
+                        ],
+                        "properties": {
+                            "layer0": {
+                                "description": "The base layer of the texture.",
+                                "type": [
+                                    "object",
+                                    "string"
+                                ],
+                                "default": {},
+                                "required": [
+                                    "path"
+                                ],
+                                "properties": {
+                                    "color_overlay": {
+                                        "description": "The color to add over the texture. Can be a hexadeciaml, decimal or an RGB array.",
+                                        "type": [
+                                            "string",
+                                            "integer",
+                                            "array"
+                                        ],
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "maxItems": 3,
+                                        "minItems": 3
+                                    },
+                                    "path": {
+                                        "description": "The resrouce location to the texture.",
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "patternProperties": {
+                            "^layer": {
+                                "description": "Additional layers to apply to the image.",
+                                "$ref": "#/properties/texture_data/additionalProperties/properties/textures/properties/layer0"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

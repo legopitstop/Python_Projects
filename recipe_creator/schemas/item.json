@@ -1,0 +1,46 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/item.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "item",
+    "description": "JSON Schema for Recipe Creator items",
+    "type": "object",
+    "default": {},
+    "required": ["name"],
+    "properties": {
+        "name": {
+            "description": "The name used in the UI.",
+            "type":"string"
+        },
+        "icon": {
+            "description": "The texture to use for the item.",
+            "type":"string"
+        },
+        "nbt": {
+            "description": "NBT tags that this item uses.",
+            "type":"string"
+        },
+        "parent": {
+            "description": "The parent item. Mainly used for user created items that are forked",
+            "type":"string"
+        },
+        "is_modded": {
+            "description": "When true this item is from a mod. ex; `morefood:hamburger_patty`",
+            "type":"boolean",
+            "default": false
+        },
+        "can_fork": {
+            "description": "When true this item can be forked?",
+            "type":"boolean",
+            "default": true
+        },
+        "max_count": {
+            "description": "Max number of items that are allowed in one slot.",
+            "type":"integer",
+            "minimum": 1,
+            "maximum": 64,
+            "default": 1
+        }
+    },
+    "patternProperties": {"^\\$": true},
+    "additionalProperties": false
+}

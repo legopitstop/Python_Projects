@@ -1,0 +1,704 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/builder.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "builder",
+    "description": "JSON Schema for Recipe Creator builders",
+    "type": "object",
+    "default": {},
+    "anyOf": [
+        {
+            "if": {
+                "properties": {
+                    "builder": true
+                }
+            },
+            "then": {
+                "required": [
+                    "builder"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "subbuilder": true
+                }
+            },
+            "then": {
+                "required": [
+                    "subbuilder"
+                ]
+            }
+        }
+    ],
+    "definitions": {
+        "ProjectConditions": {
+            "type": "object",
+            "default": {},
+            "properties": {
+                "filename": {
+                    "description": "Test the filename of the project",
+                    "type": "string"
+                },
+                "identifier": {
+                    "description": "Test the identifier of the project",
+                    "type": "string"
+                },
+                "options": {
+                    "description": "To test this projects options.",
+                    "type": "object",
+                    "default": {},
+                    "additionalProperties": {
+                        "description": "The value to test.",
+                        "type": [
+                            "string",
+                            "number",
+                            "boolean",
+                            "null",
+                            "object"
+                        ],
+                        "properties": {
+                            "min": {
+                                "description": "The minium value.",
+                                "type": "number"
+                            },
+                            "max": {
+                                "description": "The maxium value.",
+                                "type": "number"
+                            },
+                            "anyOf": {
+                                "description": "Test if value is any of these values.",
+                                "type": "array",
+                                "default": [],
+                                "items": {
+                                    "$ref": "#/definitions/ProjectConditions/properties/options/additionalProperties"
+                                }
+                            }
+                        }
+                    }
+                },
+                "slots": {
+                    "description": "Test the item in the slot.",
+                    "type": "object",
+                    "default": {},
+                    "additionalProperties": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "properties": {
+                            "items": {
+                                "description": "Test the type of item in the item stack. Accepts a list of item ID's. Passes if the item's ID matches any of the listed values.",
+                                "type": "array",
+                                "default": [],
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "nbt": {
+                                "description": "Test for any other NBT tags that may be present on the item.",
+                                "type": "string"
+                            },
+                            "count": {
+                                "description": "Test the number of items in this item stack. Use an integer for a single value. Use an object with min and max keys to test for a range of values (inclusive)",
+                                "type": [
+                                    "object",
+                                    "integer"
+                                ],
+                                "default": {},
+                                "properties": {
+                                    "min": {
+                                        "type": "integer"
+                                    },
+                                    "max": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "tag": {
+                                "description": "Test if the item ID of this item is listed withina pack item tag. Accepts the resrouce location of a valid item tag.",
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Conditions": {
+            "description": "A list of conditions that must pass to use this builder.",
+            "type": [
+                "object",
+                "array"
+            ],
+            "default": {},
+            "required": [
+                "condition"
+            ],
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "condition": {
+                                "const": "project_properties"
+                            }
+                        }
+                    },
+                    "then": {
+                        "required": [
+                            "predicate"
+                        ],
+                        "properties": {
+                            "predicate": {
+                                "$ref": "#/definitions/ProjectConditions"
+                            }
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "condition": {
+                                "const": "inverted"
+                            }
+                        }
+                    },
+                    "then": {
+                        "required": [
+                            "term"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "condition": {
+                                "const": "random_chance"
+                            }
+                        }
+                    },
+                    "then": {
+                        "required": [
+                            "chance"
+                        ]
+                    }
+                }
+            ],
+            "properties": {
+                "condition": {
+                    "description": "The type of condition to use that must pass.",
+                    "enum": [
+                        "project_properties",
+                        "inverted",
+                        "random_chance"
+                    ]
+                },
+                "predicate": {
+                    "type": "object",
+                    "default": {},
+                    "properties": {}
+                },
+                "chance": {
+                    "title": "CHANCE",
+                    "description": "Success rate as a number 0.0-1.0",
+                    "type": "number",
+                    "minium": 0.0,
+                    "maxium": 1.0,
+                    "default": 0.0
+                },
+                "term": {
+                    "title": "INVERTED",
+                    "description": "The condition to be negated, following the same struture as root.",
+                    "type":"object",
+                    "default": {},
+                    "$ref": "#/definitions/Conditions/properties"
+                }
+            },
+            "items": {
+                "$ref": "#/definitions/Conditions/properties"
+            }
+        }
+    },
+    "properties": {
+        "display": {
+            "description": "Properties for the export menu.",
+            "type":"object",
+            "default": {},
+            "properties":{
+                "display_name": {
+                    "description": "The label for the export menu",
+                    "type":"string"
+                },
+                "texture": {
+                    "description": "The texture to use in the menu. Recomended size 24x24",
+                    "type":"string"
+                }
+            }
+        },
+        "extension": {
+            "description": "The default file extension.",
+            "type": "string",
+            "default": "json",
+            "examples": [
+                "json",
+                "txt",
+                "yaml",
+                "yml",
+                "mcfunction",
+                "mcpack",
+                "mcaddon",
+                "mcrecipe",
+                "mcmeta"
+            ]
+        },
+        "validator": {
+            "description": "How to determin that this recipe is this recipe type. Basically the opposite of the builder.",
+            "type": "object",
+            "default": {},
+            "required": [
+                "type",
+                "recipe_type"
+            ],
+            "properties": {
+                "type": {
+                    "description": "The type of validator",
+                    "enum": [
+                        "json"
+                    ]
+                },
+                "recipe_type": {
+                    "description": "The recipe type id to use for the recipe.",
+                    "type": "string"
+                },
+                "schema": {
+                    "description": "The schema to match. If it returns with no errors it will use this recipe type.",
+                    "type": "string"
+                },
+                "slots": {
+                    "description": "A mapping of the recipe file to slot id.",
+                    "type": "object",
+                    "default": {},
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "options": {
+                    "description": "A mapping of the recipe file to option id.",
+                    "type": "object",
+                    "default": {},
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "grid": {
+                    "description": "Built-in validator for shaped grid recipes",
+                    "type": "object",
+                    "default": {},
+                    "properties": {
+                        "pattern": {
+                            "description": "The pattern in the recipe",
+                            "type": "string"
+                        },
+                        "key": {
+                            "description": "The key in the recipe",
+                            "type": "string"
+                        },
+                        "slots": {
+                            "additionalProperties": {
+                                "description": "A mapping of each slot id from slot index",
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "patternProperties": {
+                        "^\\$": true
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "patternProperties": {
+                "^\\$": true
+            },
+            "additionalProperties": false
+        },
+        "identifier_set": {
+            "description": "The set of block/item identifiers to use. If null it will use the defualt recipe creator item id. ex: STONE, COBBLESTONE",
+            "type": "string",
+            "examples": [
+                "minecraft:bedrock_edition",
+                "minecraft:java_edition"
+            ]
+        },
+        "builder": {
+            "description": "The recipe builder.",
+            "type": "object",
+            "default": {},
+            "required": [
+                "type"
+            ],
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "anyOf": [
+                                    {
+                                        "const": "json"
+                                    },
+                                    {
+                                        "const": "text"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "then": {
+                        "required": [
+                            "template"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "anyOf": [
+                                    {
+                                        "const": "archive"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "then": {
+                        "required": [
+                            "tree"
+                        ]
+                    }
+                }
+            ],
+            "properties": {
+                "type": {
+                    "description": "The builder type to use.",
+                    "enum": [
+                        "json",
+                        "yaml",
+                        "text",
+                        "archive"
+                    ]
+                },
+                "template": {
+                    "description": "The base contents to use.",
+                    "type": [
+                        "string",
+                        "array"
+                    ],
+                    "items": {
+                        "description": "The text per line to place.",
+                        "type": "string"
+                    }
+                },
+                "with": {
+                    "description": "A list of values to replace `(<key>)` in template.",
+                    "type": "object",
+                    "default": {},
+                    "additionalProperties": {
+                        "type": "object",
+                        "default": {},
+                        "anyOf": [
+                            {
+                                "if": {
+                                    "properties": {
+                                        "type": {
+                                            "const": "option"
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "required": [
+                                        "value"
+                                    ]
+                                }
+                            },
+                            {
+                                "if": {
+                                    "properties": {
+                                        "type": {
+                                            "const": "slot"
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "required": [
+                                        "value"
+                                    ],
+                                    "properties": {
+                                        "value": {
+                                            "examples": [
+                                                "SLOT.item",
+                                                "SLOT.count",
+                                                "SLOT.nbt",
+                                                "SLOT.data"
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "if": {
+                                    "properties": {
+                                        "type": {
+                                            "const": "grid"
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "required": [
+                                        "value",
+                                        "slots"
+                                    ],
+                                    "properties": {
+                                        "value": {
+                                            "examples": [
+                                                "key",
+                                                "pattern",
+                                                "ingredients"
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "if": {
+                                    "properties": {
+                                        "type": {
+                                            "const": "project"
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "required": [
+                                        "value"
+                                    ],
+                                    "properties": {
+                                        "value": {
+                                            "examples": [
+                                                "identifier",
+                                                "filename",
+                                                "type"
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "if": {
+                                    "properties": {
+                                        "type": false
+                                    }
+                                },
+                                "then": {
+                                    "required": [
+                                        "template"
+                                    ]
+                                }
+                            },
+                            {
+                                "if": {
+                                    "properties": {
+                                        "type": {
+                                            "const": "random"
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "required": [
+                                        "value"
+                                    ],
+                                    "properties": {
+                                        "value": {
+                                            "type": [
+                                                "string",
+                                                "object",
+                                                "array"
+                                            ],
+                                            "examples": [
+                                                "uuid",
+                                                "hex"
+                                            ],
+                                            "properties": {
+                                                "min": {
+                                                    "type": "integer"
+                                                },
+                                                "max": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "properties": {
+                            "type": {
+                                "description": "The type of value to insert.",
+                                "enum": [
+                                    "option",
+                                    "grid",
+                                    "slot",
+                                    "project",
+                                    "random"
+                                ]
+                            },
+                            "template": {
+                                "title": "NO TYPE",
+                                "$ref": "#/properties/builder/properties/template"
+                            },
+                            "with": {
+                                "title": "NO TYPE",
+                                "$ref": "#/properties/builder/properties/with"
+                            },
+                            "value": {
+                                "title": "OPTION, GRID, SLOT, PROJECT",
+                                "description": "Depends on the type.",
+                                "type": [
+                                    "string",
+                                    "object",
+                                    "array",
+                                    "integer"
+                                ]
+                            },
+                            "slots": {
+                                "title": "GRID",
+                                "description": "A list of rows.",
+                                "type": "array",
+                                "default": [],
+                                "uniqueItems": true,
+                                "items": {
+                                    "description": "A list of columns",
+                                    "type": "array",
+                                    "default": [],
+                                    "items": {
+                                        "description": "The slot id for this item in the grid.",
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "patternProperties": {
+                            "^\\$": true
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "tree": {
+                    "description": "A list of globs (files) and trees (folders)",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "object",
+                        "default": {},
+                        "required": [
+                            "type",
+                            "path"
+                        ],
+                        "allOf": [
+                            {
+                                "if": {
+                                    "properties": {
+                                        "type": {
+                                            "const": "tree"
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "required": [
+                                        "tree"
+                                    ]
+                                }
+                            },
+                            {
+                                "if": {
+                                    "properties": {
+                                        "type": {
+                                            "const": "glob"
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "required": [
+                                        "builder"
+                                    ]
+                                }
+                            }
+                        ],
+                        "properties": {
+                            "type": {
+                                "description": "The type of tree item that this is. `glob` is a file. `tree` is a folder.",
+                                "enum": [
+                                    "tree",
+                                    "glob"
+                                ]
+                            },
+                            "path": {
+                                "description": "The name of the glob or tree",
+                                "type": "string"
+                            },
+                            "tree": {
+                                "$ref": "#/properties/builder/properties/tree"
+                            },
+                            "builder": {
+                                "anyOf": [
+                                    {
+                                        "description": "Resource location to a builder.",
+                                        "type": "string"
+                                    },
+                                    {
+                                        "$ref": "#/properties/builder"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "patternProperties": {
+                "^\\$": true
+            },
+            "additionalProperties": false
+        },
+        "subbuilder": {
+            "description": "A list of builders with conditions",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object",
+                "default": {},
+                "required": [
+                    "builder"
+                ],
+                "properties": {
+                    "validator": {
+                        "$ref": "#/properties/validator"
+                    },
+                    "identifier_set": {
+                        "$ref": "#/properties/identifier_set"
+                    },
+                    "builder": {
+                        "$ref": "#/properties/builder"
+                    },
+                    "conditions": {
+                        "$ref": "#/definitions/Conditions"
+                    }
+                },
+                "patternProperties": {
+                    "^\\$": true
+                },
+                "additionalProperties": false
+            }
+        }
+    },
+    "patternProperties": {
+        "^\\$": true
+    },
+    "additionalProperties": false
+}

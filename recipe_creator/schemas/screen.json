@@ -1,0 +1,351 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/screen.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "screen",
+    "description": "JSON Schema for Recipe Creator screens",
+    "type": "object",
+    "default": {},
+    "anyOf": [
+        {
+            "required": [
+                "elements"
+            ]
+        },
+        {
+            "required": [
+                "parent"
+            ]
+        }
+    ],
+    "properties": {
+        "parent": {
+            "description": "The parent screen.",
+            "type": "string"
+        },
+        "capture": {
+            "description": "The area to screenshot. default is the full size of the canvas.",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "scale": {
+                    "description": "The scale factor to increase or decrease the size. Default: 1.0",
+                    "type": "number",
+                    "default": 1.0
+                },
+                "size": {
+                    "description": "The size of the capture.",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "integer"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                },
+                "offset": {
+                    "description": "The offset of the capture from the top left.",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "integer"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2
+                }
+            },
+            "patternProperties": {
+                "^\\$": true
+            },
+            "additionalProperties": false
+        },
+        "theme": {
+            "description": "The colors to use for the screen depending on the selected theme.",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "Dark": {
+                    "description": "The colors for the Dark theme.",
+                    "type": "object",
+                    "default": {},
+                    "properties": {
+                        "Background": {
+                            "type": "string",
+                            "default": "#535353"
+                        },
+                        "BackgroundBorder": {
+                            "type": "string",
+                            "default": "#000000"
+                        },
+                        "BackgroundBorderLight": {
+                            "type": "string",
+                            "default": "#6b6b6b"
+                        },
+                        "BackgroundBorderDark": {
+                            "type": "string",
+                            "default": "#333333"
+                        },
+                        "Slot": {
+                            "type": "string",
+                            "default": "#333333"
+                        },
+                        "SlotBorderLight": {
+                            "type": "string",
+                            "default": "#6b6b6b"
+                        },
+                        "SlotBorderDark": {
+                            "type": "string",
+                            "default": "#262626"
+                        }
+                    }
+                },
+                "Light": {
+                    "description": "The colors for the Light theme.",
+                    "type": "object",
+                    "default": {},
+                    "properties": {
+                        "Background": {
+                            "type": "string",
+                            "default": "#ffffff"
+                        },
+                        "BackgroundBorder": {
+                            "type": "string",
+                            "default": "#000000"
+                        },
+                        "BackgroundBorderLight": {
+                            "type": "string",
+                            "default": "#c6c6c6"
+                        },
+                        "BackgroundBorderDark": {
+                            "type": "string",
+                            "default": "#555555"
+                        },
+                        "Slot": {
+                            "type": "string",
+                            "default": "#8b8b8b"
+                        },
+                        "SlotBorderLight": {
+                            "type": "string",
+                            "default": "#ffffff"
+                        },
+                        "SlotBorderDark": {
+                            "type": "string",
+                            "default": "#373737"
+                        }
+                    }
+                }
+            }
+        },
+        "elements": {
+            "description": "A list of elements to display",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object",
+                "default": {},
+                "allOf": [
+                    {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "const": "background"
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": [
+                                "size",
+                                "offset"
+                            ]
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "const": "image"
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": [
+                                "texture",
+                                "offset"
+                            ]
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "const": "frame"
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": [
+                                "size",
+                                "offset"
+                            ]
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "const": "arrow"
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": [
+                                "size",
+                                "offset"
+                            ]
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "const": "slot"
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": [
+                                "size",
+                                "offset",
+                                "name"
+                            ]
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "const": "button"
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": [
+                                "text",
+                                "name"
+                            ]
+                        }
+                    }
+                ],
+                "required": [
+                    "type"
+                ],
+                "properties": {
+                    "type": {
+                        "title": "common",
+                        "description": "The type of element.",
+                        "enum": [
+                            "background",
+                            "frame",
+                            "arrow",
+                            "vertical_arrow",
+                            "slot",
+                            "image",
+                            "plus",
+                            "entry",
+                            "panel",
+                            "button"
+                        ]
+                    },
+                    "parent": {
+                        "title": "common",
+                        "description": "The name of the parent element",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "common",
+                        "description": "The name of the element.",
+                        "type": "string"
+                    },
+                    "clickEvent": {
+                        "description": "The event to run when the user clicks the button.",
+                        "type": "object",
+                        "default": {},
+                        "required": [
+                            "action",
+                            "value"
+                        ],
+                        "properties": {
+                            "action": {
+                                "description": "The event type to use.",
+                                "enum": [
+                                    "open_url",
+                                    "run_command",
+                                    "suggest_command",
+                                    "copy_to_clipboard"
+                                ]
+                            },
+                            "value": {
+                                "description": "The URL, command, used by the sepecified action.",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "text": {
+                        "title": "button",
+                        "description": "The text to display on the button.",
+                        "type": "string"
+                    },
+                    "orentation": {
+                        "title": "arrow",
+                        "description": "The orentation of the arrow",
+                        "enum": [
+                            "horizontal",
+                            "vertical"
+                        ]
+                    },
+                    "scale": {
+                        "description": "The scale factor to increase or decrease the size. Default: 1.0",
+                        "type": "number",
+                        "default": 1.0
+                    },
+                    "size": {
+                        "title": "common",
+                        "description": "The size of the element",
+                        "type": [
+                            "integer",
+                            "array"
+                        ],
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "items": {
+                            "description": "X, Y",
+                            "type": "integer"
+                        }
+                    },
+                    "offset": {
+                        "title": "common",
+                        "description": "The offset of the element",
+                        "type": [
+                            "integer",
+                            "array"
+                        ],
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "items": {
+                            "description": "X, Y",
+                            "type": "integer"
+                        }
+                    },
+                    "texture": {
+                        "title": "image",
+                        "description": "The texture to place.",
+                        "type": "string"
+                    }
+                },
+                "patternProperties": {
+                    "^\\$": true
+                },
+                "additionalProperties": false
+            }
+        }
+    }
+}
