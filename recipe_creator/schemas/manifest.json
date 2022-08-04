@@ -1,0 +1,59 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "manifest",
+    "type": "object",
+    "default": {},
+    "required": [
+        "format_version",
+        "version",
+        "description"
+    ],
+    "properties": {
+        "format_version": {
+            "description": "The format version of this pack. This will increase when something with packs have changed.",
+            "type": "integer",
+            "default": 1
+        },
+        "version": {
+            "description": "The version of the pack",
+            "type": "string"
+        },
+        "description": {
+            "description": "The descirption of the pack",
+            "type": "string"
+        },
+        "updateJSON": {
+            "description": "A link to a JSON file to check for updates",
+            "type": "string"
+        },
+        "language": {
+            "description": "Custom lanugages",
+            "type": "object",
+            "default": {},
+            "additionalProperties": {
+                "description": "The code name of the language. This is what the JSON file will be called inside the lang folder.",
+                "type": "object",
+                "default": {},
+                "properties": {
+                    "region": {
+                        "description": "The region of the language",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "The name of the language",
+                        "type": "string"
+                    },
+                    "bidirectional": {
+                        "description": "Is this language biodirectional (can be read in any direction)",
+                        "type": "boolean",
+                        "default": false
+                    }
+                },
+                "patternProperties": {"^\\$": true},
+                "additionalProperties": false
+            }
+        }
+    },
+    "patternProperties": {"^\\$": true},
+    "additionalProperties": false
+}
