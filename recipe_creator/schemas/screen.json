@@ -252,7 +252,8 @@
                             "plus",
                             "entry",
                             "panel",
-                            "button"
+                            "button",
+                            "paper_doll"
                         ]
                     },
                     "parent": {

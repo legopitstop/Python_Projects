@@ -397,6 +397,22 @@
                         "type": "string"
                     }
                 },
+                "lines": {
+                    "description": "Will append each line to the template.",
+                    "type":"array",
+                    "default":[],
+                    "items":{
+                        "anyOf": [
+                            {
+                                "description": "The exact text to append.",
+                                "type":"string"
+                            },
+                            {
+                                "$ref": "#/properties/builder/properties/with/additionalProperties"
+                            }
+                        ]
+                    }
+                },
                 "with": {
                     "description": "A list of values to replace `(<key>)` in template.",
                     "type": "object",

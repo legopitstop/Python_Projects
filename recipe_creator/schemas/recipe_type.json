@@ -107,31 +107,13 @@
                     "description": "The placeholder item texture when empty",
                     "type": "string"
                 },
-                "allowed_items": {
-                    "description": "A list of items that are allowed in this slot",
-                    "type": [
-                        "array",
-                        "string"
-                    ],
-                    "default": [],
-                    "items": {
-                        "$ref": "https://legopitstop.github.io/JSON-Schemas/minecraft/java/item.json"
-                    },
-                    "uniqueItems": true,
-                    "$ref": "https://legopitstop.github.io/JSON-Schemas/minecraft/java/item.json"
+                "allowed_tag": {
+                    "description": "A resrouce location to the item tag of whitelisted items",
+                    "type":"string"
                 },
-                "disallowed_items": {
-                    "description": "A list of items that are not allowed in this slot.",
-                    "type": [
-                        "array",
-                        "string"
-                    ],
-                    "default": [],
-                    "items": {
-                        "$ref": "https://legopitstop.github.io/JSON-Schemas/minecraft/java/item.json"
-                    },
-                    "uniqueItems": true,
-                    "$ref": "https://legopitstop.github.io/JSON-Schemas/minecraft/java/item.json"
+                "disallowed_tag": {
+                    "description": "A resource location to the item tag of blacklisted items",
+                    "type":"string"
                 },
                 "has_quantity": {
                     "description": "When true you can set the number of items that are in this slot.",
