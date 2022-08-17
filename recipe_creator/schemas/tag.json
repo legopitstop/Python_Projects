@@ -5,6 +5,9 @@
     "description": "JSON Schema for Recipe Creator tags",
     "type":"object",
     "default": {},
+    "required": [
+        "values"
+    ],
     "properties":{
         "replace": {
             "description": "When true it will replace, instead of merging all values that have the same filename and path.",
@@ -19,5 +22,6 @@
                 "type":"string"
             }
         }
-    }
+    },
+    "additionalProperties": false
 }
