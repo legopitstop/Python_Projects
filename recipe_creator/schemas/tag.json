@@ -1,0 +1,23 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/tag.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "tag",
+    "description": "JSON Schema for Recipe Creator tags",
+    "type":"object",
+    "default": {},
+    "properties":{
+        "replace": {
+            "description": "When true it will replace, instead of merging all values that have the same filename and path.",
+            "type":"boolean",
+            "default": false
+        },
+        "values": {
+            "description": "`A list of values for this tag.",
+            "type":"array",
+            "default":[],
+            "items":{
+                "type":"string"
+            }
+        }
+    }
+}

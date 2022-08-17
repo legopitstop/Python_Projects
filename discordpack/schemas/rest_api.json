@@ -1,0 +1,79 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/discordpack/schemas/rest_api.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "RESTful api",
+    "description": "Link to an external REST API",
+    "type": "object",
+    "default": {},
+    "required": [
+        "url",
+        "functions"
+    ],
+    "properties": {
+        "url": {
+            "description": "The base url to get data.",
+            "type": "string"
+        },
+        "functions": {
+            "description": "A list of functions to apply.",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object",
+                "default": {},
+                "required": [
+                    "function"
+                ],
+                "properties": {
+                    "function": {
+                        "description": "The function to use.",
+                        "enum": [
+                            "get",
+                            "post",
+                            "put",
+                            "delete"
+                        ]
+                    },
+                    "endpoint": {
+                        "description": "The end part of the url. or LAST to use the previous value.",
+                        "type": "string"
+                    },
+                    "header": {
+                        "description": "Header data to send with the request.",
+                        "type": [
+                            "string",
+                            "number",
+                            "object"
+                        ]
+                    },
+                    "value": {
+                        "description": "Return the recived data as a string.",
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "default": {},
+                        "required": [
+                            "type"
+                        ],
+                        "properties": {
+                            "type": {
+                                "description": "How to interpit the recived data.",
+                                "enum": [
+                                    "json"
+                                ]
+                            },
+                            "value": {
+                                "$ref": "#/properties/functions/items/properties"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "patternProperties": {
+        "^\\$": true
+    },
+    "additionalProperties": false
+}
