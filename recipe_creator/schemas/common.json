@@ -1,0 +1,97 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "Provides default examples for the Minecraft pack",
+    "definitions": {
+        "builders": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/builders",
+            "examples": [
+                "minecraft:BE_brewing"
+            ],
+            "$ref":"#/definitions/builder_tags2"
+        },
+        "items": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/items",
+            "examples": [
+                "STONE"
+            ],
+            "$ref":"#/definitions/item_tags2"
+        },
+        "recipe_types": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_types",
+            "examples": [
+                "minecraft:brewing"
+            ],
+            "$ref":"#/definitions/recipe_type_tags2"
+        },
+        "context_menu": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/context_menus",
+            "examples": [
+                "minecraft:test"
+            ]
+        },
+        "identifier_sets": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/identifier_sets",
+            "examples": [
+                "minecraft:java_edition",
+                "minecraft:bedrock_edition"
+            ]
+        },
+        "screens": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/screens",
+            "examples": [
+                "minecraft:crafting_table"
+            ]
+        },
+        "textures": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/textures",
+            "examples": [
+                "minecraft:stone"
+            ]
+        },
+        
+        "builder_tags": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/builder_tags",
+            "examples": [
+                "minecraft:brewing",
+                "minecraft:chest",
+                "minecraft:crafting",
+                "minecraft:dropper",
+                "minecraft:hopper",
+                "minecraft:inventory",
+                "minecraft:smelting",
+                "minecraft:smithing"
+            ]
+        },
+        "item_tags": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/item_tags",
+            "examples": []
+        },
+        "recipe_type_tags": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_type_tags",
+            "examples": []
+        },
+
+        "builder_tags2": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/builder_tags2",
+            "examples": [
+                "#minecraft:brewing",
+                "#minecraft:chest",
+                "#minecraft:crafting",
+                "#minecraft:dropper",
+                "#minecraft:hopper",
+                "#minecraft:inventory",
+                "#minecraft:smelting",
+                "#minecraft:smithing"
+            ]
+        },
+        "item_tags2": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/item_tags2",
+            "examples": []
+        },
+        "recipe_type_tags2": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_type_tags2",
+            "examples": []
+        }
+    }
+}
