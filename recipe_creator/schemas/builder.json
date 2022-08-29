@@ -250,83 +250,10 @@
                 "mcmeta"
             ]
         },
-        "validator": {
-            "description": "How to determin that this recipe is this recipe type. Basically the opposite of the builder.",
-            "type": "object",
-            "default": {},
-            "required": [
-                "type",
-                "recipe_type"
-            ],
-            "properties": {
-                "type": {
-                    "description": "The type of validator",
-                    "enum": [
-                        "json"
-                    ]
-                },
-                "recipe_type": {
-                    "description": "The recipe type id to use for the recipe.",
-                    "type": "string"
-                },
-                "schema": {
-                    "description": "The schema to match. If it returns with no errors it will use this recipe type.",
-                    "type": "string"
-                },
-                "slots": {
-                    "description": "A mapping of the recipe file to slot id.",
-                    "type": "object",
-                    "default": {},
-                    "additionalProperties": {
-                        "type": "string"
-                    }
-                },
-                "options": {
-                    "description": "A mapping of the recipe file to option id.",
-                    "type": "object",
-                    "default": {},
-                    "additionalProperties": {
-                        "type": "string"
-                    }
-                },
-                "grid": {
-                    "description": "Built-in validator for shaped grid recipes",
-                    "type": "object",
-                    "default": {},
-                    "properties": {
-                        "pattern": {
-                            "description": "The pattern in the recipe",
-                            "type": "string"
-                        },
-                        "key": {
-                            "description": "The key in the recipe",
-                            "type": "string"
-                        },
-                        "slots": {
-                            "additionalProperties": {
-                                "description": "A mapping of each slot id from slot index",
-                                "type": "integer"
-                            }
-                        }
-                    },
-                    "patternProperties": {
-                        "^\\$": true
-                    },
-                    "additionalProperties": false
-                }
-            },
-            "patternProperties": {
-                "^\\$": true
-            },
-            "additionalProperties": false
-        },
         "identifier_set": {
             "description": "The set of block/item identifiers to use. If null it will use the defualt recipe creator item id. ex: STONE, COBBLESTONE",
             "type": "string",
-            "examples": [
-                "minecraft:bedrock_edition",
-                "minecraft:java_edition"
-            ]
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/identifier_sets"
         },
         "builder": {
             "description": "The recipe builder.",

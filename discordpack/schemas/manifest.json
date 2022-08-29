@@ -5,30 +5,42 @@
     "type": "object",
     "default": {},
     "required": [
-        "format_version",
-        "version",
-        "description"
+        "pack"
     ],
     "properties": {
-        "format_version": {
-            "description": "The format version of the pack. Determins if this pack works for this version of discordpack. Any new version that changes packs will increase this value.",
-            "type": "integer",
-            "minimum": 1,
-            "default": 1
-        },
-        "version": {
-            "description": "The packs current version. Used for updating cache and for checking for updates when updateJSON is defined.",
-            "type": "string"
-        },
-        "description": {
-            "description": "The packs description.",
-            "type": "string"
-        },
-        "command_prefix": {
-            "description": "The command prefix, Must be defined to validate commands",
-            "type": "string",
-            "pattern": "(.){1}",
-            "default": "/"
+        "pack": {
+            "type": "object",
+            "default": {},
+            "required": [
+                "pack_format",
+                "description"
+            ],
+            "properties": {
+                "pack_format": {
+                    "description": "The format version of the pack. Determins if this pack works for this version of discordpack. Any new version that changes packs will increase this value.",
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 1
+                },
+                "version": {
+                    "description": "The packs current version. Used for updating cache and for checking for updates when updateJSON is defined.",
+                    "type": "array",
+                    "default": [],
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "description": {
+                    "description": "The packs description.",
+                    "type": "string"
+                },
+                "updateJSON": {
+                    "description": "A link to the JSON file to check for updates.",
+                    "type":"string"
+                }
+            }
         },
         "language": {
             "description": "A list of language definitions",

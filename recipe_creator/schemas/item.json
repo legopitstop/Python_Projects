@@ -12,7 +12,8 @@
         },
         "icon": {
             "description": "The texture to use for the item.",
-            "type":"string"
+            "type":"string",
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/textures"
         },
         "nbt": {
             "description": "NBT tags that this item uses.",
@@ -20,7 +21,8 @@
         },
         "parent": {
             "description": "The parent item. Mainly used for user created items that are forked",
-            "type":"string"
+            "type":"string",
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/items"
         },
         "is_modded": {
             "description": "When true this item is from a mod. ex; `morefood:hamburger_patty`",

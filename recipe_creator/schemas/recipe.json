@@ -5,50 +5,118 @@
     "description": "JSON Schema for Recipe Creator recipes",
     "type": "object",
     "default": {},
+    "required": [
+        "filename",
+        "namespace",
+        "options",
+        "outline",
+        "recipes"
+    ],
     "properties": {
         "filename": {
             "description": "The export name of the recipe.",
-            "type":"string"
+            "type": "string"
         },
-        "identifier": {
-            "description": "The id of the recipe",
-            "type":"string"
-        },
-        "type": {
-            "description": "The type of recipe that this was built with.",
-            "type":"string"
+        "namespace": {
+            "description": "The namespace id for all the recipes.",
+            "type": "string",
+            "examples": [
+                "minecraft"
+            ]
         },
         "options": {
             "description": "A list of custom options used for creating the recipe.",
-            "type":"object",
+            "type": "object",
             "default": {},
             "additionalProperties": {
-                "type":["string", "boolean", "number","null"]
+                "type": [
+                    "string",
+                    "boolean",
+                    "number",
+                    "null"
+                ]
             }
         },
-        "slots": {
-            "description": "A mapping of each slot item",
-            "type":"object",
-            "default": {},
-            "additionalProperties": {
-                "description": "The slot id",
-                "type":["object", "null"],
+        "outline": {
+            "description": "A list of all recipe UUID's to display.",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "string"
+            }
+        },
+        "recipes": {
+            "description": "A list of recipes for this project.",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object",
                 "default": {},
-                "properties":{
-                    "item": {
-                        "description": "The id of the item inside the slot",
-                        "$ref": "https://legopitstop.github.io/JSON-Schemas/minecraft/java/item.json"
+                "required": [
+                    "uuid",
+                    "type",
+                    "name",
+                    "options",
+                    "slots"
+                ],
+                "properties": {
+                    "uuid": {
+                        "description": "The UUID for this recipe.",
+                        "type": "string"
                     },
-                    "count": {
-                        "description": "The number of items in this slot",
-                        "type":"integer",
-                        "minimum": 0,
-                        "maximum": 64
+                    "name": {
+                        "description": "The recipe id. Used to display the recipe in the listbox.",
+                        "type": "string"
+                    },
+                    "options": {
+                        "description": "A mapping of custom options defined in the recipe type JSON.",
+                        "type": "object",
+                        "default": {},
+                        "additionalProperties": {
+                            "type": [
+                                "string",
+                                "boolean",
+                                "number",
+                                "null"
+                            ]
+                        }
+                    },
+                    "type": {
+                        "description": "The type of recipe that this was built with. TODO Add default types",
+                        "type": "string",
+                        "$ref":"https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_types"
+                    },
+                    "slots": {
+                        "description": "A mapping of each slot item",
+                        "type": "object",
+                        "default": {},
+                        "additionalProperties": {
+                            "description": "The slot id",
+                            "type": [
+                                "object",
+                                "null"
+                            ],
+                            "default": {},
+                            "properties": {
+                                "item": {
+                                    "description": "The id of the item inside the slot",
+                                    "$ref": "https://legopitstop.github.io/JSON-Schemas/minecraft/java/item.json"
+                                },
+                                "count": {
+                                    "description": "The number of items in this slot",
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 64
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     },
-    "patternProperties": {"^\\$": true},
+    "patternProperties": {
+        "^\\$": true
+    },
     "additionalProperties": false
 }
