@@ -1,0 +1,40 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/menu.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "menu",
+    "description": "JSON Schema for Recipe Creator context menus",
+    "type": "object",
+    "default": {},
+    "required": [
+        "parent"
+    ],
+    "properties": {
+        "parent": {
+            "description": "The parent menu to add to. Makes the parent menu a cascade",
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/menus"
+        },
+        "display": {
+            "description": "The display data",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "display_name": {
+                    "description": "The display name for this menu item",
+                    "type": "string"
+                },
+                "texture": {
+                    "description": "The texture to display next to the name.",
+                    "type": "string",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/textures"
+                }
+            }
+        },
+        "keybind": {
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/keybind"
+        },
+        "clickEvent": {
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/clickEvent"
+        }
+    },
+    "additionalProperties": false
+}

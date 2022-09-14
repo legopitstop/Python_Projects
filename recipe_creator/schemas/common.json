@@ -3,29 +3,71 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "description": "Provides default examples for the Minecraft pack",
     "definitions": {
+        "clickEventAction": {
+            "description": "The event type to use.",
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/clickEventAction",
+            "enum": [
+                "open_url",
+                "run_command",
+                "suggest_command",
+                "copy_to_clipboard",
+                "cut_from_clipboard",
+                "paste_from_clipboard",
+                "undo",
+                "redo"
+            ]
+        },
+        "clickEvent": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/clickEvent",
+            "description": "The event to run when the user clicks the button.",
+            "type": "object",
+            "default": {},
+            "required": [
+                "action",
+                "value"
+            ],
+            "properties": {
+                "action": {
+                    "description": "The event type to use.",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/clickEventAction"
+                },
+                "value": {
+                    "description": "The URL, command, used by the sepecified action.",
+                    "type": "string"
+                }
+            }
+        },
+        "keybind": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/keybind",
+            "description": "The key or button to bind this event to.",
+            "example": [
+                "key.a",
+                "key.A"
+            ]
+        },
         "builders": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/builders",
             "examples": [
                 "minecraft:BE_brewing"
             ],
-            "$ref":"#/definitions/builder_tags2"
+            "$ref": "#/definitions/builder_tags2"
         },
         "items": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/items",
             "examples": [
                 "STONE"
             ],
-            "$ref":"#/definitions/item_tags2"
+            "$ref": "#/definitions/item_tags2"
         },
         "recipe_types": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_types",
             "examples": [
                 "minecraft:brewing"
             ],
-            "$ref":"#/definitions/recipe_type_tags2"
+            "$ref": "#/definitions/recipe_type_tags2"
         },
-        "context_menu": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/context_menus",
+        "menus": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/menus",
             "examples": [
                 "minecraft:test"
             ]
@@ -49,7 +91,6 @@
                 "minecraft:stone"
             ]
         },
-        
         "builder_tags": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/builder_tags",
             "examples": [
@@ -71,7 +112,6 @@
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_type_tags",
             "examples": []
         },
-
         "builder_tags2": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/builder_tags2",
             "examples": [

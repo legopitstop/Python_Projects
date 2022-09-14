@@ -10,7 +10,9 @@
         "namespace",
         "options",
         "outline",
-        "recipes"
+        "recipes",
+        "items",
+        "selected"
     ],
     "properties": {
         "filename": {
@@ -45,6 +47,11 @@
                 "type": "string"
             }
         },
+        "selected": {
+            "description": "The selected recipe's index value.",
+            "type":["integer","null"],
+            "minimum": 0
+        },
         "recipes": {
             "description": "A list of recipes for this project.",
             "type": "array",
@@ -57,7 +64,8 @@
                     "type",
                     "name",
                     "options",
-                    "slots"
+                    "slots",
+                    "selected"
                 ],
                 "properties": {
                     "uuid": {
@@ -67,6 +75,11 @@
                     "name": {
                         "description": "The recipe id. Used to display the recipe in the listbox.",
                         "type": "string"
+                    },
+                    "selected": {
+                        "description": "The selected slot's index value.",
+                        "type":["integer", "null"],
+                        "minimum": 0
                     },
                     "options": {
                         "description": "A mapping of custom options defined in the recipe type JSON.",
@@ -84,7 +97,7 @@
                     "type": {
                         "description": "The type of recipe that this was built with. TODO Add default types",
                         "type": "string",
-                        "$ref":"https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_types"
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_types"
                     },
                     "slots": {
                         "description": "A mapping of each slot item",
@@ -112,6 +125,14 @@
                         }
                     }
                 }
+            }
+        },
+        "items": {
+            "description": "A list of local items for this project.",
+            "type": "array",
+            "default": [],
+            "items": {
+                "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/item.json"
             }
         }
     },

@@ -268,27 +268,7 @@
                     },
                     "clickEvent": {
                         "description": "The event to run when the user clicks the button.",
-                        "type": "object",
-                        "default": {},
-                        "required": [
-                            "action",
-                            "value"
-                        ],
-                        "properties": {
-                            "action": {
-                                "description": "The event type to use.",
-                                "enum": [
-                                    "open_url",
-                                    "run_command",
-                                    "suggest_command",
-                                    "copy_to_clipboard"
-                                ]
-                            },
-                            "value": {
-                                "description": "The URL, command, used by the sepecified action.",
-                                "type": "string"
-                            }
-                        }
+                        "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/clickEvent"
                     },
                     "text": {
                         "title": "button",

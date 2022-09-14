@@ -5,6 +5,9 @@
     "description": "JSON Schema for Recipe Creator items",
     "type": "object",
     "default": {},
+    "required": [
+        "icon"
+    ],
     "properties": {
         "display_name": {
             "description": "The name used in the UI.",

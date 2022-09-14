@@ -49,11 +49,24 @@
                         "default": false
                     }
                 },
-                "patternProperties": {"^\\$": true},
+                "patternProperties": {
+                    "^\\$": true
+                },
                 "additionalProperties": false
+            }
+        },
+        "keybinds": {
+            "description": "A mapping of each keybind <id>:<sequence>.",
+            "type": "object",
+            "default": {},
+            "additionalProperties": {
+                "description": "The bind sequence.",
+                "type": "string"
             }
         }
     },
-    "patternProperties": {"^\\$": true},
+    "patternProperties": {
+        "^\\$": true
+    },
     "additionalProperties": false
 }
