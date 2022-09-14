@@ -620,9 +620,6 @@
                     "builder"
                 ],
                 "properties": {
-                    "validator": {
-                        "$ref": "#/properties/validator"
-                    },
                     "identifier_set": {
                         "$ref": "#/properties/identifier_set"
                     },
