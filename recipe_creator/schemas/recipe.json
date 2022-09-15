@@ -9,10 +9,9 @@
         "filename",
         "namespace",
         "options",
-        "outline",
+        "selected",
         "recipes",
-        "items",
-        "selected"
+        "items"
     ],
     "properties": {
         "filename": {
@@ -39,17 +38,12 @@
                 ]
             }
         },
-        "outline": {
-            "description": "A list of all recipe UUID's to display.",
-            "type": "array",
-            "default": [],
-            "items": {
-                "type": "string"
-            }
-        },
         "selected": {
             "description": "The selected recipe's index value.",
-            "type":["integer","null"],
+            "type": [
+                "integer",
+                "null"
+            ],
             "minimum": 0
         },
         "recipes": {
@@ -60,25 +54,28 @@
                 "type": "object",
                 "default": {},
                 "required": [
-                    "uuid",
-                    "type",
                     "name",
+                    "type",
+                    "selected",
                     "options",
-                    "slots",
-                    "selected"
+                    "slots"
                 ],
                 "properties": {
-                    "uuid": {
-                        "description": "The UUID for this recipe.",
-                        "type": "string"
-                    },
                     "name": {
                         "description": "The recipe id. Used to display the recipe in the listbox.",
                         "type": "string"
                     },
+                    "type": {
+                        "description": "The type of recipe that this was built with. TODO Add default types",
+                        "type": "string",
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_types"
+                    },
                     "selected": {
                         "description": "The selected slot's index value.",
-                        "type":["integer", "null"],
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
                         "minimum": 0
                     },
                     "options": {
@@ -94,37 +91,56 @@
                             ]
                         }
                     },
-                    "type": {
-                        "description": "The type of recipe that this was built with. TODO Add default types",
-                        "type": "string",
-                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_types"
-                    },
                     "slots": {
-                        "description": "A mapping of each slot item",
-                        "type": "object",
-                        "default": {},
-                        "additionalProperties": {
-                            "description": "The slot id",
-                            "type": [
-                                "object",
-                                "null"
-                            ],
+                        "description": "A list of all the slots.",
+                        "type": "array",
+                        "default": [],
+                        "items": {
+                            "type": "object",
                             "default": {},
+                            "required": [
+                                "slot",
+                                "id"
+                            ],
                             "properties": {
-                                "item": {
-                                    "description": "The id of the item inside the slot",
-                                    "$ref": "https://legopitstop.github.io/JSON-Schemas/minecraft/java/item.json"
+                                "slot": {
+                                    "description": "The ID of the slot.",
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "description": "The item that is in this slot.",
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ]
                                 },
                                 "count": {
-                                    "description": "The number of items in this slot",
+                                    "description": "The number of items in this slot.",
                                     "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 64
+                                    "minimum": 1
+                                },
+                                "nbt": {
+                                    "description": "The NBT for this item.",
+                                    "type": "string"
+                                },
+                                "options": {
+                                    "description": "Addional options for this slot.",
+                                    "type": "object",
+                                    "default": {},
+                                    "additionalProperties": {
+                                        "type": [
+                                            "string",
+                                            "number",
+                                            "boolean",
+                                            "null"
+                                        ]
+                                    }
                                 }
                             }
                         }
                     }
-                }
+                },
+                "additionalProperties": false
             }
         },
         "items": {
