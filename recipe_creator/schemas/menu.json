@@ -5,32 +5,35 @@
     "description": "JSON Schema for Recipe Creator context menus",
     "type": "object",
     "default": {},
-    "required": [
-        "parent"
-    ],
     "properties": {
         "parent": {
-            "description": "The parent menu to add to. Makes the parent menu a cascade",
-            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/menus"
+            "description": "The parent menu item to place this in.",
+            "type":"string",
+            "examples": [
+                "file",
+                "edit",
+                "tool"
+            ]
         },
-        "display": {
-            "description": "The display data",
-            "type": "object",
-            "default": {},
-            "properties": {
-                "display_name": {
-                    "description": "The display name for this menu item",
-                    "type": "string"
-                },
-                "texture": {
-                    "description": "The texture to display next to the name.",
-                    "type": "string",
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/textures"
-                }
+        "type": {
+            "description": "The type of menu item that this is.",
+            "enum": [
+                "cascade",
+                "command",
+                "separator",
+                "export_builders"
+            ]
+        },
+        "menu": {
+            "description": "A list of menu items in this menu.",
+            "type":["array", "string"],
+            "default":[],
+            "items":{
+                "type":"string",
+                "examples": [
+                    "default:separator"
+                ]
             }
-        },
-        "keybind": {
-            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/keybind"
         },
         "clickEvent": {
             "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/clickEvent"

@@ -63,75 +63,89 @@
             "type": "object",
             "default": {},
             "properties": {
-                "Dark": {
-                    "description": "The colors for the Dark theme.",
-                    "type": "object",
-                    "default": {},
-                    "properties": {
-                        "Background": {
-                            "type": "string",
-                            "default": "#535353"
-                        },
-                        "BackgroundBorder": {
-                            "type": "string",
-                            "default": "#000000"
-                        },
-                        "BackgroundBorderLight": {
-                            "type": "string",
-                            "default": "#6b6b6b"
-                        },
-                        "BackgroundBorderDark": {
-                            "type": "string",
-                            "default": "#333333"
-                        },
-                        "Slot": {
-                            "type": "string",
-                            "default": "#333333"
-                        },
-                        "SlotBorderLight": {
-                            "type": "string",
-                            "default": "#6b6b6b"
-                        },
-                        "SlotBorderDark": {
-                            "type": "string",
-                            "default": "#262626"
-                        }
-                    }
+                "background": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [
+                        "#ffffff",
+                        "#535353"
+                    ]
                 },
-                "Light": {
-                    "description": "The colors for the Light theme.",
-                    "type": "object",
-                    "default": {},
-                    "properties": {
-                        "Background": {
-                            "type": "string",
-                            "default": "#ffffff"
-                        },
-                        "BackgroundBorder": {
-                            "type": "string",
-                            "default": "#000000"
-                        },
-                        "BackgroundBorderLight": {
-                            "type": "string",
-                            "default": "#c6c6c6"
-                        },
-                        "BackgroundBorderDark": {
-                            "type": "string",
-                            "default": "#555555"
-                        },
-                        "Slot": {
-                            "type": "string",
-                            "default": "#8b8b8b"
-                        },
-                        "SlotBorderLight": {
-                            "type": "string",
-                            "default": "#ffffff"
-                        },
-                        "SlotBorderDark": {
-                            "type": "string",
-                            "default": "#373737"
-                        }
-                    }
+                "background_border": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [
+                        "#000000",
+                        "#000000"
+                    ]
+                },
+                "background_border_light": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [
+                        "#c6c6c6",
+                        "#6b6b6b"
+                    ]
+                },
+                "background_border_dark": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [
+                        "#555555",
+                        "#333333"
+                    ]
+                },
+                "slot": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [
+                        "#8b8b8b",
+                        "#333333"
+                    ]
+                },
+                "slot_border_light": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [
+                        "#ffffff",
+                        "#6b6b6b"
+                    ]
+                },
+                "slot_border_dark": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [
+                        "#373737",
+                        "#262626"
+                    ]
                 }
             }
         },
@@ -265,10 +279,6 @@
                         "title": "common",
                         "description": "The name of the element.",
                         "type": "string"
-                    },
-                    "clickEvent": {
-                        "description": "The event to run when the user clicks the button.",
-                        "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/clickEvent"
                     },
                     "text": {
                         "title": "button",

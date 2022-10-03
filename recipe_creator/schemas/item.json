@@ -9,7 +9,7 @@
         "icon"
     ],
     "properties": {
-        "display_name": {
+        "name": {
             "description": "The name used in the UI.",
             "type":"string"
         },
@@ -32,7 +32,7 @@
             "type":"boolean",
             "default": false
         },
-        "can_fork": {
+        "forkable": {
             "description": "When true this item can be forked?",
             "type":"boolean",
             "default": true

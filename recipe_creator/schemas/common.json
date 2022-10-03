@@ -13,8 +13,10 @@
                 "copy_to_clipboard",
                 "cut_from_clipboard",
                 "paste_from_clipboard",
-                "undo",
-                "redo"
+
+                "screen",
+                "project",
+                "recipe"
             ]
         },
         "clickEvent": {
