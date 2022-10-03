@@ -13,7 +13,7 @@
                 "copy_to_clipboard",
                 "cut_from_clipboard",
                 "paste_from_clipboard",
-
+                "history",
                 "screen",
                 "project",
                 "recipe"
