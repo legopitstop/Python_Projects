@@ -17,7 +17,8 @@
                 "history",
                 "screen",
                 "project",
-                "recipe"
+                "recipe",
+                "selection"
             ]
         },
         "clickEvent": {
