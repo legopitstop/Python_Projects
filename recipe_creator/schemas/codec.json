@@ -1,36 +1,10 @@
 {
-    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/builder.json",
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/codec.json",
     "$schema": "http://json-schema.org/draft-07/schema",
-    "title": "builder",
-    "description": "JSON Schema for Recipe Creator builders",
+    "title": "codec",
+    "description": "JSON Schema for Recipe Creator codecs",
     "type": "object",
     "default": {},
-    "anyOf": [
-        {
-            "if": {
-                "properties": {
-                    "builder": true
-                }
-            },
-            "then": {
-                "required": [
-                    "builder"
-                ]
-            }
-        },
-        {
-            "if": {
-                "properties": {
-                    "subbuilder": true
-                }
-            },
-            "then": {
-                "required": [
-                    "subbuilder"
-                ]
-            }
-        }
-    ],
     "definitions": {
         "ProjectConditions": {
             "type": "object",

@@ -1,5 +1,5 @@
 {
-    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/builder.json",
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/recipe_format.json",
     "$schema": "http://json-schema.org/draft-07/schema",
     "title": "recipe_format",
     "description": "JSON Schema for Recipe Creator format",
@@ -201,6 +201,10 @@
                         "description": "Whether or not this is a required option.",
                         "type":"boolean",
                         "default": true
+                    },
+                    "default": {
+                        "description": "The default value",
+                        "type":["string", "number"]
                     }
                 },
                 "additionalProperties": false
