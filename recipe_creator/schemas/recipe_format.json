@@ -23,7 +23,7 @@
                     "default": true
                 },
                 "placeholder": {
-                    "description": "The placeholder item when an item is not choosen. NOTE: This is not saved or used by the codec. Use \"item\" if thats what you want.",
+                    "description": "The placeholder image when an item is not choosen.",
                     "type": "string"
                 },
                 "allowed_items": {
@@ -65,27 +65,30 @@
                     "description": "The default item to place in this slot.",
                     "type": "object",
                     "default": {},
+                    "required": [
+                        "id"
+                    ],
                     "properties": {
                         "id": {
                             "description": "Id of the item.",
-                            "type":"string"
+                            "type": "string"
                         },
                         "count": {
                             "description": "The number of items",
-                            "type":"integer",
+                            "type": "integer",
                             "minimum": 64
                         },
                         "nbt": {
                             "description": "The NBT data for this item.",
-                            "type":"string"
+                            "type": "string"
                         },
                         "data": {
                             "description": "The data value for this item.",
-                            "type":"integer"
+                            "type": "integer"
                         },
                         "options": {
                             "description": "Default options for this item.",
-                            "type":"object",
+                            "type": "object",
                             "default": {},
                             "additionalProperties": true
                         }
@@ -142,9 +145,65 @@
                 "required": [
                     "id"
                 ],
+                "anyOf": [
+                    {
+                        "required": [
+                            "type"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "enum"
+                        ]
+                    }
+                ],
                 "properties": {
-                    "id": {}
-                }
+                    "id": {
+                        "description": "The id of the option.",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "The type of value for this option.",
+                        "enum": [
+                            "short",
+                            "long",
+                            "number",
+                            "item",
+                            "color",
+                            "file",
+                            "folder",
+                            "checkbox",
+                            "slider"
+                        ]
+                    },
+                    "enum": {
+                        "description": "Only allow these values.",
+                        "type": "array",
+                        "default": [],
+                        "uniqueItems": true,
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "label": {
+                        "description": "The label for the option. default: `format.<namespace>.<formatID>.<optionID>`",
+                        "type": "string"
+                    },
+                    "minimum": {
+                        "description": "The smallest allowed value.",
+                        "type": "number"
+                    },
+                    "maximum": {
+                        "description": "The smallest allowed value.",
+                        "type": "number"
+                    },
+                    "required": {
+                        "description": "Whether or not this is a required option.",
+                        "type":"boolean",
+                        "default": true
+                    }
+                },
+                "additionalProperties": false
             }
         },
         "screen": {
@@ -154,6 +213,26 @@
         "codec": {
             "description": "Which Codec to use as the default codec for the format",
             "type": "string"
+        },
+        "controls": {
+            "description": "Controls for the recipe.",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "index_map": {
+                    "description": "A map of each slot index for arrow navigation.",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "array",
+                        "default": [],
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            },
+            "additionalProperties": false
         }
     },
     "patternProperties": {

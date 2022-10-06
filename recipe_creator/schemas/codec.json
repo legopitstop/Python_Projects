@@ -247,20 +247,31 @@
             "type": "boolean",
             "default": true
         },
+        "identifier_set": {
+            "description": "identifier set to use with this codec. Will use the default identifier",
+            "type":"string"
+        },
         "compile": {
-            "description": "Should return the compiled model",
+            "description": "Should return the compiled recipe",
             "type": [
                 "object",
                 "array"
             ],
             "default": {},
             "required": [
-                "type", "template"
+                "type"
             ],
             "items": {
                 "type": "object",
                 "default": {},
-                "$ref": "#/properties/compile/properties"
+                "properties": {
+                    "conditions": {
+                        "$ref": "#/definitions/Conditions"
+                    },
+                    "compile": {
+                        "$ref": "#/properties/compile"
+                    }
+                }
             },
             "properties": {
                 "type": {
@@ -268,9 +279,6 @@
                     "enum": [
                         "json"
                     ]
-                },
-                "conditions": {
-                    "$ref":"#/definitions/Conditions"
                 },
                 "template": {
                     "description": "The template for the compiler.",
