@@ -1,0 +1,115 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "JSON Schema for a Discord Precence profile",
+    "type": "object",
+    "default": {},
+    "required": [
+        "name",
+        "presence",
+        "id"
+    ],
+    "properties": {
+        "name": {
+            "description": "The name of the profile",
+            "type": "string"
+        },
+        "id": {
+            "description": "The id of the precense",
+            "type": "integer"
+        },
+        "presence": {
+            "description": "Data for the presence",
+            "type": "object",
+            "default": {},
+            "required": [
+                "state",
+                "details",
+                "buttons",
+                "large_image",
+                "large_text",
+                "small_image",
+                "small_text"
+            ],
+            "properties": {
+                "state": {
+                    "description": "The state of the profile",
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 128
+                },
+                "details": {
+                    "description": "The details of the profile.",
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 128
+                },
+                "buttons": {
+                    "description": "A list of buttons for the profile.",
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "default": [],
+                    "minItems": 1,
+                    "maxItems": 2,
+                    "items": {
+                        "type": "object",
+                        "default": {},
+                        "required": [
+                            "label",
+                            "url"
+                        ],
+                        "properties": {
+                            "label": {
+                                "description": "The text to display on the button",
+                                "type": "string",
+                                "maxLength": 32
+                            },
+                            "url": {
+                                "description": "The url for the button.",
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "large_image": {
+                    "description": "The large image to use.",
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 256
+                },
+                "large_text": {
+                    "description": "The text to display when you hover over the large image.",
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 128
+                },
+                "small_image": {
+                    "description": "The small image to use.",
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 256
+                },
+                "small_text": {
+                    "description": "The text to display when you hover over the small image.",
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 128
+                }
+            }
+        }
+    },
+    "additionalProperties": false
+}
