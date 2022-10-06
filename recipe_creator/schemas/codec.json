@@ -223,7 +223,30 @@
         },
         "identifier_set": {
             "description": "identifier set to use with this codec. Will use the default identifier",
-            "type":"string"
+            "type": "string"
+        },
+        "context": {
+            "description": "How to interprit the codec.\n`for_recipe` \n`project`\n`recipe` ",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "for_recipe": {
+                    "description": "Interprit for each recipe. (true by default)",
+                    "type":"boolean",
+                    "default": false
+                },
+                "project": {
+                    "description": "Interprit the entire project. (File > Export)",
+                    "type":"boolean",
+                    "default": true
+                },
+                "recipe": {
+                    "description": "Interprit this one recipe. (Recipe > Export)",
+                    "type":"boolean",
+                    "default": true
+                }
+            },
+            "additionalProperties": false
         },
         "compile": {
             "description": "Should return the compiled recipe",
@@ -238,6 +261,9 @@
             "items": {
                 "type": "object",
                 "default": {},
+                "required": [
+                    "compile"
+                ],
                 "properties": {
                     "conditions": {
                         "$ref": "#/definitions/Conditions"
@@ -245,13 +271,15 @@
                     "compile": {
                         "$ref": "#/properties/compile"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "properties": {
                 "type": {
                     "description": "The type of compiler to use.",
                     "enum": [
-                        "json"
+                        "json",
+                        "text"
                     ]
                 },
                 "template": {
@@ -269,6 +297,9 @@
                     "additionalProperties": {
                         "type": "object",
                         "default": {},
+                        "required": [
+                            "type"
+                        ],
                         "properties": {
                             "type": {
                                 "description": "The type of replacement",
@@ -276,7 +307,9 @@
                                     "grid",
                                     "slot",
                                     "option",
-                                    "project"
+                                    "project",
+                                    "json",
+                                    "text"
                                 ]
                             },
                             "slots": {
@@ -295,10 +328,43 @@
                             "value": {
                                 "description": "The value to use.",
                                 "type": "string"
+                            },
+                            "replace": {
+                                "$ref": "#/properties/compile/properties/replace"
                             }
                         },
                         "additionalProperties": false
                     }
+                },
+                "lines": {
+                    "description": "A list of lines to apply to the file.",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "$ref": "#/properties/compile"
+                    }
+                },
+                "for": {
+                    "description": "Create a for loop.",
+                    "type": "object",
+                    "default": {},
+                    "required": [
+                        "loop"
+                    ],
+                    "properties": {
+                        "loop": {
+                            "description": "Will loop through all the items.",
+                            "enum": [
+                                "slots",
+                                "recipes"
+                            ]
+                        },
+                        "append": {
+                            "description": "Adds this data to an array (type: JSON) or adds this to a new line (type: TEXT)",
+                            "$ref": "#/properties/compile"
+                        }
+                    },
+                    "additionalProperties": false
                 }
             },
             "additionalProperties": false
