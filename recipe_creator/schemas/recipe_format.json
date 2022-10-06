@@ -1,0 +1,163 @@
+{
+    "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/builder.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "recipe_format",
+    "description": "JSON Schema for Recipe Creator format",
+    "type": "object",
+    "default": {},
+    "definitions": {
+        "SlotConfigure": {
+            "type": "object",
+            "default": {},
+            "properties": {
+                "state": {
+                    "description": "The state of the slot.",
+                    "enum": [
+                        "normal",
+                        "disabled"
+                    ]
+                },
+                "required": {
+                    "description": "Whether or not this slot requires an item.",
+                    "type": "boolean",
+                    "default": true
+                },
+                "placeholder": {
+                    "description": "The placeholder item when an item is not choosen. NOTE: This is not saved or used by the codec. Use \"item\" if thats what you want.",
+                    "type": "string"
+                },
+                "allowed_items": {
+                    "description": "A list of items or item tags that are allowed in this slot.",
+                    "type": [
+                        "string",
+                        "array"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "disallowed_items": {
+                    "description": "A list of items or item tags that are not allowed in this slot.",
+                    "type": [
+                        "string",
+                        "array"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "quantity": {
+                    "description": "Whether or not this item can contain quantity. item.Count",
+                    "type": "boolean",
+                    "default": true
+                },
+                "nbt": {
+                    "description": "Whether or not this item can contain NBT data. item.tag",
+                    "type": "boolean",
+                    "default": true
+                },
+                "data": {
+                    "description": "Whether or not this item can contain data. (Like for Bedrock Edition)",
+                    "type": "boolean",
+                    "default": true
+                },
+                "item": {
+                    "description": "The default item to place in this slot.",
+                    "type": "object",
+                    "default": {},
+                    "properties": {
+                        "id": {
+                            "description": "Id of the item.",
+                            "type":"string"
+                        },
+                        "count": {
+                            "description": "The number of items",
+                            "type":"integer",
+                            "minimum": 64
+                        },
+                        "nbt": {
+                            "description": "The NBT data for this item.",
+                            "type":"string"
+                        },
+                        "data": {
+                            "description": "The data value for this item.",
+                            "type":"integer"
+                        },
+                        "options": {
+                            "description": "Default options for this item.",
+                            "type":"object",
+                            "default": {},
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "properties": {
+        "display": {
+            "description": "Display properties for the format",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "name": {
+                    "description": "Format name",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "Format icon Recomended size 24x24",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Format description",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "show_on_start_screen": {
+            "description": "Whether to list the format as an option on the start screen",
+            "type": "boolean",
+            "default": true
+        },
+        "configure": {
+            "description": "Parent configureation for all slots.",
+            "$ref": "#/definitions/SlotConfigure"
+        },
+        "slots": {
+            "description": "Configureation for each slot. To include all slots use \"configure\"",
+            "type": "array",
+            "default": [],
+            "items": {
+                "$ref": "#/definitions/SlotConfigure"
+            }
+        },
+        "options": {
+            "description": "A list of options for the format.",
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object",
+                "default": {},
+                "required": [
+                    "id"
+                ],
+                "properties": {
+                    "id": {}
+                }
+            }
+        },
+        "screen": {
+            "description": "Which Screen to use as the default screen for the format",
+            "type": "string"
+        },
+        "codec": {
+            "description": "Which Codec to use as the default codec for the format",
+            "type": "string"
+        }
+    },
+    "patternProperties": {
+        "^\\$": true
+    },
+    "additionalProperties": false
+}

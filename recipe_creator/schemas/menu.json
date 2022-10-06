@@ -6,23 +6,21 @@
     "type": "object",
     "default": {},
     "properties": {
-        "parent": {
-            "description": "The parent menu item to place this in.",
-            "type":"string",
-            "examples": [
-                "file",
-                "edit",
-                "tool"
-            ]
-        },
         "type": {
             "description": "The type of menu item that this is.",
             "enum": [
                 "cascade",
                 "command",
                 "separator",
-                "export_builders"
+                "export_recipe_menu",
+                "export_project_menu",
+                "view_recipe_menu"
             ]
+        },
+        "keybind": {
+            "description": "The key to bind to this button.",
+            "type":"string",
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/keybind"
         },
         "menu": {
             "description": "A list of menu items in this menu.",

@@ -13,11 +13,7 @@
                 "copy_to_clipboard",
                 "cut_from_clipboard",
                 "paste_from_clipboard",
-                "screenshot",
-                "history",
                 "screen",
-                "project",
-                "recipe",
                 "selection"
             ]
         },
@@ -45,8 +41,7 @@
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/keybind",
             "description": "The key or button to bind this event to.",
             "example": [
-                "key.a",
-                "key.A"
+                "save_project"
             ]
         },
         "builders": {

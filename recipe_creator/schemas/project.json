@@ -41,10 +41,9 @@
         "selected": {
             "description": "The selected recipe's index value.",
             "type": [
-                "integer",
+                "string",
                 "null"
-            ],
-            "minimum": 0
+            ]
         },
         "recipes": {
             "description": "A list of recipes for this project.",
@@ -54,14 +53,11 @@
                 "type": "object",
                 "default": {},
                 "required": [
-                    "name",
-                    "type",
-                    "selected",
-                    "options",
-                    "slots"
+                    "id",
+                    "type"
                 ],
                 "properties": {
-                    "name": {
+                    "id": {
                         "description": "The recipe id. Used to display the recipe in the listbox.",
                         "type": "string"
                     },
@@ -73,10 +69,9 @@
                     "selected": {
                         "description": "The selected slot's index value.",
                         "type": [
-                            "integer",
+                            "string",
                             "null"
-                        ],
-                        "minimum": 0
+                        ]
                     },
                     "options": {
                         "description": "A mapping of custom options defined in the recipe type JSON.",
@@ -99,15 +94,14 @@
                             "type": "object",
                             "default": {},
                             "required": [
-                                "slot",
                                 "id"
                             ],
                             "properties": {
-                                "slot": {
+                                "id": {
                                     "description": "The ID of the slot.",
                                     "type": "string"
                                 },
-                                "id": {
+                                "item": {
                                     "description": "The item that is in this slot.",
                                     "type": [
                                         "string",
@@ -118,6 +112,10 @@
                                     "description": "The number of items in this slot.",
                                     "type": "integer",
                                     "minimum": 1
+                                },
+                                "data": {
+                                    "description": "The data value for this item. (BEDROCK)",
+                                    "type": "integer"
                                 },
                                 "nbt": {
                                     "description": "The NBT for this item.",
@@ -136,7 +134,8 @@
                                         ]
                                     }
                                 }
-                            }
+                            },
+                            "additionalProperties": false
                         }
                     }
                 },
