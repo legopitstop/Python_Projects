@@ -10,6 +10,10 @@
             "type": "object",
             "default": {},
             "properties": {
+                "id": {
+                    "description": "The id of the slot.",
+                    "type": "string"
+                },
                 "state": {
                     "description": "The state of the slot.",
                     "enum": [
@@ -32,8 +36,10 @@
                         "string",
                         "array"
                     ],
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/items",
                     "items": {
-                        "type": "string"
+                        "type": "string",
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/items"
                     }
                 },
                 "disallowed_items": {
@@ -42,8 +48,10 @@
                         "string",
                         "array"
                     ],
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/items",
                     "items": {
-                        "type": "string"
+                        "type": "string",
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/items"
                     }
                 },
                 "quantity": {
@@ -71,7 +79,8 @@
                     "properties": {
                         "id": {
                             "description": "Id of the item.",
-                            "type": "string"
+                            "type": "string",
+                            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/item"
                         },
                         "count": {
                             "description": "The number of items",
@@ -94,7 +103,8 @@
                         }
                     }
                 }
-            }
+            },
+            "additionalProperties": false
         }
     },
     "properties": {
@@ -114,6 +124,11 @@
                 "description": {
                     "description": "Format description",
                     "type": "string"
+                },
+                "rpc_icon": {
+                    "description": "The Rich Discord Presnece icon to use.",
+                    "type": "string",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/rpc_icon"
                 }
             },
             "additionalProperties": false
@@ -132,6 +147,9 @@
             "type": "array",
             "default": [],
             "items": {
+                "required": [
+                    "id"
+                ],
                 "$ref": "#/definitions/SlotConfigure"
             }
         },
@@ -199,12 +217,19 @@
                     },
                     "required": {
                         "description": "Whether or not this is a required option.",
-                        "type":"boolean",
+                        "type": "boolean",
                         "default": true
                     },
                     "default": {
                         "description": "The default value",
-                        "type":["string", "number"]
+                        "type": [
+                            "string",
+                            "number"
+                        ]
+                    },
+                    "step": {
+                        "description": "The number to increase.",
+                        "type": "number"
                     }
                 },
                 "additionalProperties": false
@@ -212,11 +237,13 @@
         },
         "screen": {
             "description": "Which Screen to use as the default screen for the format",
-            "type": "string"
+            "type": "string",
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/screen"
         },
         "codec": {
             "description": "Which Codec to use as the default codec for the format",
-            "type": "string"
+            "type": "string",
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/codecs"
         },
         "controls": {
             "description": "Controls for the recipe.",

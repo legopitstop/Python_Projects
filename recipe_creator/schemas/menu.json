@@ -37,5 +37,8 @@
             "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/clickEvent"
         }
     },
+    "patternProperties": {
+        "^\\$": true
+    },
     "additionalProperties": false
 }

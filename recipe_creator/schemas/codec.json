@@ -14,8 +14,8 @@
                     "description": "Test the filename of the project",
                     "type": "string"
                 },
-                "identifier": {
-                    "description": "Test the identifier of the project",
+                "namespace": {
+                    "description": "Test the namespace of the project",
                     "type": "string"
                 },
                 "options": {
@@ -222,7 +222,7 @@
             "default": true
         },
         "identifier_set": {
-            "description": "identifier set to use with this codec. Will use the default identifier",
+            "description": "identifier type to use with this codec. Will use the default identifier",
             "type": "string"
         },
         "context": {
@@ -295,7 +295,7 @@
                     "type": "object",
                     "default": {},
                     "additionalProperties": {
-                        "type": "object",
+                        "type": ["object", "string"],
                         "default": {},
                         "required": [
                             "type"

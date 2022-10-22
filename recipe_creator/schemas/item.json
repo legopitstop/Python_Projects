@@ -11,40 +11,93 @@
     "properties": {
         "name": {
             "description": "The name used in the UI.",
-            "type":"string"
+            "type": "string"
         },
         "icon": {
             "description": "The texture to use for the item.",
-            "type":"string",
+            "type": "string",
             "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/textures"
         },
         "nbt": {
             "description": "NBT tags that this item uses.",
-            "type":"string"
+            "type": "string"
         },
         "parent": {
             "description": "The parent item. Mainly used for user created items that are forked",
-            "type":"string",
+            "type": "string",
             "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/items"
         },
         "is_modded": {
             "description": "When true this item is from a mod. ex; `morefood:hamburger_patty`",
-            "type":"boolean",
+            "type": "boolean",
             "default": false
         },
         "forkable": {
             "description": "When true this item can be forked?",
-            "type":"boolean",
+            "type": "boolean",
             "default": true
         },
         "max_count": {
             "description": "Max number of items that are allowed in one slot.",
-            "type":"integer",
+            "type": "integer",
             "minimum": 1,
             "maximum": 64,
             "default": 1
+        },
+        "creative_category": {
+            "type":"object",
+            "default": {},
+            "properties":{
+                "category": {
+                    "description": "The tab to place this item in.",
+                    "type":"string",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/category"
+                },
+                "group": {
+                    "description": "The group to place this item in.",
+                    "type":"string",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/group"
+                },
+                "index": {
+                    "description": "The item index. If undefined it will place this item when interated.",
+                    "type":"integer",
+                    "minimum": 0
+                }
+            }
+        },
+        "identifier_type": {
+            "type": "object",
+            "default": {},
+            "properties": {
+                "java": {
+                    "$ref": "#/properties/identifier_type/additionalProperties"
+                },
+                "bedrock": {
+                    "$ref": "#/properties/identifier_type/additionalProperties"
+                }
+            },
+            "additionalProperties": {
+                "type": [
+                    "object",
+                    "string"
+                ],
+                "default": {},
+                "properties": {
+                    "id": {
+                        "description": "The id of the item for this identifier type",
+                        "type":"string"
+                    },
+                    "data": {
+                        "description": "The data value for this identifier type",
+                        "type":"integer",
+                        "minimum": 0
+                    }
+                }
+            }
         }
     },
-    "patternProperties": {"^\\$": true},
+    "patternProperties": {
+        "^\\$": true
+    },
     "additionalProperties": false
 }

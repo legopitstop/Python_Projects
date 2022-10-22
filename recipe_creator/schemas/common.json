@@ -13,7 +13,6 @@
                 "copy_to_clipboard",
                 "cut_from_clipboard",
                 "paste_from_clipboard",
-                "screen",
                 "selection"
             ]
         },
@@ -41,57 +40,131 @@
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/keybind",
             "description": "The key or button to bind this event to.",
             "example": [
-                "save_project"
+                "delete",
+                "settings",
+                "developer_tools",
+                "find",
+                "replace",
+                "keybindings",
+                "new_project",
+                "open_project",
+                "save_project",
+                "save_project_as",
+                "cut_from_clipboard",
+                "copy_to_clipboard",
+                "paste_from_clipboard",
+                "undo",
+                "redo",
+                "selection_next",
+                "selection_up",
+                "selection_down",
+                "selection_left",
+                "selection_right",
+                "selection_first",
+                "selection_last",
+                "selection_all",
+                "selection_shrink",
+                "selection_expand",
+                "selection_remove",
+                "selection_multiple",
+                "reload_packs",
+                "run_command"
             ]
         },
-        "builders": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/builders",
+        "rpc_icon": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/rpc_icon",
             "examples": [
-                "minecraft:BE_brewing"
-            ],
-            "$ref": "#/definitions/builder_tags2"
-        },
-        "items": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/items",
-            "examples": [
-                "STONE"
-            ],
-            "$ref": "#/definitions/item_tags2"
-        },
-        "recipe_types": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_types",
-            "examples": [
-                "minecraft:brewing"
-            ],
-            "$ref": "#/definitions/recipe_type_tags2"
-        },
-        "menus": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/menus",
-            "examples": [
-                "minecraft:test"
+                "default",
+                "missing",
+                "barrel",
+                "blast_furnace",
+                "green_shulker_box",
+                "smithing_table",
+                "grindstone",
+                "brown_shulker_box",
+                "black_shulker_box",
+                "stonecutter",
+                "enchanting_table",
+                "blue_shulker_box",
+                "beacon",
+                "dropper",
+                "shulker_box",
+                "cartography_table",
+                "gray_shulker_box",
+                "furnace",
+                "ender_chest",
+                "chest",
+                "light_blue_shulker_box",
+                "dispenser",
+                "magenta_shulker_box",
+                "crafting_table",
+                "pink_shulker_box",
+                "orange_shulker_box",
+                "red_shulker_box",
+                "brewing_stand",
+                "cyan_shulker_box",
+                "lime_shulker_box",
+                "trapped_chest",
+                "loom",
+                "hopper",
+                "purple_shulker_box",
+                "smoker",
+                "villager_spawn_egg",
+                "yellow_shulker_box",
+                "light_gray_shulker_box",
+                "soul_campfire",
+                "player_head",
+                "campfire",
+                "white_shulker_box"
             ]
         },
-        "identifier_sets": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/identifier_sets",
-            "examples": [
-                "minecraft:java_edition",
-                "minecraft:bedrock_edition"
+        "category": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/category",
+            "example": [
+                "building",
+                "redstone",
+                "nature",
+                "functional",
+                "spawn_eggs",
+                "search",
+                "consumables",
+                "tools",
+                "combat",
+                "crafting",
+                "inventory",
+                "hotbar"
             ]
         },
-        "screens": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/screens",
-            "examples": [
-                "minecraft:crafting_table"
+        "group": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/group",
+            "example": [
+                ""
             ]
         },
-        "textures": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/textures",
+        "codec": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/codec",
+            "examples": [
+                "minecraft:BE_brewing",
+                "minecraft:BE_crafting",
+                "minecraft:BE_smelting",
+                "minecraft:JE_crafting",
+                "minecraft:JE_generic_5",
+                "minecraft:JE_generic_9",
+                "minecraft:JE_generic_27",
+                "minecraft:JE_generic_container",
+                "minecraft:JE_inventory",
+                "minecraft:JE_smelting",
+                "minecraft:JE_smithing"
+            ]
+        },
+        "item": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/item",
             "examples": [
                 "minecraft:stone"
             ]
         },
-        "builder_tags": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/builder_tags",
+        "recipe_format": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_format",
             "examples": [
                 "minecraft:brewing",
                 "minecraft:chest",
@@ -103,16 +176,121 @@
                 "minecraft:smithing"
             ]
         },
-        "item_tags": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/item_tags",
-            "examples": []
+        "menu": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/menu",
+            "examples": [
+                "minecraft:about",
+                "minecraft:account",
+                "minecraft:bug_report",
+                "minecraft:close_project",
+                "minecraft:close_recipe",
+                "minecraft:code_view",
+                "minecraft:copy_item",
+                "minecraft:copy_recipe",
+                "minecraft:copy_slot",
+                "minecraft:cut_item",
+                "minecraft:cut_recipe",
+                "minecraft:cut_slot",
+                "minecraft:delete_recipe",
+                "minecraft:dev_tools",
+                "minecraft:developer",
+                "minecraft:discord",
+                "minecraft:donate",
+                "minecraft:edit_project",
+                "minecraft:edit_recipe",
+                "minecraft:edit",
+                "minecraft:export_project",
+                "minecraft:export_recipe",
+                "minecraft:file",
+                "minecraft:find",
+                "minecraft:help",
+                "minecraft:homepage",
+                "minecraft:import_project",
+                "minecraft:import_recipe",
+                "minecraft:keybindings",
+                "minecraft:new_project",
+                "minecraft:new_recipe",
+                "minecraft:open_project",
+                "minecraft:packs",
+                "minecraft:paste_item",
+                "minecraft:paste_recipe",
+                "minecraft:paste_slot",
+                "minecraft:preferences",
+                "minecraft:recent",
+                "minecraft:recipe_generator",
+                "minecraft:recipe",
+                "minecraft:redo",
+                "minecraft:reload_packs",
+                "minecraft:replace",
+                "minecraft:save_project",
+                "minecraft:save_project_as",
+                "minecraft:screenshot",
+                "minecraft:selection_all",
+                "minecraft:selection_down",
+                "minecraft:selection_expand",
+                "minecraft:selection_first",
+                "minecraft:selection_last",
+                "minecraft:selection_left",
+                "minecraft:selection_multiple",
+                "minecraft:selection_next",
+                "minecraft:selection_remove",
+                "minecraft:selection_right",
+                "minecraft:selection_shrink",
+                "minecraft:selection_up",
+                "minecraft:selection",
+                "minecraft:separator",
+                "minecraft:settings",
+                "minecraft:tool",
+                "minecraft:undo"
+            ]
         },
-        "recipe_type_tags": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_type_tags",
-            "examples": []
+        "screen": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/screen",
+            "examples": [
+                "minecraft:anvil",
+                "minecraft:beacon",
+                "minecraft:blast_furnace",
+                "minecraft:brewing_stand",
+                "minecraft:cartography_table",
+                "minecraft:crafting_table",
+                "minecraft:dispenser",
+                "minecraft:dropper",
+                "minecraft:enchanting_table",
+                "minecraft:furnace",
+                "minecraft:generic_5",
+                "minecraft:generic_9",
+                "minecraft:generic_27",
+                "minecraft:generic_54",
+                "minecraft:grindstone",
+                "minecraft:hopper",
+                "minecraft:horse",
+                "minecraft:inventory",
+                "minecraft:loom",
+                "minecraft:shulker_box",
+                "minecraft:smithing_table",
+                "minecraft:smoker",
+                "minecraft:stonecutter",
+                "minecraft:villager"
+            ]
         },
-        "builder_tags2": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/builder_tags2",
+        "menus": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/menus",
+            "examples": [
+                "#minecraft:root",
+                "#minecraft:input_context",
+                "#minecraft:slot_context",
+                "#minecraft:developer",
+                "#minecraft:edit",
+                "#minecraft:file",
+                "#minecraft:help",
+                "#minecraft:preferences",
+                "#minecraft:recipe",
+                "#minecraft:selection",
+                "#minecraft:tool"
+            ]
+        },
+        "codecs": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/codecs",
             "examples": [
                 "#minecraft:brewing",
                 "#minecraft:chest",
@@ -124,13 +302,17 @@
                 "#minecraft:smithing"
             ]
         },
-        "item_tags2": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/item_tags2",
-            "examples": []
+        "items": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/items",
+            "examples": [
+                "#minecraft:"
+            ]
         },
-        "recipe_type_tags2": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_type_tags2",
-            "examples": []
+        "recipe_formats": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_formats",
+            "examples": [
+                "#minecraft:"
+            ]
         }
     }
 }

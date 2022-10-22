@@ -54,17 +54,17 @@
                 "default": {},
                 "required": [
                     "id",
-                    "type"
+                    "format"
                 ],
                 "properties": {
                     "id": {
                         "description": "The recipe id. Used to display the recipe in the listbox.",
                         "type": "string"
                     },
-                    "type": {
+                    "format": {
                         "description": "The type of recipe that this was built with. TODO Add default types",
                         "type": "string",
-                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_types"
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/recipe_format"
                     },
                     "selected": {
                         "description": "The selected slot's index value.",
@@ -106,20 +106,30 @@
                                     "type": [
                                         "string",
                                         "null"
-                                    ]
+                                    ],
+                                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/item"
                                 },
                                 "count": {
                                     "description": "The number of items in this slot.",
-                                    "type": "integer",
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
                                     "minimum": 1
                                 },
                                 "data": {
                                     "description": "The data value for this item. (BEDROCK)",
-                                    "type": "integer"
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ]
                                 },
                                 "nbt": {
                                     "description": "The NBT for this item.",
-                                    "type": "string"
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ]
                                 },
                                 "options": {
                                     "description": "Addional options for this slot.",
