@@ -16,7 +16,7 @@
         "icon": {
             "description": "The texture to use for the item.",
             "type": "string",
-            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/textures"
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/item_texture"
         },
         "nbt": {
             "description": "NBT tags that this item uses.",
