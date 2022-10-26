@@ -53,9 +53,6 @@
                     "maxItems": 2
                 }
             },
-            "patternProperties": {
-                "^\\$": true
-            },
             "additionalProperties": false
         },
         "theme": {
@@ -147,7 +144,8 @@
                         "#262626"
                     ]
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "elements": {
             "description": "A list of elements to display",
@@ -332,11 +330,12 @@
                         "type": "string"
                     }
                 },
-                "patternProperties": {
-                    "^\\$": true
-                },
                 "additionalProperties": false
             }
         }
-    }
+    },
+    "patternProperties": {
+        "^\\$": true
+    },
+    "additionalProperties": false
 }

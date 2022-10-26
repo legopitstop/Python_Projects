@@ -36,12 +36,6 @@
                 }
             }
         },
-        "item_texture": {
-            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/item_texture",
-            "example": [
-                "minecraft:"
-            ]
-        },
         "keybind": {
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/keybind",
             "description": "The key or button to bind this event to.",

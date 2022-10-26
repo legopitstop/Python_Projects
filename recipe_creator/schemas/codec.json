@@ -210,7 +210,8 @@
                     "description": "Icon of the Codec. Recomended size 24x24",
                     "type": "string"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "extension": {
             "description": "Default extension for the codec",

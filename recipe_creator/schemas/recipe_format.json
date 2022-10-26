@@ -251,10 +251,11 @@
             "default": {},
             "properties": {
                 "index_map": {
-                    "description": "A map of each slot index for arrow navigation.",
+                    "description": "A map of each slot index for arrow navigation. (row)",
                     "type": "array",
                     "default": [],
                     "items": {
+                        "description": "(column)",
                         "type": "array",
                         "default": [],
                         "items": {

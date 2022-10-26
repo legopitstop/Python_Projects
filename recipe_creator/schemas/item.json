@@ -16,7 +16,7 @@
         "icon": {
             "description": "The texture to use for the item.",
             "type": "string",
-            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/item_texture"
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/textures"
         },
         "nbt": {
             "description": "NBT tags that this item uses.",
@@ -45,13 +45,18 @@
             "default": 1
         },
         "creative_category": {
+            "description": "Add this item to the creative tab.",
             "type":"object",
             "default": {},
             "properties":{
                 "category": {
                     "description": "The tab to place this item in.",
-                    "type":"string",
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/category"
+                    "type":["string", "array"],
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/category",
+                    "items":{
+                        "type":"string",
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/category"
+                    }
                 },
                 "group": {
                     "description": "The group to place this item in.",
@@ -63,9 +68,11 @@
                     "type":"integer",
                     "minimum": 0
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "identifier_type": {
+            "description": "Item identifier's to use with the codec's",
             "type": "object",
             "default": {},
             "properties": {
@@ -77,6 +84,7 @@
                 }
             },
             "additionalProperties": {
+                "description": "Identifier data for the item.",
                 "type": [
                     "object",
                     "string"
@@ -92,7 +100,8 @@
                         "type":"integer",
                         "minimum": 0
                     }
-                }
+                },
+                "additionalProperties": false
             }
         }
     },

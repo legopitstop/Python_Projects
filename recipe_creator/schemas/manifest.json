@@ -49,9 +49,6 @@
                         "default": false
                     }
                 },
-                "patternProperties": {
-                    "^\\$": true
-                },
                 "additionalProperties": false
             }
         },
@@ -62,6 +59,67 @@
             "additionalProperties": {
                 "description": "The bind sequence.",
                 "type": "string"
+            }
+        },
+        "creative_tab": {
+            "description": "Create a new creative tab.",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "buildingBlocks": {
+                    "$ref": "#/properties/creative_tab/additionalProperties"
+                },
+                "nature": {
+                    "$ref": "#/properties/creative_tab/additionalProperties"
+                },
+                "functional": {
+                    "$ref": "#/properties/creative_tab/additionalProperties"
+                },
+                "redstone": {
+                    "$ref": "#/properties/creative_tab/additionalProperties"
+                },
+                "hotbar": {
+                    "$ref": "#/properties/creative_tab/additionalProperties"
+                },
+                "search": {
+                    "$ref": "#/properties/creative_tab/additionalProperties"
+                },
+                "tools": {
+                    "$ref": "#/properties/creative_tab/additionalProperties"
+                },
+                "combat": {
+                    "$ref": "#/properties/creative_tab/additionalProperties"
+                },
+                "consumables": {
+                    "$ref": "#/properties/creative_tab/additionalProperties"
+                },
+                "crafting": {
+                    "$ref": "#/properties/creative_tab/additionalProperties"
+                },
+                "spawnEggs": {
+                    "$ref": "#/properties/creative_tab/additionalProperties"
+                },
+                "inventory": {
+                    "$ref": "#/properties/creative_tab/additionalProperties"
+                }
+            },
+            "additionalProperties": {
+                "type": [
+                    "object",
+                    "string"
+                ],
+                "default": {},
+                "properties": {
+                    "name": {
+                        "description": "The name of the tab.",
+                        "type": "string"
+                    },
+                    "icon": {
+                        "description": "The item icon to use",
+                        "type": "string",
+                        "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/item"
+                    }
+                }
             }
         }
     },
