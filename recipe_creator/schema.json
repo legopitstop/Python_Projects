@@ -1,0 +1,73 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "default": {},
+    "propertyNames": {
+        "pattern": "^[a-z0-9._-]+$|"
+    },
+    "properties": {
+        "$schema": {
+            "type":"string"
+        }
+    },
+    "additionalProperties": {
+        "description": "The pack's id. Must match the zip file name in `./packs/`",
+        "type": "object",
+        "default": {},
+        "required": [
+            "title",
+            "author",
+            "description"
+        ],
+        "properties": {
+            "title": {
+                "description": "Title of this pack.",
+                "type": "string",
+                "maximum": 64
+            },
+            "author": {
+                "description": "Author of the pack.",
+                "type": "string",
+                "maximum": 64
+            },
+            "description": {
+                "description": "Description of the pack.",
+                "type": "string",
+                "maximum": 256
+            },
+            "about": {
+                "description": "",
+                "type": "string",
+                "maximum": 256
+            },
+            "version": {
+                "description": "Current pack version",
+                "type": "string",
+                "maximum": 32
+            },
+            "min_version": {
+                "description": "Minimum app version.",
+                "type": "string",
+                "maximum": 32,
+                "examples": [
+                    "1.0.0"
+                ]
+            },
+            "tags": {
+                "description": "A list of tags",
+                "type":"array",
+                "default":[],
+                "uniqueItems": true,
+                "items":{
+                    "type":"string",
+                    "maximum": 64,
+                    "examples": [
+                        "Minecraft: Java Edition",
+                        "Minecraft: Bedrock Edition"
+                    ]
+                }
+            }
+        },
+        "additionalProperties": false
+    }
+}

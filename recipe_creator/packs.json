@@ -1,0 +1,31 @@
+{
+    "$schema": "./schema.json",
+    "minecraft": {
+        "title": "Minecraft Pack",
+        "author": "legopitstop",
+        "description": "The default recipes",
+        "tags": [
+            "Minecraft: Java Edition",
+            "Minecraft: Bedrock Edition"
+        ],
+        "version": "1.0.0"
+    },
+    "itemsadder": {
+        "title": "Items Adder",
+        "author": "legopitstop",
+        "description": "Export items adder recipes",
+        "tags": [
+            "Minecraft: Java Edition"
+        ],
+        "version": "1.1.0"
+    },
+    "rcore": {
+        "title": "LPS Recipe Core API",
+        "author": "legopitstop",
+        "description": "Create recipes with custom NBT data",
+        "tags": [
+            "Minecraft: Java Edition"
+        ],
+        "version": "1.1.0"
+    }
+}
