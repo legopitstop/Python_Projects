@@ -17,7 +17,8 @@
         "tags": [
             "Minecraft: Java Edition"
         ],
-        "version": "1.1.0"
+        "version": "1.0.0",
+        "min_version": "1.1.0"
     },
     "rcore": {
         "title": "LPS Recipe Core API",
@@ -26,6 +27,6 @@
         "tags": [
             "Minecraft: Java Edition"
         ],
-        "version": "1.1.0"
+        "version": "1.0.0"
     }
 }
