@@ -6,6 +6,34 @@
     "type": "object",
     "default": {},
     "definitions": {
+        "TestValue": {
+            "description": "The value to test.",
+            "type": [
+                "string",
+                "number",
+                "boolean",
+                "null",
+                "object"
+            ],
+            "properties": {
+                "min": {
+                    "description": "The minium value.",
+                    "type": "number"
+                },
+                "max": {
+                    "description": "The maxium value.",
+                    "type": "number"
+                },
+                "anyOf": {
+                    "description": "Test if value is any of these values.",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "$ref": "#/definitions/ProjectConditions/properties/options/additionalProperties"
+                    }
+                }
+            }
+        },
         "ProjectConditions": {
             "type": "object",
             "default": {},
@@ -23,32 +51,7 @@
                     "type": "object",
                     "default": {},
                     "additionalProperties": {
-                        "description": "The value to test.",
-                        "type": [
-                            "string",
-                            "number",
-                            "boolean",
-                            "null",
-                            "object"
-                        ],
-                        "properties": {
-                            "min": {
-                                "description": "The minium value.",
-                                "type": "number"
-                            },
-                            "max": {
-                                "description": "The maxium value.",
-                                "type": "number"
-                            },
-                            "anyOf": {
-                                "description": "Test if value is any of these values.",
-                                "type": "array",
-                                "default": [],
-                                "items": {
-                                    "$ref": "#/definitions/ProjectConditions/properties/options/additionalProperties"
-                                }
-                            }
-                        }
+                        "$ref": "#/definitions/TestValue"
                     }
                 },
                 "slots": {
@@ -100,275 +103,409 @@
         },
         "Conditions": {
             "description": "A list of conditions that must pass to use this builder.",
-            "type": [
-                "object",
-                "array"
-            ],
-            "default": {},
-            "required": [
-                "condition"
-            ],
-            "allOf": [
-                {
-                    "if": {
-                        "properties": {
-                            "condition": {
-                                "const": "project_properties"
-                            }
-                        }
-                    },
-                    "then": {
-                        "required": [
-                            "predicate"
-                        ],
-                        "properties": {
-                            "predicate": {
-                                "$ref": "#/definitions/ProjectConditions"
-                            }
-                        }
-                    }
-                },
-                {
-                    "if": {
-                        "properties": {
-                            "condition": {
-                                "const": "inverted"
-                            }
-                        }
-                    },
-                    "then": {
-                        "required": [
-                            "term"
-                        ]
-                    }
-                },
-                {
-                    "if": {
-                        "properties": {
-                            "condition": {
-                                "const": "random_chance"
-                            }
-                        }
-                    },
-                    "then": {
-                        "required": [
-                            "chance"
-                        ]
-                    }
-                }
-            ],
-            "properties": {
-                "condition": {
-                    "description": "The type of condition to use that must pass.",
-                    "enum": [
-                        "project_properties",
-                        "inverted",
-                        "random_chance"
-                    ]
-                },
-                "predicate": {
-                    "type": "object",
-                    "default": {},
-                    "properties": {}
-                },
-                "chance": {
-                    "title": "CHANCE",
-                    "description": "Success rate as a number 0.0-1.0",
-                    "type": "number",
-                    "minium": 0.0,
-                    "maxium": 1.0,
-                    "default": 0.0
-                },
-                "term": {
-                    "title": "INVERTED",
-                    "description": "The condition to be negated, following the same struture as root.",
-                    "type": "object",
-                    "default": {},
-                    "$ref": "#/definitions/Conditions/properties"
-                }
-            },
+            "type": "array",
+            "default": [],
             "items": {
-                "$ref": "#/definitions/Conditions/properties"
+                "required": [
+                    "condition"
+                ],
+                "allOf": [
+                    {
+                        "if": {
+                            "properties": {
+                                "condition": {
+                                    "const": "project_properties"
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": [
+                                "predicate"
+                            ],
+                            "properties": {
+                                "predicate": {
+                                    "$ref": "#/definitions/ProjectConditions"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "condition": {
+                                    "const": "inverted"
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": [
+                                "term"
+                            ]
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "condition": {
+                                    "const": "random_chance"
+                                }
+                            }
+                        },
+                        "then": {
+                            "required": [
+                                "chance"
+                            ]
+                        }
+                    }
+                ],
+                "properties": {
+                    "condition": {
+                        "description": "The type of condition to use that must pass.",
+                        "enum": [
+                            "project_properties",
+                            "inverted",
+                            "random_chance"
+                        ]
+                    },
+                    "predicate": {
+                        "type": "object",
+                        "default": {},
+                        "properties": {}
+                    },
+                    "chance": {
+                        "title": "CHANCE",
+                        "description": "Success rate as a number 0.0-1.0",
+                        "type": "number",
+                        "minium": 0.0,
+                        "maxium": 1.0,
+                        "default": 0.0
+                    },
+                    "term": {
+                        "title": "INVERTED",
+                        "description": "The condition to be negated, following the same struture as root.",
+                        "type": "array",
+                        "default": [],
+                        "items": {
+                            "$ref": "#/definitions/Conditions"
+                        }
+                    }
+                }
             }
-        }
-    },
-    "required": [
-        "extension",
-        "compile"
-    ],
-    "properties": {
-        "display": {
-            "description": "Display properties for the codec",
-            "type": "object",
-            "default": {},
-            "properties": {
-                "name": {
-                    "description": "Name of the Codec",
-                    "type": "string"
-                },
-                "icon": {
-                    "description": "Icon of the Codec. Recomended size 24x24",
-                    "type": "string"
-                }
-            },
-            "additionalProperties": false
         },
-        "extension": {
-            "description": "Default extension for the codec",
-            "type": "string"
-        },
-        "remember": {
-            "description": "Whether to remember the model in the recent files list and as the opened model file.",
-            "type": "boolean",
-            "default": true
-        },
-        "identifier_set": {
-            "description": "identifier type to use with this codec. Will use the default identifier",
-            "type": "string"
-        },
-        "context": {
-            "description": "How to interprit the codec.\n`for_recipe` \n`project`\n`recipe` ",
-            "type": "object",
-            "default": {},
-            "properties": {
-                "for_recipe": {
-                    "description": "Interprit for each recipe. (true by default)",
-                    "type":"boolean",
-                    "default": false
-                },
-                "project": {
-                    "description": "Interprit the entire project. (File > Export)",
-                    "type":"boolean",
-                    "default": true
-                },
-                "recipe": {
-                    "description": "Interprit this one recipe. (Recipe > Export)",
-                    "type":"boolean",
-                    "default": true
-                }
-            },
-            "additionalProperties": false
-        },
-        "compile": {
-            "description": "Should return the compiled recipe",
+        "Functions": {
             "type": [
                 "object",
-                "array"
+                "string"
             ],
             "default": {},
             "required": [
                 "type"
             ],
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "text"
+                            }
+                        }
+                    },
+                    "then": {
+                        "required": [
+                            "value"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "grid"
+                            }
+                        }
+                    },
+                    "then": {
+                        "required": [
+                            "slots",
+                            "ops"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "copy_data"
+                            }
+                        }
+                    },
+                    "then": {
+                        "required": [
+                            "ops"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "compiler"
+                            }
+                        }
+                    },
+                    "then": {
+                        "required": [
+                            "name"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "type": {
+                                "const": "group"
+                            }
+                        }
+                    },
+                    "then": {
+                        "required": [
+                            "children"
+                        ]
+                    }
+                }
+            ],
+            "properties": {
+                "function": {
+                    "description": "The type of function\n`grid` - The built-in grid codec\n`text` - \n`copy_option` - Copies the option from the source\n`copy_slot` - Copies the slot from the source\n`copy_project` - Copies the project from the source\n`copy_recipe` - Copies the recipe from the source\n`fill_player_head` - The users player head NBT\n`compiler` - File path to a codec\n`group` - Compilers",
+                    "enum": [
+                        "grid",
+                        "text",
+                        "copy_data",
+                        "fill_player_head",
+                        "compiler",
+                        "group"
+                    ]
+                },
+                "slots": {
+                    "title": "GRID",
+                    "description": "A list of columns",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "description": "A list of rows",
+                        "type": "array",
+                        "default": [],
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "value": {
+                    "title": "TEXT",
+                    "description": "The value to set.",
+                    "type": "string"
+                },
+                "name": {
+                    "title": "COMPILER",
+                    "description": "The resource location of the codec to be used.",
+                    "type": "string"
+                },
+                "children": {
+                    "title": "GROUP",
+                    "description": "All entry providers in the children list is applyed into the codec.",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "$ref": "#/properties/compilers"
+                    }
+                },
+                "ops": {
+                    "title": "COPY_DATA",
+                    "description": "A list of operations",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "object",
+                        "default": {},
+                        "required": [
+                            "source",
+                            "target"
+                        ],
+                        "properties": {
+                            "source": {
+                                "description": "The data source.",
+                                "enum": [
+                                    "slots",
+                                    "recipes",
+                                    "option",
+                                    "slot",
+                                    "project",
+                                    "recipe"
+                                ]
+                            },
+                            "op": {
+                                "description": "Set to `replace` to replace any existing contents of the target,`append` to append to a list or array or `merge` to merge into a object.",
+                                "enum": [
+                                    "replace",
+                                    "append",
+                                    "merge"
+                                ],
+                                "default": "replace"
+                            },
+                            "target": {
+                                "description": "The compiler to use",
+                                "$ref": "#/properties/compilers"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "required": [
+        "extension",
+        "compilers",
+        "type"
+    ],
+    "properties": {
+        "type": {
+            "description": "Specifies the context in which the codec should be invoked by.",
+            "enum": [
+                "recipe",
+                "project"
+            ]
+        },
+        "display": {
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/display"
+        },
+        "identifier_set": {
+            "description": "identifier type to use with this codec. Will use the default identifier",
+            "type": "string"
+        },
+        "compilers": {
+            "description": "Should return the compiled recipe",
+            "type": "array",
+            "default": [],
             "items": {
-                "type": "object",
-                "default": {},
                 "required": [
-                    "compile"
+                    "compiler"
                 ],
                 "properties": {
                     "conditions": {
                         "$ref": "#/definitions/Conditions"
                     },
-                    "compile": {
-                        "$ref": "#/properties/compile"
-                    }
-                },
-                "additionalProperties": false
-            },
-            "properties": {
-                "type": {
-                    "description": "The type of compiler to use.",
-                    "enum": [
-                        "json",
-                        "text"
-                    ]
-                },
-                "template": {
-                    "description": "The template for the compiler.",
-                    "type": [
-                        "object",
-                        "string"
-                    ],
-                    "default": {}
-                },
-                "replace": {
-                    "description": "Replace variables ${variable} in the template.",
-                    "type": "object",
-                    "default": {},
-                    "additionalProperties": {
-                        "type": ["object", "string"],
+                    "type": {
+                        "description": "The type of compiler to use.",
+                        "enum": [
+                            "file",
+                            "zip"
+                        ]
+                    },
+                    "extension": {
+                        "description": "Default extension for the codec",
+                        "type": "string"
+                    },
+                    "initialfile": {
+                        "description": "The default filename for this codec. Will concat with the extension",
+                        "$ref": "#/definitions/Functions",
+                        "default": {
+                            "type": "recipe",
+                            "value": "id"
+                        }
+                    },
+                    "compiler": {
+                        "description": "The compiler",
+                        "type": "object",
                         "default": {},
                         "required": [
-                            "type"
+                            "type",
+                            "template"
                         ],
                         "properties": {
                             "type": {
-                                "description": "The type of replacement",
+                                "description": "The type of compiler to use.",
                                 "enum": [
-                                    "grid",
-                                    "slot",
-                                    "option",
-                                    "project",
                                     "json",
                                     "text"
                                 ]
                             },
-                            "slots": {
-                                "description": "A list of columns",
+                            "template": {
+                                "title": "JSON, TEXT",
+                                "description": "The template for the compiler.",
+                                "type": "string"
+                            },
+                            "functions": {
+                                "title": "JSON, TEXT",
+                                "description": "Replace variables ${variable} in the template.",
+                                "type": "object",
+                                "default": {},
+                                "additionalProperties": {
+                                    "$ref": "#/definitions/Functions"
+                                }
+                            },
+                            "ops": {
+                                "title": "JSON",
+                                "description": "A list of loop operations",
                                 "type": "array",
                                 "default": [],
                                 "items": {
-                                    "description": "A list of rows",
-                                    "type": "array",
-                                    "default": [],
-                                    "items": {
-                                        "type": "string"
-                                    }
+                                    "type": "object",
+                                    "default": {},
+                                    "properties": {
+                                        "source": {
+                                            "description": "The source to loop through",
+                                            "enum": [
+                                                "slot",
+                                                "recipe"
+                                            ]
+                                        },
+                                        "op": {
+                                            "description": "Set to `replace` to replace any existing contents of the target,`append` to append to a list or array or `merge` to merge into a object.",
+                                            "enum": [
+                                                "replace",
+                                                "append",
+                                                "merge"
+                                            ]
+                                        },
+                                        "target": {
+                                            "description": "The compiler to use",
+                                            "$ref": "#/properties/compilers"
+                                        }
+                                    },
+                                    "additionalProperties": false
                                 }
                             },
-                            "value": {
-                                "description": "The value to use.",
-                                "type": "string"
-                            },
-                            "replace": {
-                                "$ref": "#/properties/compile/properties/replace"
+                            "loop": {
+                                "title": "JSON",
+                                "description": "Create a for loop.",
+                                "type": "object",
+                                "default": {},
+                                "required": [
+                                    "interprit"
+                                ],
+                                "properties": {
+                                    "interprit": {
+                                        "description": "Will loop through all the items.",
+                                        "enum": [
+                                            "slots",
+                                            "recipes"
+                                        ]
+                                    },
+                                    "append": {
+                                        "description": "Adds this data to an array (type: JSON) or adds this to a new line (type: TEXT)",
+                                        "$ref": "#/properties/compilers"
+                                    }
+                                },
+                                "additionalProperties": false
                             }
                         },
                         "additionalProperties": false
                     }
                 },
-                "lines": {
-                    "description": "A list of lines to apply to the file.",
-                    "type": "array",
-                    "default": [],
-                    "items": {
-                        "$ref": "#/properties/compile"
-                    }
-                },
-                "for": {
-                    "description": "Create a for loop.",
-                    "type": "object",
-                    "default": {},
-                    "required": [
-                        "loop"
-                    ],
-                    "properties": {
-                        "loop": {
-                            "description": "Will loop through all the items.",
-                            "enum": [
-                                "slots",
-                                "recipes"
-                            ]
-                        },
-                        "append": {
-                            "description": "Adds this data to an array (type: JSON) or adds this to a new line (type: TEXT)",
-                            "$ref": "#/properties/compile"
-                        }
-                    },
-                    "additionalProperties": false
-                }
-            },
-            "additionalProperties": false
+                "additionalProperties": false
+            }
         },
         "parse": {
             "description": "Parse and add the provided model to Recipe Creator",

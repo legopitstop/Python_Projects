@@ -6,7 +6,8 @@
     "required": [
         "format_version",
         "version",
-        "description"
+        "description",
+        "title"
     ],
     "properties": {
         "format_version": {
@@ -17,6 +18,10 @@
         "version": {
             "description": "The version of the pack",
             "type": "string"
+        },
+        "title": {
+            "description": "The title of the pack",
+            "type":"string"
         },
         "description": {
             "description": "The descirption of the pack",

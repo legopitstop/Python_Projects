@@ -12,7 +12,10 @@
                 "recent_project_menu",
                 "export_recipe_menu",
                 "export_project_menu",
-                "view_recipe_menu"
+                "view_recipe_menu",
+                "new_recipe_menu",
+                "recipe_menu",
+                "edit_project_menu"
             ]
         },
         "type": {

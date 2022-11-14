@@ -3,9 +3,35 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "description": "Provides default examples for the Minecraft pack",
     "definitions": {
+        "display": {
+            "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/display",
+            "description": "Display properties for the menu item",
+            "type": "object",
+            "default": {},
+            "properties": {
+                "name": {
+                    "description": "Name of the item",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "Icon. Recomended size 24x24",
+                    "type": "string"
+                },
+                "rpc_icon": {
+                    "description": "The Rich Discord Presnece icon to use.",
+                    "type": "string",
+                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/rpc_icon"
+                }
+            },
+            "additionalProperties": false
+        },
         "clickEventAction": {
-            "description": "The event type to use.",
             "$id": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/clickEventAction",
+            "description": "The event type to use.",
             "enum": [
                 "open_url",
                 "run_command",

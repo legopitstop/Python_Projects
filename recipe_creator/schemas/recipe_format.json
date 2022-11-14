@@ -109,29 +109,7 @@
     },
     "properties": {
         "display": {
-            "description": "Display properties for the format",
-            "type": "object",
-            "default": {},
-            "properties": {
-                "name": {
-                    "description": "Format name",
-                    "type": "string"
-                },
-                "icon": {
-                    "description": "Format icon Recomended size 24x24",
-                    "type": "string"
-                },
-                "description": {
-                    "description": "Format description",
-                    "type": "string"
-                },
-                "rpc_icon": {
-                    "description": "The Rich Discord Presnece icon to use.",
-                    "type": "string",
-                    "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/rpc_icon"
-                }
-            },
-            "additionalProperties": false
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/display"
         },
         "show_on_start_screen": {
             "description": "Whether to list the format as an option on the start screen",
