@@ -205,7 +205,7 @@
                 {
                     "if": {
                         "properties": {
-                            "type": {
+                            "function": {
                                 "const": "text"
                             }
                         }
@@ -219,7 +219,7 @@
                 {
                     "if": {
                         "properties": {
-                            "type": {
+                            "function": {
                                 "const": "grid"
                             }
                         }
@@ -234,7 +234,7 @@
                 {
                     "if": {
                         "properties": {
-                            "type": {
+                            "function": {
                                 "const": "copy_data"
                             }
                         }
@@ -248,7 +248,7 @@
                 {
                     "if": {
                         "properties": {
-                            "type": {
+                            "function": {
                                 "const": "compiler"
                             }
                         }
@@ -262,7 +262,7 @@
                 {
                     "if": {
                         "properties": {
-                            "type": {
+                            "function": {
                                 "const": "group"
                             }
                         }
