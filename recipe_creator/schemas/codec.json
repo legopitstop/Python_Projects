@@ -199,7 +199,7 @@
             ],
             "default": {},
             "required": [
-                "type"
+                "function"
             ],
             "allOf": [
                 {
@@ -316,13 +316,19 @@
                     "type": "array",
                     "default": [],
                     "items": {
-                        "$ref": "#/properties/compilers"
+                        "$ref": "#/properties/compilers/items"
                     }
                 },
+                "exact": {
+                    "title": "GRID",
+                    "description": "Will save the exact items in the grid.",
+                    "type":"boolean",
+                    "default": true
+                },
                 "ops": {
-                    "title": "COPY_DATA",
+                    "title": "COPY_DATA, GRID",
                     "description": "A list of operations",
-                    "type":"object",
+                    "type": "object",
                     "default": {},
                     "required": [
                         "source",
@@ -337,7 +343,8 @@
                                 "option",
                                 "slot",
                                 "project",
-                                "recipe"
+                                "recipe",
+                                "grid"
                             ]
                         },
                         "op": {
@@ -351,7 +358,14 @@
                         },
                         "target": {
                             "description": "The compiler to use",
-                            "$ref": "#/properties/compilers"
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "$ref": "#/properties/compilers"
+                                }
+                            ]
                         }
                     },
                     "additionalProperties": false
@@ -361,9 +375,8 @@
         }
     },
     "required": [
-        "extension",
-        "compilers",
-        "type"
+        "type",
+        "compilers"
     ],
     "properties": {
         "type": {
@@ -372,13 +385,6 @@
                 "recipe",
                 "project"
             ]
-        },
-        "display": {
-            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/display"
-        },
-        "identifier_set": {
-            "description": "identifier type to use with this codec. Will use the default identifier",
-            "type": "string"
         },
         "compilers": {
             "description": "Should return the compiled recipe",
@@ -389,15 +395,15 @@
                     "compiler"
                 ],
                 "properties": {
-                    "conditions": {
-                        "$ref": "#/definitions/Conditions"
-                    },
                     "type": {
                         "description": "The type of compiler to use.",
                         "enum": [
                             "file",
                             "zip"
                         ]
+                    },
+                    "conditions": {
+                        "$ref": "#/definitions/Conditions"
                     },
                     "extension": {
                         "description": "Default extension for the codec",
@@ -410,6 +416,15 @@
                             "type": "recipe",
                             "value": "id"
                         }
+                    },
+                    "op": {
+                        "description": "Set to `replace` to replace any existing contents of the target,`append` to append to a list or array or `merge` to merge into a object.",
+                        "enum": [
+                            "append",
+                            "replace",
+                            "merge"
+                        ],
+                        "default": "merge"
                     },
                     "compiler": {
                         "description": "The compiler",
@@ -502,6 +517,13 @@
                 },
                 "additionalProperties": false
             }
+        },
+        "display": {
+            "$ref": "https://raw.githubusercontent.com/legopitstop/Python_Projects/main/recipe_creator/schemas/common.json#/definitions/display"
+        },
+        "identifier_set": {
+            "description": "identifier type to use with this codec. Will use the default identifier",
+            "type": "string"
         },
         "parse": {
             "description": "Parse and add the provided model to Recipe Creator",
