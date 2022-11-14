@@ -322,43 +322,39 @@
                 "ops": {
                     "title": "COPY_DATA",
                     "description": "A list of operations",
-                    "type": "array",
-                    "default": [],
-                    "items": {
-                        "type": "object",
-                        "default": {},
-                        "required": [
-                            "source",
-                            "target"
-                        ],
-                        "properties": {
-                            "source": {
-                                "description": "The data source.",
-                                "enum": [
-                                    "slots",
-                                    "recipes",
-                                    "option",
-                                    "slot",
-                                    "project",
-                                    "recipe"
-                                ]
-                            },
-                            "op": {
-                                "description": "Set to `replace` to replace any existing contents of the target,`append` to append to a list or array or `merge` to merge into a object.",
-                                "enum": [
-                                    "replace",
-                                    "append",
-                                    "merge"
-                                ],
-                                "default": "replace"
-                            },
-                            "target": {
-                                "description": "The compiler to use",
-                                "$ref": "#/properties/compilers"
-                            }
+                    "type":"object",
+                    "default": {},
+                    "required": [
+                        "source",
+                        "target"
+                    ],
+                    "properties": {
+                        "source": {
+                            "description": "The data source.",
+                            "enum": [
+                                "slots",
+                                "recipes",
+                                "option",
+                                "slot",
+                                "project",
+                                "recipe"
+                            ]
                         },
-                        "additionalProperties": false
-                    }
+                        "op": {
+                            "description": "Set to `replace` to replace any existing contents of the target,`append` to append to a list or array or `merge` to merge into a object.",
+                            "enum": [
+                                "replace",
+                                "append",
+                                "merge"
+                            ],
+                            "default": "replace"
+                        },
+                        "target": {
+                            "description": "The compiler to use",
+                            "$ref": "#/properties/compilers"
+                        }
+                    },
+                    "additionalProperties": false
                 }
             },
             "additionalProperties": false
