@@ -5,337 +5,185 @@
     "description": "JSON Schema for Recipe Creator screens",
     "type": "object",
     "default": {},
-    "anyOf": [
-        {
-            "required": [
-                "elements"
-            ]
+    "definitions": {
+        "Vector2": {
+            "type": "array",
+            "default": [0, 0],
+            "items": {
+                "type": "integer"
+            },
+            "minItems": 2,
+            "maxItems": 2
         },
-        {
-            "required": [
-                "parent"
-            ]
-        }
-    ],
-    "properties": {
-        "parent": {
-            "description": "The parent screen.",
-            "type": "string"
-        },
-        "capture": {
-            "description": "The area to screenshot. default is the full size of the canvas.",
-            "type": "object",
-            "default": {},
+        "Resource": {
+            "type": ["string", "object"],
+            "required": ["name"],
             "properties": {
-                "scale": {
-                    "description": "The scale factor to increase or decrease the size. Default: 1.0",
-                    "type": "number",
-                    "default": 1.0
+                "name": {
+                    "description": "Resource location texture to use",
+                    "type": "string"
                 },
                 "size": {
-                    "description": "The size of the capture.",
-                    "type": "array",
-                    "default": [],
-                    "items": {
-                        "type": "integer"
-                    },
-                    "minItems": 2,
-                    "maxItems": 2
+                    "$ref": "#/properties/size"
                 },
                 "offset": {
-                    "description": "The offset of the capture from the top left.",
-                    "type": "array",
-                    "default": [],
-                    "items": {
-                        "type": "integer"
-                    },
-                    "minItems": 2,
-                    "maxItems": 2
+                    "$ref": "#/properties/offset"
                 }
             },
             "additionalProperties": false
+        }
+    },
+    "properties": {
+        "type": {
+            "description": "hardcoded types",
+            "enum": [
+                "minecraft:inventory/buildingBlocks",
+                "minecraft:inventory/nature",
+                "minecraft:inventory/functional",
+                "minecraft:inventory/redstone",
+                "minecraft:inventory/top",
+                "minecraft:inventory/hotbar",
+                "minecraft:inventory/search",
+                "minecraft:inventory/tools",
+                "minecraft:inventory/combat",
+                "minecraft:inventory/foodDrinks",
+                "minecraft:inventory/ingredients",
+                "minecraft:inventory/spawnEggs",
+                "minecraft:inventory/operatorUtilities",
+                "minecraft:inventory/inventory"
+            ]
         },
-        "theme": {
-            "description": "The colors to use for the screen depending on the selected theme.",
+        "texture": {
+            "description": "Resource location texture to use",
+            "$ref": "#/definitions/Resource"
+        },
+        "size": {
+            "description": "size [width, height]",
+            "$ref": "#/definitions/Vector2"
+        },
+        "offset": {
+            "description": "offset [x, y]",
+            "$ref": "#/definitions/Vector2"
+        },
+        "capture": {
+            "description": "Area to take a screenshot. If undefined it will use size and offset",
             "type": "object",
             "default": {},
             "properties": {
-                "background": {
-                    "type": "array",
-                    "minItems": 2,
-                    "maxItems": 2,
-                    "items": {
-                        "type": "string"
-                    },
-                    "default": [
-                        "#ffffff",
-                        "#535353"
-                    ]
+                "size": {
+                    "$ref": "#/properties/size"
                 },
-                "background_border": {
-                    "type": "array",
-                    "minItems": 2,
-                    "maxItems": 2,
-                    "items": {
-                        "type": "string"
-                    },
-                    "default": [
-                        "#000000",
-                        "#000000"
-                    ]
-                },
-                "background_border_light": {
-                    "type": "array",
-                    "minItems": 2,
-                    "maxItems": 2,
-                    "items": {
-                        "type": "string"
-                    },
-                    "default": [
-                        "#c6c6c6",
-                        "#6b6b6b"
-                    ]
-                },
-                "background_border_dark": {
-                    "type": "array",
-                    "minItems": 2,
-                    "maxItems": 2,
-                    "items": {
-                        "type": "string"
-                    },
-                    "default": [
-                        "#555555",
-                        "#333333"
-                    ]
-                },
-                "slot": {
-                    "type": "array",
-                    "minItems": 2,
-                    "maxItems": 2,
-                    "items": {
-                        "type": "string"
-                    },
-                    "default": [
-                        "#8b8b8b",
-                        "#333333"
-                    ]
-                },
-                "slot_border_light": {
-                    "type": "array",
-                    "minItems": 2,
-                    "maxItems": 2,
-                    "items": {
-                        "type": "string"
-                    },
-                    "default": [
-                        "#ffffff",
-                        "#6b6b6b"
-                    ]
-                },
-                "slot_border_dark": {
-                    "type": "array",
-                    "minItems": 2,
-                    "maxItems": 2,
-                    "items": {
-                        "type": "string"
-                    },
-                    "default": [
-                        "#373737",
-                        "#262626"
-                    ]
+                "offset": {
+                    "$ref": "#/properties/offset"
                 }
-            },
-            "additionalProperties": false
+            }
         },
         "elements": {
-            "description": "A list of elements to display",
+            "description": "List of elements",
             "type": "array",
             "default": [],
             "items": {
                 "type": "object",
                 "default": {},
-                "allOf": [
-                    {
-                        "if": {
-                            "properties": {
-                                "type": {
-                                    "const": "background"
-                                }
-                            }
-                        },
-                        "then": {
-                            "required": [
-                                "size",
-                                "offset"
-                            ]
-                        }
-                    },
-                    {
-                        "if": {
-                            "properties": {
-                                "type": {
-                                    "const": "image"
-                                }
-                            }
-                        },
-                        "then": {
-                            "required": [
-                                "texture",
-                                "offset"
-                            ]
-                        }
-                    },
-                    {
-                        "if": {
-                            "properties": {
-                                "type": {
-                                    "const": "frame"
-                                }
-                            }
-                        },
-                        "then": {
-                            "required": [
-                                "size",
-                                "offset"
-                            ]
-                        }
-                    },
-                    {
-                        "if": {
-                            "properties": {
-                                "type": {
-                                    "const": "arrow"
-                                }
-                            }
-                        },
-                        "then": {
-                            "required": [
-                                "size",
-                                "offset"
-                            ]
-                        }
-                    },
-                    {
-                        "if": {
-                            "properties": {
-                                "type": {
-                                    "const": "slot"
-                                }
-                            }
-                        },
-                        "then": {
-                            "required": [
-                                "size",
-                                "offset",
-                                "name"
-                            ]
-                        }
-                    },
-                    {
-                        "if": {
-                            "properties": {
-                                "type": {
-                                    "const": "button"
-                                }
-                            }
-                        },
-                        "then": {
-                            "required": [
-                                "text",
-                                "name"
-                            ]
-                        }
-                    }
-                ],
-                "required": [
-                    "type"
-                ],
+                "required": ["type", "id"],
                 "properties": {
                     "type": {
-                        "title": "common",
-                        "description": "The type of element.",
+                        "markdownDescription": "The element type\n\n`slot` - Render an item in this area\n\n`button` - Add a clickEvent to this area\n\n`paper_doll` - Add a paperdoll\n\n`tab` - Change the screen when you press this area\n\n`scrollbar` - Add scrollbar thumb",
                         "enum": [
-                            "background",
-                            "frame",
-                            "arrow",
-                            "vertical_arrow",
                             "slot",
-                            "image",
-                            "plus",
-                            "entry",
-                            "panel",
                             "button",
-                            "paper_doll"
+                            "paper_doll",
+                            "tab",
+                            "scrollbar"
                         ]
                     },
-                    "parent": {
-                        "title": "common",
-                        "description": "The name of the parent element",
-                        "type": "string"
+                    "paper_doll": {
+                        "title": "PAPERDOLL",
+                        "description": "Options for the paper doll",
+                        "type": "object",
+                        "default": {},
+                        "properties": {
+                            "entity": {
+                                "description": "The entity to use for the paprdoll",
+                                "type": "string",
+                                "default": "minecraft:player",
+                                "examples": [
+                                    "minecraft:player",
+                                    "minecraft:armor_stand"
+                                ]
+                            },
+                            "controls": {
+                                "markdownDescription": "Controls for the paperdoll\n\n`follow` - Follow the users cursor/mouse (Like the player in the inventory)\n\n`none` - Static paper doll (Like the armor stand in the Smithing Table)",
+                                "default": "follow",
+                                "enum": [
+                                    "follow",
+                                    "none"
+                                ]
+                            }
+                        }
                     },
-                    "name": {
-                        "title": "common",
-                        "description": "The name of the element.",
+                    "id": {
+                        "title": "SLOT",
+                        "description": "Id of the element",
                         "type": "string"
                     },
                     "text": {
-                        "title": "button",
-                        "description": "The text to display on the button.",
-                        "type": "string"
-                    },
-                    "orentation": {
-                        "title": "arrow",
-                        "description": "The orentation of the arrow",
-                        "enum": [
-                            "horizontal",
-                            "vertical"
-                        ]
-                    },
-                    "scale": {
-                        "description": "The scale factor to increase or decrease the size. Default: 1.0",
-                        "type": "number",
-                        "default": 1.0
+                        "title": "TAB",
+                        "description": "The text to display"
                     },
                     "size": {
-                        "title": "common",
-                        "description": "The size of the element",
-                        "type": [
-                            "integer",
-                            "array"
-                        ],
-                        "minItems": 2,
-                        "maxItems": 2,
-                        "items": {
-                            "description": "X, Y",
-                            "type": "integer"
-                        }
+                        "description": "size [width, height]",
+                        "$ref": "#/definitions/Vector2"
                     },
                     "offset": {
-                        "title": "common",
-                        "description": "The offset of the element",
-                        "type": [
-                            "integer",
-                            "array"
-                        ],
-                        "minItems": 2,
-                        "maxItems": 2,
-                        "items": {
-                            "description": "X, Y",
-                            "type": "integer"
-                        }
+                        "description": "offset [x, y]",
+                        "$ref": "#/definitions/Vector2"
                     },
                     "texture": {
-                        "title": "image",
-                        "description": "The texture to place.",
+                        "title": "BUTTON",
+                        "description": "The texture to use for the button",
+                        "$ref": "#/definitions/Resource"
+                    },
+                    "hover_texture": {
+                        "title": "BUTTON",
+                        "description": "The texture to use when hovering over a button",
+                        "$ref": "#/definitions/Resource"
+                    },
+                    "title": {
+                        "description": "Hover text to display",
                         "type": "string"
+                    },
+                    "state": {
+                        "title": "BUTTON, TAB",
+                        "description": "The state of the elements",
+                        "default": "normal",
+                        "enum": ["normal", "disabled", "active"]
+                    },
+                    "screen": {
+                        "title": "TAB",
+                        "description": "The screen to change to.",
+                        "type": "string"
+                    },
+                    "render": {
+                        "description": "Render something on the screen.",
+                        "type": "object",
+                        "default": {},
+                        "required": ["type"],
+                        "properties": {
+                            "type": {
+                                "description": "The render type to use",
+                                "enum": ["item"]
+                            },
+                            "name": {
+                                "title": "ITEM",
+                                "description": "The item to render",
+                                "type": "string",
+                                "examples": ["minecraft:stone"]
+                            }
+                        }
                     }
-                },
-                "additionalProperties": false
+                }
             }
         }
-    },
-    "patternProperties": {
-        "^\\$": true
-    },
-    "additionalProperties": false
+    }
 }
